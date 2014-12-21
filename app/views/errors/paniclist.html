@@ -1,0 +1,36 @@
+<html>
+	<head>
+		<title>Panic Logs</title>
+		<link rel="stylesheet" type="text/css" href="/public/css/bootstrap.min.css">
+		<script type="text/javascript" src="/public/js/bootstrap.min.js"></script>
+		<style>
+		body {
+			margin: 30px;
+		}
+		</style>
+	</head>
+	<body>
+		<h1>Panic Logs</h1>
+		<form method="POST">
+			<input type="submit" value="Delete All Panics" class="btn btn-danger">
+		</form>
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>Error</th>
+					<th>File</th>
+					<th>Date</th>
+				</tr>
+			</thead>
+			<tbody>
+			{{ range .panics }}
+				<tr>
+					<td><a href="/panics/{{ .id }}">{{ .title }}</a></td>
+					<td>{{ .errorSource }}:{{ .errorLine }}</td>
+					<td>{{ .time }}</td>
+				</tr>
+			{{ end }}
+			</tbody>
+		</table>
+	</body>
+</html>

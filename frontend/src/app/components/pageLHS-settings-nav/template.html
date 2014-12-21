@@ -1,0 +1,13 @@
+<ul class="panels-menu" data-bind="foreach: nav">
+    <li data-bind="css:{ 'current': routePart === app.currentRoute()[ $parent.nav.routePartName ] }">
+        <a class="menu-link" data-bind="css:{ 'active': routePart === app.currentRoute()[ $parent.nav.routePartName ] }, attr: { 'href': url }">
+            <span class="link-label" data-bind="text:name"></span>
+            <i class="icon" data-bind="css: icon"></i>
+        </a>
+    </li>
+</ul>
+
+<!-- IMPORTANT - Mark this template loaded -->
+<!-- ko if: $data.isLoaded != null && isLoaded -->
+    <div data-bind="text:templateLoaded(true)" style="display:none"></div>
+<!-- /ko -->

@@ -1,0 +1,35 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+module:testrunner
+
+GET     /																	Static.Serve("frontend/src/index.html")
+
+# Users
+GET		/v1/logout.json														UserController.GET_v1_logout
+POST	/v1/login.json														UserController.POST_v1_login
+POST 	/v1/users/forgotpassword.json 										UserController.POST_v1_users_forgotpassword
+PUT 	/v1/users/:userId.json		 										UserController.PUT_v1_userId
+
+# Times
+# GET 	/v1/timezones.json													TimezoneController.GET_v1_timezones
+
+# Misc
+GET 	/version.json														AppController.GET_version
+GET 	/panics																AppController.GET_panics
+POST 	/panics 															AppController.POST_panics
+GET 	/panics/:panicId													AppController.GET_panicId
+
+# Stats
+GET		/stats																StatController.Stats
+GET		/stats/delete														StatController.DeleteStats
+GET		/stats.json															StatController.StatsJson
+
+# Quick Tests
+# GET 	/quicktest/1														QuicktestController.Test1
+
+OPTIONS	/*																	AppController.HandleCORS
+
+# Static file serving
+GET		/public/*filepath													Static.Serve("public")
+GET		/*filepath															Static.Serve("frontend/src")

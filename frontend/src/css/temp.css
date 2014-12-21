@@ -1,0 +1,700 @@
+/* Peter S. looking for better fix for this. */
+.dropdown-backdrop{
+	display:none;
+}
+
+.above-redactor {
+	z-index: 9999;
+}
+
+.reply--container .tabs-structure .textarea-signature:before {
+	content: "";
+}
+
+.reply--container .tabs-structure .reply-typing .reply-options .btn-success{
+	height: 30px;
+}
+
+.reply-typing .reply-textarea{
+	height:50px !important
+}
+.reply-options{
+	margin-top:10px;
+}
+
+#replyBody {
+	border: 1px solid #D1D1D2;
+}
+
+.wrap-screen-inner .sections--header {
+	z-index: 1090;
+}
+
+/* autocomplete emails */
+.tags-control .input-tag {
+	display: inline-block;
+}
+
+.tags-control > li {
+	float: none;
+}
+
+.email-autocomplete-results {
+	background: #fff;
+	padding: 10px;
+	border: 1px solid #D1D1D2;
+	border-radius: 5px;
+	position: absolute;
+	box-shadow: 0px 0px 8px #e8e8e8;
+	z-index: 10000;
+}
+
+.email-autocomplete-results ul {
+	margin: 0;
+	padding: 0;
+}
+
+.email-autocomplete-results ul li {
+	font-size: 1.2rem;
+	margin: 0;
+	padding: 2px;
+	line-height: 2rem;
+	list-style: none;
+}
+
+.email-autocomplete-results ul li.current, .email-autocomplete-results ul li:hover {
+	background-color: #d3dcee;
+	color: #333366;
+}
+/* end autocomplete emails */
+
+
+/* REACTOR STUFF */
+.redactor-toolbar {
+	z-index:0 !important;
+}
+#tabReply .redactor-box{
+	margin-top:0px;
+	border-left: 1px solid #D1D1D2;
+	border-top: 1px solid #D1D1D2;
+	border-right: 1px solid #D1D1D2;
+	border-bottom: 1px solid #FFF !important;
+	margin-bottom: 0px;
+}
+#tabNote .redactor-box{
+	margin-top:0px;
+	border: 1px solid #D1D1D2;
+	margin-bottom: 0px;
+}
+.redactor-toolbar li.redactor-separator {
+	border:none;
+}
+.redactor-toolbar{
+	margin:10px;
+	margin-right:10px;
+	background-color: transparent !important;
+	border-bottom: 0;
+	box-shadow:none;
+}
+#tabNote .redactor-toolbar{
+	background: #FBFAE6 !important;
+}
+#tabNote .redactor-editor{
+	background: #FBFAE6 !important;
+}
+.redactor-toolbar li a:hover {
+  outline: none !important;
+  background-color: #F5F5F5 !important;
+  color: #000 !important;
+}
+#tabNote .redactor-toolbar li a:hover {
+	background: #fffdcd !important;
+}
+.redactor-editor {
+	border-left: none;
+	border-right: none;
+	border-top: 1px solid #eee;
+	border-bottom: none !important;
+	padding: 5px 10px !important;
+}
+.redactor-placeholder:after{
+	top:5px !important;
+	left:10px !important;
+}
+
+/*
+	Not sure what I need this again - Topper
+*/
+select:disabled {
+   opacity: 0.6 !important;
+}
+
+/*
+	Needed for error messages
+*/
+label.error {
+	display:block;
+	color: red;
+	font-size:12px;
+	padding:3px;
+}
+
+/*
+	The alert messages are going behind lightboxes
+*/
+.alerts-messages{
+	z-index: 9999999 !important;
+}
+
+
+/*
+	minicolor-input new style for color pickers - help doc sites - appearance
+*/
+.minicolor-input{
+	display: block;
+	width: 100%;
+	height: 34px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.428571429;
+	color: #555;
+	vertical-align: middle;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+	-webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+	transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+
+/*
+	SPF status-inactive
+*/
+.mailStatus.status-active{
+	background: #04b90f;
+}
+.mailStatus.status-inactive{
+	background: #b4b9bf;
+}
+
+
+
+.article-buttons-options .btn-save{
+	background-image: url('../images/buttons/save.png') !important;
+	background-position: 10px 50%;
+	background-repeat: no-repeat;
+}
+
+
+
+
+.catLev2{
+	padding-left: 20px
+}
+.catLev3{
+	padding-left: 40px
+}
+
+
+
+
+
+.sections--header .status-select .btn-status{
+	background-color: #dfbf73;
+}
+.sections--header .status-select .btn-status.status-solved {
+	background-color:green;
+}
+
+.tag.inbox{
+	border:none;
+	background:none;
+	color:#444;
+	font-weight:bold;
+}
+
+
+
+
+.redactor-toolbar li a.re-insertVar {
+    background-image: url(../images/buttons/insertVar.png);
+}
+.redactor-toolbar li a.re-insertVar:hover {
+    background-image: url(../images/buttons/insertVarHi.png);
+}
+.redactor-toolbar li a.re-insertSavedReply {
+    background-image: url(../images/buttons/insertSavedReply.png);
+}
+.redactor-toolbar li a.re-insertSavedReply:hover {
+    background-image: url(../images/buttons/insertSavedReplyHi.png);
+}
+
+
+
+
+/* Ticket content - More padding needed */
+.reply--box .content-main{
+	font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size:14px;
+}
+
+
+/* Loading component */
+#loader-wrapper {
+	margin-top:80px;
+	padding-top:55px;
+	text-align: center;
+	background:url('../images/ajax-loader.gif') 50% 0 no-repeat;
+
+	-webkit-animation: fadein 5s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 5s; /* Firefox < 16 */
+        -ms-animation: fadein 5s; /* Internet Explorer */
+         -o-animation: fadein 5s; /* Opera < 12.1 */
+            animation: fadein 5s;
+}
+#loader-wrapper p{
+	display:inline-block;
+	padding:5px 0 0 15px;
+	color:#BBB;
+}
+
+
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Email inline images can't exceed width*/
+.content-main img{
+	display:block;
+	max-width:100%;
+	clear:both;
+}
+
+
+
+/*
+We neeed the tooltip to go behind the drop menu or it's in the way
+*/
+.dropdown-menu {
+    z-index: 2050 !important;
+}
+.tooltip {
+    z-index: 1070 !important;
+}
+
+
+
+
+.wrap-inbox .column-main {
+	min-width: 600px;
+}
+
+.sub-paragraph{
+	margin-top:10px;
+	color:#777;
+}
+
+.badge.over1k{
+	font-size: 9px !important;
+	padding-left: 3px !important;
+}
+
+
+/* Icon at top in inbox page */
+.inboxIconHeader{
+	width:40px;height:40px;position:absolute;top: 4px;left: 5px;
+	border-radius: 50%;
+}
+
+/* Making room for icon at top of inbox */
+h4.title-label.wInboxIcon{
+	margin-left:40px
+}
+
+
+.box-customer div.inbox{
+font-size: 12px;
+font-weight: normal !important;
+color: #888;
+font-family: ProximaNova, sans-serif;
+line-height: 14px;
+padding-top: 5px;
+max-width: 137px;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
+
+
+/* thread eventInfo lines */
+div.reply-eventInfo{
+	background:#F6F6F6;
+	border: 1px solid #d9d9d9;
+	padding: 0 5px 5px 10px;
+	position: relative;
+}
+div.reply-eventInfo.reply--box .reply-content{
+	font-size:13px;
+	color:#777;
+	padding-top:10px;
+}
+div.reply-eventInfo.reply--box .reply-content .name{
+	font-size:13px;
+	color:#777;
+	font-weight:normal;
+	font-family: ProximaNova_regular, sans-serif;
+}
+div.reply-eventInfo.reply--box .reply-options{
+	top: 11px;
+	right:0;
+}
+
+
+.canSel, h3.name, .alerts-messages, .id-hold, .name-label, .customerExtraData {
+	-webkit-user-select: text;
+	-moz-user-select: text;
+	-ms-user-select: text;
+	user-select: text;
+}
+
+
+/*
+We want to alow the chart of use the full space - do it's own padding
+*/
+#dashInboxesHappiness{
+	padding:0 !important;
+	background-color: #EDF3FC;
+}
+#dashInboxesHappiness h6{
+	margin:15px 0 0 15px;
+	font-family: 'ProximaNova_semibold', sans-serif;
+	font-size: 14px;
+	text-transform: uppercase;
+	text-align: left;
+	color: rgb(85, 85, 85);
+}
+#dashInboxesHappiness .happiness-chart{
+	padding:0 !important;
+	margin:0 !important;
+	width:100% !important;
+	height:auto;
+}
+#dashInboxesHappiness .chart-holder{
+	min-height:120px;
+}
+#dashInboxesHappiness .happiness-chart .chart_labels{
+	z-index:9999;
+	top:40px;
+	right:30px;
+	position:absolute;
+	width:50px;
+	height:20px;
+	text-align:center;
+}
+#dashInboxesHappiness .happiness-chart .chart_labels strong{
+	font-size: 20px !important;
+	color: #555555;
+}
+
+
+
+#dashMetricsHappiness{
+	padding:0 !important;
+}
+#dashMetricsHappiness .happiness-chart{
+	padding:0 !important;
+	margin:0 !important;
+	width:100% !important;
+	height:auto;
+}
+#dashMetricsHappiness .chart-holder{
+	height:230px;
+}
+#dashMetricsHappiness .chart_labels{
+	z-index:9999;
+	top:80px;
+	left:70px;
+	position:absolute;
+	width:91px;
+	height:55px;
+	text-align:center;
+}
+
+
+label.in_title{
+	font-weight: normal;
+	cursor:pointer;
+	cursor:hand;
+}
+
+
+.text-editor-hold .editor-body{
+	background:#FFF;
+}
+
+
+.redactor-dropdown a{
+	padding: 3px 15px !important;
+	font-size: 13px;
+}
+
+#othersViewing{
+	z-index: 9999;
+	padding: 5px 10px 3px 25px;
+	margin: 0 0 0 -150px;
+	position:fixed;
+	bottom: 0;
+	right: 23px;
+	min-width:100px;
+	border-bottom:none;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+}
+#othersViewing.alert-info{
+	background-color:#F2F7FF;
+	border-color:#DDE3EC;
+	color:#333;
+}
+
+#othersViewing img{
+	width:16px;height:16px;position:absolute;left: 4px;top: 2px;border-radius: 50%;
+}
+#othersViewing.alert-info img{
+	border:1px solid #999;
+}
+
+.wrap-dashboard #othersViewing{
+	position:fixed;
+	bottom: 0;
+	right: 0;
+	min-width:228px;
+	border-left:none;
+	border-right:none;
+	border-bottom:none;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	background-color:#F2F7FF;
+	border-color:#DDE3EC;
+	color:#333;
+}
+
+#ticket-main-content #othersViewing{
+	position: absolute;
+	top: 50px;
+	left:50%;
+	bottom: auto;
+	right: auto;
+	margin-left: -150px;
+	min-width:300px;
+	border-top-right-radius: 0;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	border-bottom:1px solid #E6D6B6;
+}
+
+
+#somebodyReplying{
+	position: relative;
+	background: rgb(192, 27, 27);
+	color: #fff;
+	padding: 15px 10px 15px 47px;
+}
+#somebodyReplying img{
+	position: absolute;
+	top: 6px;
+	left: 10px;
+	width: 30px;
+	height: 30px;
+	border: 1px solid #810303;
+	border-radius: 50%;
+}
+
+
+
+
+@-webkit-keyframes pulse_animation {
+	0% { -webkit-transform: scale(1); }
+	30% { -webkit-transform: scale(1.04); }
+	40% { -webkit-transform: scale(1.08); }
+	50% { -webkit-transform: scale(1.04); }
+	60% { -webkit-transform: scale(1); }
+	70% { -webkit-transform: scale(1.02); }
+	80% { -webkit-transform: scale(1); }
+	100% { -webkit-transform: scale(1); }
+}
+
+
+.pulse {
+	-webkit-animation-name: 'pulse_animation';
+	-webkit-animation-duration: 1000ms;
+	-webkit-transform-origin:70% 70%;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+}
+
+/* upi = user presense indicator */
+.upi{
+	position: absolute;
+	left: 32px;
+	top: 12px;
+	font-weight: normal;
+	z-index: 9999;
+	color: #167E72;
+	font-size: 13px;
+}
+.upi img{
+	width:25px;height:25px;
+	border-radius:50%;
+	border:2px solid #FFF;
+}
+.upi_status.replying{
+	position:absolute;
+	top:3px;
+	display:inline-block;
+	width:20px;
+	height:20px;
+}
+.upi_status.replying{
+	background:url('../images/typing.gif') 0 50% no-repeat;
+}
+
+.panel-title .badge{
+	font-size:10px !important;
+	right:4px !important;
+	opacity:1 !important;
+	min-width: 30px;
+	color:#CACACA !important;
+	display:none;
+}
+.panel-title a.collapsed .badge{
+	display:block;
+}
+
+.panel-title a:hover .badge{
+	display:none;
+}
+
+
+
+
+.redactor-editor {
+	-webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+.dropdown-menu .shortcut{
+	float: right;
+	color: #99A;
+	background: #FFFFFF;
+	border-radius: 3px;
+	font-size: 11px;
+	padding: 1px 4px;
+	border: 1px solid #EEE;
+	border-bottom: 1px solid #DDD;
+	margin-right: -5px;
+}
+.dropdown-menu a:hover .shortcut {
+	color: #FFF;
+	background: #5C8DD4;
+	border: 1px solid #85AEE8;
+	border-bottom: 1px solid #B9CDE8;
+}
+
+.tInboxName{
+	color:rgb(182, 182, 182);
+	clear:both;
+	margin-left:34px;
+}
+a.tInboxName:hover{
+	text-decoration: none;
+}
+
+/* Alignmnet tweaks */
+
+.panels-menu li a .link-label {
+display: block;
+white-space: nowrap;
+}
+.panels-menu li a{
+	padding: 9px 40px 8px 41px;
+}
+.panels-menu li a .icon{
+	left: 20px;
+}
+.panels-menu li.last-button {
+	padding: 8px 0 10px 20px;
+}
+
+
+.panels-menu .icon-waiting-oncustomer {
+	background-position: 0 -655px;
+}
+.panels-menu .icon-waiting-oncustomer {
+	background-position: 0 -655px;
+}
+.panels-menu .icon-on-hold {
+	background-position: 0 -655px;
+}
+.panels-menu .icon-waiting {
+	background-position: 0 -655px;
+}
+
+.reply--container .tabs-structure .reply-typing .reply-options>ul {
+	float:right !important;
+}
+
+.files--attached {
+	overflow:hidden;
+
+}
+.files--attached.canEdit li {
+	float:left;
+	padding-right:30px;
+}
+
+.files--attached.canEdit li a.close{
+	padding:0;
+	background: url('../images/buttons/tags-close.png') no-repeat center;
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	display:inline-block;
+	top: 0;
+	right: 10px;
+	opacity: .75;
+}
+
+.files--attached.canEdit li a.close:hover{
+	opacity: 1;
+}

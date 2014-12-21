@@ -1,0 +1,21 @@
+{
+	"prefix": "/v1",
+	"routes": {
+		"/customers/:customerId.json": {
+			"itemRefs": ["customer"]
+		},
+		"/tickets/:ticketId.json": {
+			"itemRefs": ["ticket"]
+		}
+	},
+	"itemRefs": {
+		"customer": {
+			"key": "1",
+			"idRef": "customerId"
+		},
+		"ticket": {
+			"key": "1",
+			"idRef": "ticketId"
+		}
+	}
+}

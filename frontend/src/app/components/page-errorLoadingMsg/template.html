@@ -1,0 +1,40 @@
+<div style="position:absolute;top:0;left:50%;padding-top:50px;color:#000;text-align:center;margin-left:-200px">
+    <img src="images/blankslates/errorLoading.png">
+
+    <!-- ko if: ",403,500,".indexOf( ','+app.pageLoadingErrorXHR().status+',' ) == -1 -->
+	    <div style="font-size:36px;text-align:center;">
+	        Houston, we have a problem
+	    </div>
+	    <div style="padding:10px;font-size:20px;max-width:495px;margin:0 auto;">We can't load this page, could you check your internet connection and click the button below to try again.</div>
+	    <div style="padding:10px;font-size:20px;max-width:495px;margin:0 auto;">
+	        <button type="button" class="btn btn-default btn-lg" data-bind="click:TryAgain">Try Again</button>
+	    </div>
+    <!-- /ko -->
+    <!-- ko if: app.pageLoadingErrorXHR().status == 500 -->
+	    <div style="font-size:36px;text-align:center;">
+	        Houston, we have a problem
+	    </div>
+	    <div style="padding:10px;font-size:20px;max-width:495px;margin:0 auto;">We ran into a internal error while loading this page. We have dispatched a team of monkeys with some programming ability to deal with this.<br><br><small>Seriously, we are sorry for getting in your way but will have it fixed soon &mdash; Please try again in 10 minutes.</small></div>
+	    <div style="padding:10px;font-size:20px;max-width:495px;margin:0 auto;">
+	        <button type="button" class="btn btn-default btn-lg" data-bind="click:TryAgain">Try Again</button>
+	    </div>
+    <!-- /ko -->
+    <!-- ko if: app.pageLoadingErrorXHR().status == 403 -->
+	    <div style="font-size:36px;text-align:center;">
+	        Oops. Access Denied
+	    </div>
+	    <div style="padding:10px;font-size:20px;max-width:495px;margin:0 auto;">
+	    	The server had the cheek to say that you don't have access to this page.
+	    	Your permissions may have changed.
+	    </div>
+	    <div style="padding:10px;font-size:20px;max-width:495px;margin:0 auto;">
+	        <button type="button" class="btn btn-default btn-lg" data-bind="click:function(){ history.back() }">Back</button>
+	        <button type="button" class="btn btn-default btn-lg" data-bind="click:TryAgain">Try Again</button>
+	    </div>
+    <!-- /ko -->
+
+</div>
+<!-- IMPORTANT - Mark this template loaded -->
+<!-- ko if: $data.isLoaded != null && isLoaded -->
+    <div data-bind="text:templateLoaded(true)" style="display:none"></div>
+<!-- /ko -->

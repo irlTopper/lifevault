@@ -1,0 +1,53 @@
+<html>
+	<head>
+		<title>
+			PANIC: {{.title}}
+		</title>
+		<style>
+		html, body {
+			font-family: "Roboto", sans-serif;
+			color: #333333;
+			background-color: #ea5343;
+			margin: 0px;
+		}
+		h1 {
+			color: #d04526;
+			background-color: #ffffff;
+			padding: 20px;
+			border-bottom: 1px dashed #2b3848;
+		}
+		pre {
+			margin: 20px;
+			padding: 20px;
+			border: 2px solid #2b3848;
+			background-color: #ffffff;
+			word-wrap:break-word;
+		}
+		b {
+			margin: 20px;
+		}
+		</style>
+		<script type="text/javascript" src="/public/js/highlight.pack.js"></script>
+		<link rel="stylesheet" type="text/css" href="/public/css/monokai.css">
+		<script>
+			hljs.configure({
+				tabReplace: '  '
+			})
+			hljs.initHighlightingOnLoad();
+		</script>
+	</head>
+	<body>
+		<h1>PANIC</h1>
+		<b>{{.title}} - <a href="subl://open?url=file://{{.errorSource}}&line={{.errorLine}}">{{.errorSource}}:{{.errorLine}}</a></b>
+		{{if .SQL}}
+			<h1>SQL</h1>
+			<pre style="word-wrap:normal;"><code class="SQL">{{.SQL}}</code></pre>
+		{{end}}
+		<h1>Stack Trace (Shortened to show as relevant info as possible)</h1>
+		<pre>{{.stack}}</pre>
+		<p><h1>Request Information</h1></p>
+		<pre>{{.request}}</pre>
+		<h1>Full Stack Trace</h1>
+		<pre>{{.fullStack}}</pre>
+	</body>
+</html>

@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Statistics</title>
+
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+        <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"></link>
+
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.0/css/jquery.dataTables.css"></link>
+
+        <script type="text/javascript">
+
+$(document).ready(function() {
+
+    jQuery.fn.dataTableExt.aTypes.push(
+        function ( sData )
+        {
+            if(sData.indexOf('ms') === -1) return null;
+            return 'time-ms';
+        }
+    );
+
+    jQuery.fn.dataTableExt.oSort['num-percent-asc'] = function(x, y) {
+        var xNum = parseInt(x.substring(0, x.indexOf('(')));
+        var yNum = parseInt(y.substring(0, y.indexOf('(')));
+        return (xNum < yNum ? -1 : (xNum > yNum ? 1 : 0));
+    };
+    jQuery.fn.dataTableExt.oSort['num-percent-desc']  = function(x, y) {
+        var xNum = parseInt(x.substring(0, x.indexOf('(')));
+        var yNum = parseInt(y.substring(0, y.indexOf('(')));
+        return (xNum > yNum ? -1 : (xNum < yNum ? 1 : 0));
+    };
+    jQuery.fn.dataTableExt.oSort['time-ms-asc']  = function(x, y) {
+        var xNum = parseInt(x.slice(0, -2));
+        var yNum = parseInt(y.slice(0, -2));
+        return (xNum < yNum ? -1 : (xNum > yNum ? 1 : 0));
+    };
+    jQuery.fn.dataTableExt.oSort['time-ms-desc']  = function(x, y) {
+        var xNum = parseInt(x.slice(0, -2));
+        var yNum = parseInt(y.slice(0, -2));
+        return (xNum > yNum ? -1 : (xNum < yNum ? 1 : 0));
+    };
+
+    $('.server, .all').on('click', function(event) {
+        event.preventDefault();
+        $(this).tab('show');
+    });
+
+    window.dataTables = [];
+    $('.serverTable').each(function(i, e){
+        var serverID = $(this).attr('id');
+        var host = {{if .developer}}window.location.host{{else}}serverID + ".teamwork.com:8080"{{end}};
+
+        window.dataTables[serverID] = $(this).dataTable({
+            ajax: "http://" + host + "/stats.json",
+            order: [[ 5, "desc" ]],
+            columns: newColumns(host),
+        });
+
+        $(this).on('xhr.dt', function ( e, settings, json ) {
+            window.dataSource = [];
+            for(var server in window.dataTables) {
+                var serverData = window.dataTables[server];
+                $.each(serverData.fnGetData(), function(index, data) {
+                    var found = false;
+                    window.dataSource.forEach(function(src) {
+                        if(src.Name == data.Name) {
+                            found = true;
+                            src.Called += data.Called,
+                            src.Average += data.Average,
+                            src.Total += data.Total,
+                            src.ETagged += parseInt(data.ETagged.substring(0, data.ETagged.indexOf('('))),
+                            src.Cached += parseInt(data.Cached.substring(0, data.Cached.indexOf('(')))
+                        }
+                    });
+                    if (!found) {
+                        window.dataSource.push({
+                            Name: data.Name,
+                            Called: data.Called,
+                            Average: data.Average,
+                            Total: data.Total,
+                            ETagged: parseInt(data.ETagged.substring(0, data.ETagged.indexOf('('))),
+                            Cached: parseInt(data.Cached.substring(0, data.Cached.indexOf('(')))
+                        });
+                    }
+                });
+            }
+
+            $('#server' + (i + 1) + 'mem').html(json.MemoryInUse + " MB");
+            $('#server' + (i + 1) + 'ver').html("v" + json.Version);
+
+            var tabs = [
+                {dataSource: window.dataSource, table: window.allTable},
+                {dataSource: json.aaData, table: window.dataTables[serverID]}
+            ];
+
+            for (var j = 0; j < tabs.length; j++) {
+                var total = {
+                    Called: 0,
+                    Cached: 0,
+                    ETagged: 0,
+                    Average: 0,
+                    Total: 0
+                }
+
+                var count = 0;
+                tabs[j].dataSource.forEach(function(src) {
+                    if (j == 0) {
+                        src.Average = (src.Average / Object.keys(window.dataTables).length).toFixed(0);
+                        total.Cached += src.Cached;
+                        total.ETagged += src.ETagged;
+                        if(src.Average > 0)
+                        {
+                            count++;
+                            total.Average += parseInt(src.Average, 10);
+                        }
+                    } else {
+                        total.Cached += parseInt(src.Cached.substring(0, src.Cached.indexOf('(')));;
+                        total.ETagged += parseInt(src.ETagged.substring(0, src.ETagged.indexOf('(')));;
+                        if(src.Average > 0)
+                        {
+                            count++;
+                            total.Average += src.Average;
+                        }
+                    }
+                    total.Called += src.Called;
+                    total.Total += src.Total;
+                });
+                total.Average = (total.Average / count).toFixed(0);
+
+                if (j == 0) {
+                    window.allTable.fnClearTable();
+                    window.allTable.fnAddData(window.dataSource);
+                }
+
+                var totals = [
+                    total.Called,
+                    total.Cached,
+                    total.ETagged,
+                    total.Average + "ms",
+                    total.Total + "ms",
+                ];
+                for (var col = 1; col <= 5; col++) {
+                    $(tabs[j].table.api().column(col).footer()).html(totals[col-1]);
+                }
+            }
+        });
+
+        $('#server' + (i + 1) + 'buttons').html(
+            '<form method="get" action="http://' + host + '/stats/delete" style="display: inline;" onsubmit="javascript:if(!confirm(\'Are you sure you wish to reset the logs of dev server?\')) return false;">' +
+            '<input type=submit class="btn btn-danger" value="Reset Stats" /></form>'
+        );
+    });
+    setInterval(reloadContextData, 1000);
+
+    window.dataSource = [];
+    window.allTable = $('#servAll').dataTable({
+        data: window.dataSource,
+        order: [[ 5, "desc" ]],
+        columns: newColumns(null),
+    });
+
+    $('.all').click(function(event) {
+        event.preventDefault();
+        window.dataTables.forEach(function(e) {
+            e.api().ajax.reload();
+        });
+    });
+});
+
+function reloadContextData() {
+    var selectedTabId = $("ul#tabs li.active a").attr('href');
+    var activeTableId = $('div' + selectedTabId + " table").attr('id');
+    
+    if(activeTableId === "servAll") {
+        var keys = Object.keys(window.dataTables);
+        window.dataTables[keys[Math.floor(keys.length * Math.random())]].api().ajax.reload();
+    } else {
+        window.dataTables[activeTableId].api().ajax.reload();
+    }
+}
+
+function newColumns(host) {
+    var cols = [
+        {
+            data: "Name",
+            title: "Name"
+        },
+        {
+            data: "Called",
+            title: "Total Calls",
+            type: "numeric",
+        },
+        {
+            data: "Cached",
+            title: "Total Cached",
+        },
+        {
+            data: "ETagged",
+            title: "Total 304s",
+        },
+        {
+            data: "Average",
+            title: "Average Response Time",
+            render: function ( data, type, row ) {
+                return data + 'ms';
+            },
+        },
+        {
+            data: "Total",
+            title: "Total Time Taken",
+            render: function ( data, type, row ) {
+                return data + 'ms';
+            },
+        }
+    ];
+
+    if (host) {
+        cols[0]['render'] = function ( data, type, row ) {
+            return '<a href="http://' + host + '/stats?view=' + data + '">' + data + '</a>';
+        };
+    }
+
+    return cols;
+}
+        </script>
+        <style>
+            body {
+                margin: 20px;
+            }
+            .tab-pane {
+                border-bottom:1px solid #ddd;
+                border-left:1px solid #ddd;
+                border-right:1px solid #ddd;
+                padding: 20px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <ul class="nav nav-tabs" id="tabs" style="margin-top: 20px;">
+            {{if .developer}}
+                <li id="server1Tab" class="active">
+                    <a class="server" href="#server1" data-toggle="tab">Server 1</a>
+                </li>
+            {{else}}
+                <li id="allTab" class="active">
+                    <a class="all" href="#all">All</a>
+                </li>
+                {{range $_, $subdomain := .subdomains}}
+                    <li id="server{{$subdomain.Id}}Tab">
+                        <a class="server" href="#server{{$subdomain.Id}}" data-toggle="tab">Server {{$subdomain.Id}}</a>
+                    </li>
+                {{end}}
+            {{end}}
+        </ul>
+
+        <div class="tab-content">
+            {{if .developer}}
+                <div id="server1" class="tab-pane active">
+                    <h4>Controls</h4>
+                    <div id="server1buttons"></div>
+                    <hr></hr>
+                    <h4>API Call Statistics</h4>
+                    <table id="dev" class="table table-bordered table-striped serverTable">
+                        <thead></thead>
+                        <tbody></tbody>
+                        <tfoot>
+                            <td rowspan="1" colspan="1">Totals</td>
+                            <td rowspan="1" colspan="1"></td>
+                            <td rowspan="1" colspan="1"></td>
+                            <td rowspan="1" colspan="1"></td>
+                            <td rowspan="1" colspan="1"></td>
+                            <td rowspan="1" colspan="1"></td>
+                        </tfoot>
+                    </table>
+                    <hr></hr>
+                    <table class="table table-bordered table-striped">
+                        <h4>Process Stats</h4>
+                        <tr>
+                            <th>Memory in use</th>
+                            <td id="server1mem">0 MB</td>
+                        </tr>
+                        <tr>
+                            <th>API Version</th>
+                            <td id="server1ver">v0.0</td>
+                        </tr>
+                    </table>
+                </div>
+            {{else}}
+                <div id="all" class="tab-pane active">
+                    <table id="servAll" class="table table-bordered table-striped">
+                        <thead></thead>
+                        <tbody></tbody>
+                        <tfoot>
+                            <td rowspan="1" colspan="1">Totals</td>
+                            <td rowspan="1" colspan="1"></td>
+                            <td rowspan="1" colspan="1"></td>
+                            <td rowspan="1" colspan="1"></td>
+                            <td rowspan="1" colspan="1"></td>
+                            <td rowspan="1" colspan="1"></td>
+                        </tfoot>
+                    </table>
+                </div>
+                {{range $_, $subdomain := .subdomains}}
+                    <div id="server{{$subdomain.Id}}" class="tab-pane">
+                        <h4>Controls</h4>
+                        <div id="server{{$subdomain.Id}}buttons"></div>
+                        <hr></hr>
+                        <h4>API Call Statistics</h4>
+                        <table id="{{$subdomain.Name}}" class="table table-bordered table-striped serverTable">
+                            <thead></thead>
+                            <tbody></tbody>
+                            <tfoot>
+                                <td rowspan="1" colspan="1">Totals</td>
+                                <td rowspan="1" colspan="1"></td>
+                                <td rowspan="1" colspan="1"></td>
+                                <td rowspan="1" colspan="1"></td>
+                                <td rowspan="1" colspan="1"></td>
+                                <td rowspan="1" colspan="1"></td>
+                            </tfoot>
+                        </table>
+                        <hr></hr>
+                        <table class="table table-bordered table-striped">
+                            <h4>Process Stats</h4>
+                            <tr>
+                                <th>Memory in use</th>
+                                <td id="server{{$subdomain.Id}}mem">0 MB</td>
+                            </tr>
+                            <tr>
+                                <th>API Version</th>
+                                <td id="server{{$subdomain.Id}}ver">v0.0</td>
+                            </tr>
+                        </table>
+                    </div>
+                {{end}}
+            {{end}}
+
+        </div>
+    </body>
+</html>

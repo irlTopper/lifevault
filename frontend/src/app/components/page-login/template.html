@@ -1,0 +1,81 @@
+<!-- Login box  -->
+<div class="login--wrap">
+    <div class="login-container">
+        <div class="login--box">
+
+            <form data-bind="submit:onSubmitLogin">
+            <div class="padding-wrap">
+
+                    <!-- ko ifnot: logo() === "" -->
+                    <div class="teamwork-box-logo">
+                        <img src="images/tw-transparent-logo.png" alt="Teamwork.com">
+                    </div>
+                    <!-- /ko -->
+
+                    <div class="custom-login-logo">
+                        <div class="image-wrap">
+                            <!-- ko if: logo() === "" -->
+                                <img src="images/logo-login.png" alt="Teamwork.com">
+                            <!-- /ko -->
+                            <!-- ko if: logo() !== "" -->
+                                <img data-bind="attr: { src: logo }" alt="">
+                            <!-- /ko -->
+                        </div><!-- image wrap -->
+                    </div><!-- custom logo -->
+
+                    <h2 class="login-site_name" data-bind="text:siteName"></h2>
+
+                    <!-- ko if: isLoggingIn() && 0 -->
+                    <div class="login-logedin-loader">
+                        <span class="load-spin"></span>
+                    </div>
+                    <!-- /ko -->
+
+                    <div data-bind="visible:!isLoggingIn()">
+                        <div class="fields-holder" data-bind="css:{ 'fields-error':hasLoginError() }">
+
+                            <div class="field-row">
+                                <label class="input-label">Username or email</label>
+                                <input type="text" id="userLogin" tabindex="1" name="userLogin" value="" class="input-field" placeholder="Username or email" data-bind="value: email">
+                                <i class="icon icon-username"></i>
+                            </div><!-- row -->
+
+                            <div class="field-row">
+                                <label class="input-label">Password</label>
+                                <input type="password" id="password" tabindex="2" name="password" value="" class="input-field" placeholder="Password">
+                                <i class="icon icon-password"></i>
+                            </div><!-- row -->
+
+                        </div><!-- fields holder -->
+
+                        <div class="remember-login">
+                            <label for="loginRemember" class="checkbox-style">
+                                <input class="checkbox-base" data-bind="checked: rememberLogin" type="checkbox" name="rememberMe" id="loginRemember" tabindex="3">
+                                <span class="checkbox-replacer"></span>
+                                Keep me logged in
+                            </label>
+                        </div><!-- logged in row -->
+
+                        <div class="button-holder">
+                            <button class="ladda-button button-login" data-style="zoom-out" data-bind="ladda: isLoggingIn"><span class="ladda-label" data-bind="text:(isLoggingIn()?'Logging In':'Log In')"></span></button>
+                        </div><!-- button holder -->
+
+                    </div>
+
+            </div><!-- padding -->
+            </form>
+
+            <div class="down-links">
+                <a href="javascript:void(0)" data-bind="click: function() { app.GoTo('forgotpassword/' + email()); }">Forgot your password?</a>
+            </div>
+
+        </div><!-- login box -->
+
+    </div><!-- container -->
+
+</div><!-- login wrap -->
+<!-- Login box - end -->
+<!-- IMPORTANT - Mark this template loaded -->
+<!-- ko if: $data.isLoaded != null && isLoaded -->
+    <div data-bind="text:templateLoaded(true)" style="display:none"></div>
+<!-- /ko -->

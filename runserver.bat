@@ -1,0 +1,1 @@
+cmd.exe /k "revel run github.com/irlrunseTopper/ohlife2"

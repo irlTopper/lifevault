@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Statistics</title>
+
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+        <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"></link>
+
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.0/css/jquery.dataTables.css"></link>
+
+        <script type="text/javascript">
+var last = -1;
+
+jQuery.fn.dataTableExt.aTypes.push(
+    function ( sData )
+    {
+        if(sData.indexOf('ms') === -1) return null;
+        return 'time-ms';
+    }
+);
+
+jQuery.fn.dataTableExt.oSort['time-ms-asc']  = function(x, y) {
+    var xNum = parseInt(x.slice(0, -2));
+    var yNum = parseInt(y.slice(0, -2));
+    return (xNum < yNum ? -1 : (xNum > yNum ? 1 : 0));
+};
+
+jQuery.fn.dataTableExt.oSort['time-ms-desc']  = function(x, y) {
+    var xNum = parseInt(x.slice(0, -2));
+    var yNum = parseInt(y.slice(0, -2));
+    return (xNum > yNum ? -1 : (xNum < yNum ? 1 : 0));
+};
+
+$('#dt').dataTable();
+
+function showQueries(idx) {
+    document.getElementById('h' + idx).setAttribute('style', '');
+    window.location.hash = "h" + idx;
+
+    if(last !== -1 && last != idx) {
+        document.getElementById('h' + last).setAttribute('style', 'display: none;');
+    }
+
+    last = idx;
+}
+
+function showQuery(idx, index, show) {
+    if(show) {
+        document.getElementById(idx + 'query' + index).setAttribute('style', '');
+        document.getElementById(idx + 'link' + index).setAttribute('style', 'display: none;');
+    } else {
+        document.getElementById(idx + 'query' + index).setAttribute('style', 'display: none;');
+        document.getElementById(idx + 'link'  + index).setAttribute('style', '');
+    }
+}
+        </script>
+        <style>
+            body {
+                margin: 20px;
+            }
+            .tab-pane {
+                border-bottom:1px solid #ddd;
+                border-left:1px solid #ddd;
+                border-right:1px solid #ddd;
+                padding: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <h2><a href="/stats">API Statistics</a> for {{.path}} (Last {{.logSize}} calls)</h2>
+        <table id="dt" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>URL</th>
+                    <th>TimeTaken</th>
+                    <th>Session Information</th>
+                    <th>Queries</th>
+                    <th>Response Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{range $i, $request := .requests}}
+                    <tr>
+                            <td><a href="{{$request.URL}}">{{$request.URL}}</a></td>
+                            <td>{{$request.TimeTaken}}ms</td>
+                            <td>{{$request.User}}</td>
+                            <td>
+                                {{if $request.Queries}}
+                                    <a href="javascript:showQueries({{$i}})">Show Queries</a>
+                                {{else}}
+                                    <em>None</em>
+                                {{end}}
+                            </td>
+                            <td>
+                                {{if $request.ETag}}
+                                    304 NOT Modified
+                                {{else if $request.Cache}}
+                                    API Level Caching
+                                {{else}}
+                                    Not Cached
+                                {{end}}
+                            </td>
+                    </tr>
+                {{end}}
+            </tbody>
+        </table>
+        {{range $i, $request := .requests}}
+            <div id="h{{$i}}" name="h{{$i}}" style="display: none;">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Time Taken</th>
+                            <th>SQL Preview</th>
+                            <th>Full SQL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{range $j, $query := $request.Queries}}
+                            <tr>
+                                <td>{{$query.TimeTaken}}ms</td>
+                                <td>{{$query.ShortSQL}}</td>
+                                <td>
+                                    <a id="{{$i}}link{{$j}}" href="javascript:showQuery({{$i}}, {{$j}}, true)">
+                                        Show Query
+                                    </a>
+                                    <div id="{{$i}}query{{$j}}" style="display: none;">
+                                        <textarea class="form-control" rows="20" cols="80">
+                                            {{$query.SQL}}
+                                        </textarea>
+                                        <a id="{{$i}}link{{$j}}" href="javascript:jQuery({{$i}}, {{$j}}, false)">
+                                            Hide Querys
+                                        </a>
+                                    </div>
+                                </td>
+                            <tr>
+                        {{end}}
+                    </tbody>
+                </table>
+            </div>
+        {{end}}
+    </body>
+</html>

@@ -1,0 +1,64 @@
+<!--
+  The navigation UI that is docked to the left of the window.
+-->
+<header class="main--bar">
+    <div class="bar-top">
+        <nav>
+            <ul class="menu-bar">
+                <li data-bind="css: { current: app.currentRoute().page === 'dashboard' }">
+                    <a data-bind="attr:{ href:'#dashboard/'+app.lastDashboardPageTab() }"><span class="icon icon-dashboard"></span><span class="label-hold">Dashboard</span></a>
+                </li>
+                <!-- ko if: app.inboxes().length > 0 -->
+                <li data-bind="css: { current: app.currentRoute().page === 'tickets' }">
+                    <a data-bind="attr:{ href:app.lastTicketsPageURL() }, click: ShowOrHide" id="menuTicket" data-toggle-target="#inbox-left-sidebar" data-toggle-parent="#inbox-main-content"><span class="icon icon-tickets"></span><span class="label-hold">Tickets</span><span class="badge badge-red" data-bind="text: app.FindInboxById(0).ticketCounts.mine(), visible: app.FindInboxById(0).ticketCounts.mine() > 0"></span></a>
+                </li>
+                <!-- /ko -->
+                <!--
+                <li data-bind="css: { current: app.currentRoute().page === 'reports' }">
+                    <a href="#reports"><span class="icon icon-reports"></span><span class="label-hold">Reports</span></a>
+                </li>
+             -->
+                <li data-bind="css: { current: app.currentRoute().page === 'helpdocs' }">
+                    <a href="#helpdocs"><span class="icon icon-helpdocs"></span><span class="label-hold">Help Docs</span></a>
+                </li>
+            </ul><!-- menu list -->
+        </nav><!-- menu bar -->
+    </div>
+    <div class="bar-bottom">
+        <ul class="menu-options">
+            <li data-bind="css: { current: app.currentRoute().page === 'search' }">
+                <a href="#search" class="option option-search"></a>
+            </li>
+            <!-- ko if: true -->
+            <li class="dropdown">
+                <a href="#settings" class="option option-settings" id="optionsMenu" data-toggle="dropdown" data-bind="css:{'current':app.currentRoute().page=='settings'}"></a>
+                <ul class="dropdown-menu arrow-down menu-icons" role="menu" aria-labelledby="optionsMenu">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#settings/company"><i class="icon company"></i>Company</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#settings/users"><i class="icon users"></i>Users</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#settings/inboxes"><i class="icon inbox"></i>Inboxes</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#settings/helpdocs"><i class="icon helpdocs"></i>Help Docs</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#settings/tags"><i class="icon tags"></i>Tags</a></li>
+                </ul>
+            </li>
+            <!-- /ko -->
+            <li class="dropdown">
+                <div class="user-options">
+                    <a href="javascript:void(0)" class="user-image" id="userMenu" data-toggle="dropdown">
+                        <span class="image_hold">
+                            <img data-bind="attr:{ src:app.loggedInUser.avatarURL }" alt="User image" onError="this.src='images/examples/noPhoto1.png';">
+                        </span>
+                    </a><!-- user image -->
+                    <ul class="dropdown-menu arrow-down" role="menu" aria-labelledby="userMenu">
+                        <li><a role="menuitem" tabindex="-1" href="#myprofile">Your Profile</a></li>
+                        <!-- <li><a role="menuitem" tabindex="-1" href="#plan">Your Plan</a></li> -->
+                        <li><a role="menuitem" tabindex="-1" href="#login">Logout</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+</header>
+<!-- IMPORTANT - Mark this template loaded -->
+<!-- ko if: $data.isLoaded != null && isLoaded -->
+    <div data-bind="text:templateLoaded(true)" style="display:none"></div>
+<!-- /ko -->

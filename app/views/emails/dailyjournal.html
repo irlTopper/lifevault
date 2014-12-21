@@ -1,0 +1,16 @@
+<html>
+	<head>
+		<title>You were invited to TeamworkDesk!</title>
+	</head>
+	<body>
+		Hey {{.firstName}}, you were invited to join {{.installation.Company.Name}} on Teamwork Desk!<br /><br />
+		{{if .hasPMAccount}}
+			You already have an account with us on Teamwork PM! That means you can login to Teamwork Desk with the same details
+			as you normally would on Project Manager. You still need to activate your Teamwork Desk account though, in order to do so
+			please click the link below:<br /><br />
+		{{else}}
+			You'll need to click the link below to activate your account and set a password for it!<br /><br />
+		{{end}}
+		<a href="{{.link}}">{{.link}}</a>
+	</body>
+</html>

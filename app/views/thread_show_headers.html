@@ -1,0 +1,10 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="/css/styles.css">
+	</head>
+	<body style="-webkit-user-select: initial; user-select: initial; -moz-user-select: initial; ms-user-select: initial;">
+	{{range $header, $value := .headers}}
+		{{$header}}: {{$value}}<br />
+	{{end}}
+	</body>
+</html>

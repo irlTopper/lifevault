@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Ohlife 2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+<!-- build:css -->
+<link href="css/login.css" rel="stylesheet"/>
+<link href="css/styles.css" rel="stylesheet"/>
+<link href="css/temp.css" rel="stylesheet"/>
+<!-- build:js -->
+<script src="libs/bower/jquery/dist/jquery.min.js"></script>
+<script src="config.js"></script>
+<script src="app/require.config.js"></script>
+<script data-main="app/startup" src="libs/bower/requirejs/require.js"></script>
+
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+<!-- endbuild -->
+</head>
+<body data-bind="attr:{ id:app.pageComponentToShow }">
+
+<!-- LOGGED OUT (full screen) -->
+<!-- ko if: app.currentRoute().isLoggedInPage === false -->
+    <!-- ko component: { name: app.pageComponentToShow } --><!-- /ko -->
+<!-- /ko -->
+
+
+<!-- LOGGED IN (has nav) -->
+<!-- ko if: app.currentRoute().isLoggedInPage -->
+
+  <!-- INITIAL LOADING -->
+  <!-- ko ifnot: app.essentialDataIsLoaded() -->
+    <!-- ko component: { name: 'page-loading' } --><!-- /ko -->
+  <!-- /ko -->
+
+
+
+  <!-- MAIN APP -->
+  <!-- ko if: app.essentialDataIsLoaded() -->
+  <div class="deck-wrap">
+
+      <!-- LEFT HAND SIDE NAVIGATION -->
+      <!-- ko component: { name: 'nav-main' } --><!-- /ko -->
+
+      <section class="main--holder" data-bind="css: app.mainHolderClass">
+        <!-- ko if: app.pageLoadingErrorXHR() != null -->
+          <!-- ko component: { name: 'page-errorLoadingMsg' } --><!-- /ko -->
+        <!-- /ko -->
+        <!-- ko if: app.pageLoadingErrorXHR() == null && app.pageComponentToShow() !== '' -->
+         	<!-- ko component: { name: app.pageComponentToShow() } --><!-- /ko -->
+
+
+		    <!-- ko if: app.currentRoute().viewingUsers().length && app.currentRoute().pageMain != "ticket" -->
+		        <!-- ko component: { name: 'widget-othersViewing' } --><!-- /ko -->
+		    <!-- /ko -->
+        <!-- /ko -->
+      </section>
+
+  </div>
+  <!-- /ko -->
+
+<!-- /ko -->
+
+<!-- UI MESSAGE -->
+<!-- ko component: { name: "widget-uiMessage", params:{ watch:app.uiMessage } } --><!-- /ko -->
+
+<!-- Load Modals on demand -->
+<!-- ko foreach: app.modals -->
+  <!-- ko component: { name: "modal-" + name, params:params } --><!-- /ko -->
+<!-- /ko -->
+
+</body>
+</html>

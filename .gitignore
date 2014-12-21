@@ -1,0 +1,12 @@
+test-results/
+tmp/
+routes/
+conf/app.conf
+public/s3/
+test-response.html
+happiness-output.html
+tests/results/
+runtests.bat
+tests/emailParsingTests/finalResults/index.html
+*.log
+frontend/src/less/

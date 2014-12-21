@@ -1,0 +1,7 @@
+<div id="loader-wrapper" class="xfade">
+    <p>loading...</p>
+</div>
+<!-- IMPORTANT - Mark this template loaded -->
+<!-- ko if: $data.isLoaded != null && isLoaded -->
+    <div data-bind="text:templateLoaded(true)" style="display:none"></div>
+<!-- /ko -->

@@ -1,0 +1,19 @@
+.DS_Store
+node_modules/
+src/libs/bower/
+
+# Don't track build output
+dist/
+docs
+
+# IDE shtuff
+.idea
+*.iml
+
+src/app/components/*.js
+src/app/components/**/*.js
+src/config.json
+src/app/*.js
+src/app/**/*.js
+test-results/*
+test-results

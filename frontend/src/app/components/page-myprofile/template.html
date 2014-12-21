@@ -1,0 +1,31 @@
+<!-- ko if: isLoaded() -->
+
+	<header class="sections--header">
+	    <div class="padding-wrap">
+	        <div class="profile-present">
+	            <div class="img-hold">
+	                <img data-bind="attr:{ src:app.loggedInUser.avatarURL }" alt="User image" onError="this.src='images/examples/noPhoto1.png';">
+	            </div>
+	            <h5 class="name-hold" data-bind="text:user.FullName()">Ivo Ivanov</h5>
+	        </div><!-- profile user -->
+	    </div><!-- padding wrapper -->
+	</header><!-- top column row -->
+
+	<aside class="column-left left--settings custom_scroll">
+		<!-- ko component: { name: 'pageLHS-settings-nav', params:{ nav:sideNav } } --><!-- /ko -->
+	</aside><!-- left column -->
+
+
+
+	<!-- SHOW THE SELECTED PANEL -->
+	<!-- ko if: app.currentRoute().view !== undefined -->
+		<!-- ko component: { name: selectedPanel, params:{ user:user } } --><!-- /ko -->
+	<!-- /ko -->
+
+<!-- /ko -->
+
+
+<!-- IMPORTANT - Mark this template loaded -->
+<!-- ko if: $data.isLoaded != null && isLoaded -->
+    <div data-bind="text:templateLoaded(true)" style="display:none"></div>
+<!-- /ko -->
