@@ -5,7 +5,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/irlTopper/ohlife2/app/utility"
+	"github.com/irlTopper/lifevault/app/utility"
 )
 
 type EmailFields struct {

@@ -1,0 +1,65 @@
+<div class="container">
+    <section class="article--structure">
+        <section class="left-content">
+            <div class="article-controls">
+                <ul class="controls">
+                    <li>
+                        <button type="button" class="btn-print" onclick="window.print();" title="Print this article">Print</button>
+                    </li>
+                </ul>
+            </div><!-- articles controls -->
+            <header class="article-header">
+                <h2 class="header-title">{{.article.Title}}</h2>
+            </header>
+            <section class="article-body">
+                <article>
+                    {{raw .article.Contents}}
+                </article>
+            </section>
+            <footer class="article-footer">
+                <div class="article-helpful">
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-6">
+                            <ul class="socials-share">
+                                <li>
+                                    <a href="https://twitter.com/intent/tweet?url={{.url}}&amp;text={{.article.Title}}" class="tw" data-related="teamwork" target="_blank">Twitter</a>
+                                </li>
+                                <li><a href="https://www.facebook.com/sharer/sharer.php?u={{.url}}&amp;display=page" class="fb" onclick="window.open(this.href, 'facebookshare', 'width=530, height=350'); return false;">Facebook</a></li>
+                                <li><a href="https://plus.google.com/share?url={{.url}}" class="gp" onclick="window.open(this.href, 'googleplusshare', 'width=530, height=375'); return false;">Google+</a></li>
+                            </ul>
+                        </div><!-- col -->
+                    </div><!-- row -->
+                </div><!-- helpful -->
+                {{if .site.ContactFormEnabled}}
+                    <p>
+                        <span class="help">Still need help? <a href="#" data-toggle="modal" data-target="#contact-form">Contact Us</a></span>
+                    </p>
+                {{end}}
+            </footer><!-- foote end -->
+        </section>
+        <aside class="right-sidebar">
+            {{if .relatedArticles}}
+            <div class="sidebar-blocks">
+                <h4 class="block-title">Related Articles</h4>
+                <ul>
+                    {{range .relatedArticles}}
+                    <li><a href="{{url "Article.Show" .CategorySlug .Slug }}">{{.Title}}</a></li>
+                    {{end}}
+                </ul>
+            </div>
+            {{end}}
+
+            {{if .recentArticles}}
+            <div class="sidebar-blocks">
+                <h4 class="block-title">Recently Viewed Articles</h4>
+                <ul>
+                    {{range .recentArticles}}
+                    <li><a href="{{url "Article.Show" .CategorySlug .Slug }}">{{.Title}}</a></li>
+                    {{end}}
+                </ul>
+            </div>
+            {{end}}
+
+        </aside>
+    </section>
+</div>

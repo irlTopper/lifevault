@@ -6,12 +6,16 @@ module:testrunner
 GET     /																	Static.Serve("frontend/src/index.html")
 
 # Users
+GET 	/v1/me.json 														UserController.GET_v1_me
 GET		/v1/logout.json														UserController.GET_v1_logout
 POST	/v1/login.json														UserController.POST_v1_login
 POST 	/v1/users/forgotpassword.json 										UserController.POST_v1_users_forgotpassword
 PUT 	/v1/users/:userId.json		 										UserController.PUT_v1_userId
 
-# Times
+# Journal
+# GET 	/v1/journal/dates.json												TimezoneController.GET_v1_journal_dates
+
+# Settings
 # GET 	/v1/timezones.json													TimezoneController.GET_v1_timezones
 
 # Misc
@@ -31,5 +35,11 @@ GET		/stats.json															StatController.StatsJson
 OPTIONS	/*																	AppController.HandleCORS
 
 # Static file serving
-GET		/public/*filepath													Static.Serve("public")
+GET		/dist/*filepath														Static.Serve("frontend/dist/")
+GET		/public/*filepath													Static.Serve("frontend/public")
+GET		/images/*filepath													Static.Serve("frontend/public/images")
+GET		/fonts/*filepath													Static.Serve("frontend/public/fonts")
+GET		/css/*filepath														Static.Serve("frontend/src/css")
+GET		/libs/*filepath														Static.Serve("frontend/src/libs")
+GET		/app/*filepath														Static.Serve("frontend/src/app")
 GET		/*filepath															Static.Serve("frontend/src")

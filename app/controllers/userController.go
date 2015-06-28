@@ -10,9 +10,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/irlTopper/ohlife2/app/interceptors"
-	"github.com/irlTopper/ohlife2/app/models"
-	"github.com/irlTopper/ohlife2/app/modules"
+	"github.com/irlTopper/lifevault/app/interceptors"
+	"github.com/irlTopper/lifevault/app/models"
+	"github.com/irlTopper/lifevault/app/modules"
 	"github.com/jmcvetta/randutil"
 	"github.com/revel/revel"
 	"github.com/revel/revel/cache"
@@ -111,7 +111,7 @@ func (c *UserController) POST_v1_users_forgotpassword(
 		},
 	}
 
-	SQL := "SELECT userId FROM users WHERE userLogin = ? OR userEmail = ?"
+	SQL := "SELECT userId FROM users WHERE userLogin = ? OR email = ?"
 
 	userId, _ := modules.DB.SelectInt(c.Controller, SQL, email, email)
 
@@ -216,7 +216,7 @@ func (c UserController) PUT_v1_userId(
 	modules.SetStringIfSet(c.Controller, &User.LastName, "lastName")
 	modules.SetStringIfSet(c.Controller, &User.Email, "email")
 
-	modules.SetIntIfSet(c.Controller, &User.TimezoneId, "timezoneId")
+	modules.SetIntIfSet(c.Controller, &User.TimeZoneId, "timezoneId")
 
 	// Update the database
 	modules.DB.Update(c.Controller, User)
@@ -271,6 +271,15 @@ func (c UserController) POST_v1_login(
 	}
 
 	return c.RenderJson(map[string]interface{}{"user": session})
+}
+
+// GET /me.json
+// Returns the profile for the current logged in user.
+// Not supporting 304 responses on this because it can result
+// in the user appearing to be logged in on different accounts
+// across both products
+func (c UserController) GET_v1_me() revel.Result {
+	return c.RenderJson(map[string]interface{}{"user": c.User})
 }
 
 func (c UserController) GET_v1_logout() revel.Result {

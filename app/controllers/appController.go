@@ -5,8 +5,8 @@ import (
 
 	"encoding/json"
 
-	"github.com/irlTopper/ohlife2/app/interceptors"
-	"github.com/irlTopper/ohlife2/app/modules"
+	"github.com/irlTopper/lifevault/app/interceptors"
+	"github.com/irlTopper/lifevault/app/modules"
 	"github.com/revel/revel"
 )
 

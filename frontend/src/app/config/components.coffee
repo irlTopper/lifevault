@@ -1,115 +1,35 @@
-define ['knockout'], (ko) ->
+# Note that this file is also read by the build script
+components = [
+    'page-loading'
 
-    components = [
-        'page-loading'
+    # Pages
+    'page-dashboard'
+    'page-errorLoadingMsg'
+    'page-login'
+    'page-reset-password'
+    'page-forgot-password'
+    'loadingIndicator'
+    'page-plan'
+    'page-search'
+    'page-myprofile'
+    'page-journal'
+    'section-blankslate'
+    'section-pagination'
+    'section-user-profile'
+    'modal-confirm'
+    'modal-imageupload'
+    'modal-keyboard-shortcuts'
+    'modal-prompt'
+    'pageLHS-settings-nav'
 
-        # Pages
-        'page-helpdocs'
-        'page-customer'
-        'page-dashboard'
-        'page-errorLoadingMsg'
-        'page-login'
-        'page-reset-password'
-        'page-forgot-password'
-        'page-happiness-rating'
-        'loadingIndicator'
-        'page-plan'
-        'page-reports'
-        'page-search'
-        'page-settings'
-        'page-tickets'
-        'page-myprofile'
+    'titlebar'
+    'widget-uiMessage'
 
-        'pageLHS-helpdocs'
-        'pageLHS-nav-inboxes'
-        'pageLHS-settings-nav'
-        'pageMain-inbox'
-        'pageMain-ticket'
-        'pageMain-ticket-new'
-        'pageRHS-searchoptions-tickets'
-        'pageRHS-searchoptions-customers'
-        'pageRHS-searchoptions-helpdocs'
+    'nav-main'
+]
 
 
-        'page-settings-tab-company'
-        'page-settings-tab-helpdocs'
-        'page-settings-tab-inboxes'
-        'page-settings-tab-inboxes-id'
-        'page-settings-tab-inboxes-id-autoreply'
-        'page-settings-tab-inboxes-id-emailsettings'
-        'page-settings-tab-inboxes-id-edit'
-        'page-settings-tab-inboxes-id-permissions'
-        'page-settings-tab-inboxes-id-savedreplies'
-        'page-settings-tab-inboxes-id-triggers'
-        'page-settings-tab-inboxes-id-triggers-new'
-        'page-settings-tab-tags'
-        'page-settings-tab-users'
-        'page-settings-tab-users-id'
-        'pageMain-dashboard-inboxes'
-        'pageMain-dashboard-metrics'
-        'pageRHS-dashboard-metrics'
-        'pageRHS-dashboard-inboxes'
-        'section-helpdocs-article'
-        'section-helpdocs-list'
-        'section-helpdocs-list-component'
-        'section-searchresults-customers'
-        'section-searchresults-helpdocs'
-        'section-settings-company-edit'
-        'section-settings-company-hours'
-        'section-settings-company-import'
-        'section-settings-company-spamsettings'
-        'section-tickets-list'
-        'section-pagination'
-        'section-user-apikeys'
-        'section-user-autobcc'
-        'section-attachments-list'
-        'section-user-notifications'
-        'section-user-permissions'
-        'section-user-profile'
-        'section-settings-helpdocs-site-general'
-        'section-settings-helpdocs-site-categories'
-        'section-settings-helpdocs-site-appearance'
-        'section-blankslate'
-        'section-inbox-forwardingNotActive'
-
-
-        'modal-add-user'
-        'modal-confirm'
-        'modal-prompt'
-        'modal-new-inbox'
-        'modal-new-helpdocsite'
-        'modal-imageupload'
-        'modal-edithelpcategory'
-        'modal-new-savedreply'
-        'modal-edit-thread'
-        'modal-helpdocVersionPreview'
-        'modal-thread-showOriginal'
-
-
-        'titlebar'
-        'widget-dashbord-inboxesView-inbox'
-        'widget-dashbord-metricsView-inbox'
-        'widget-dropmenu-userpicker'
-        'widget-filepicker'
-        'widget-inbox-opts'
-        'widget-inbox-user-notifications'
-        'widget-lhsnavpanel-inbox'
-        'widget-uiMessage'
-        'widget-othersViewing'
-        'widget-cc-fields'
-        'widget-autocomplete-email'
-
-
-        'chart-dashInboxesHappiness'
-        'chart-dashMetricsHappiness'
-        'chart-ticketsByChannel'
-        'chart-topAgents'
-        'chart-volumeAndAverageResponseTime'
-
-
-        'nav-main'
-    ]
-
-
-    for component in components
-        ko.components.register component, { require: "app/components/#{component}/def" }
+if window?
+    define ['knockout'], (ko) ->
+        for component in components
+            ko.components.register component, { require: "app/components/#{component}/def" }

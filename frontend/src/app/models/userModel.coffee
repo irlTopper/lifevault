@@ -19,6 +19,9 @@ define ['knockout', 'knockout-mapping'], (ko, mapping) ->
         return @firstName() + ' ' + @lastName()
 
     User.mapping =
+        'me':
+            'create': (options) ->
+                return new User(options.data)
         'user':
             'create': (options) ->
                 return new User(options.data)

@@ -4,8 +4,7 @@
     </div>
     <h2 class="in-title" data-bind="text:title"></h2>
     <p data-bind="html:text"></p>
-    <!-- <a href="#" class="video">Video like this</a> -->
-    <!-- ko if: clickText != null && onClick != null -->
+    <!-- ko if: clickText && onClick -->
     <div class="button-holder">
         <a href="#" class="btn btn-success" data-bind="text:clickText,click:onClick"></a>
     </div>
@@ -13,6 +12,6 @@
 </div><!-- blank page -->
 
 <!-- IMPORTANT - Mark this template loaded -->
-<!-- ko if: $data.isLoaded != null && isLoaded -->
-    <div data-bind="text:templateLoaded(true)" style="display:none"></div>
+<!-- ko if: $data.readyToShow != null && readyToShow -->
+    <div data-bind="template:{afterRender:function(){templateLoaded(true)}}" class="hidden"></div>
 <!-- /ko -->

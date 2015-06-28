@@ -3,18 +3,17 @@
         <h2 class="title-label" data-bind="text:title"></h2>
         <!-- ko if: subnav != null && subnav.length -->
             <nav class="settings-nav">
-
                 <div class="btn-group">
                     <!-- ko repeat: { foreach: subnav } -->
                         <a class="btn btn-default" data-bind="text:$item().name, attr: { 'href': subnav.baseURL + $item().routePart },css:{ 'active': $item().routePart === app.currentRoute()[subnav.routePartName] }"></a>
                     <!-- /ko -->
-                </div><!-- buttons -->
+                </div>
             </nav><!-- menu -->
         <!-- /ko -->
     </div><!-- padding wrapper -->
 </header>
 
 <!-- IMPORTANT - Mark this template loaded -->
-<!-- ko if: $data.isLoaded != null && isLoaded -->
-    <div data-bind="text:templateLoaded(true)" style="display:none"></div>
+<!-- ko if: $data.readyToShow != null && readyToShow -->
+    <div data-bind="template:{afterRender:function(){templateLoaded(true)}}" class="hidden"></div>
 <!-- /ko -->

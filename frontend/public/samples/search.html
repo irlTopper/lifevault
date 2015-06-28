@@ -1,0 +1,24 @@
+<div class="container">
+    <section class="category--structure">
+        <section class="right-content" style="padding-left: 0px; padding-bottom: 0px;">
+            <header>
+                <form method="GET">
+                    <input type="hidden" value="{{.query}}" name="query" />
+                    <select tabindex="-1" style="margin-top: 8px;" class="form-control pull-right input-sort" name="order" onchange="this.form.submit();">
+                        <option value="popularity"{{if eq .order "popularity"}} selected{{end}}>Sort by popularity</option>
+                        <option value="title"{{if eq .order "title"}} selected{{end}}>Sort by title</option>
+                        <option value="dateadded"{{if eq .order "dateadded"}} selected{{end}}>Sort by date added</option>
+                    </select>
+                </form>
+                <h2>Search For <i>"{{.query}}"</i> yielded <i>{{.resultCount}}</i> result{{if ne .resultCount 1}}s{{end}}</h2>
+            </header>
+            <section class="content-hold">
+                <ul class="articles-list">
+                    {{ range .articles }}
+                    <li><a href="{{ url "Article.Show" .CategorySlug .Slug }}"><span class="icon-hold"><img src="/public/images/icons/i-article.svg" width="14px" height="18px"></span>{{ .Title }}</a></li>
+                    {{ end }}
+                </ul>
+            </section>
+        </section>
+    </section>
+</div>

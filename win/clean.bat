@@ -1,0 +1,1 @@
+cmd.exe /k "revel clean github.com/irlTopper/lifevault"

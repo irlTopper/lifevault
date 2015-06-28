@@ -4,20 +4,22 @@ define [
 ], (ko, templateMarkup) ->
     VM = (params) ->
         @nav = params.nav
+
         i = 0
-
         while i < @nav.length
-
             #Build the full urls for each sub-nav item
             @nav[i].url = @nav.baseURL + @nav[i].routePart
-
             i++
         return
 
         # Ensure valid route
         validOpts = []
         validOpts.push nav.routePart for nav in @nav
-        app.ensureValidRoute('view',{vm:this,validOpts:validOpts,rememberIn:"lastUserView"})
+        app.ensureValidRoute('view',
+            vm: this
+            validOpts: validOpts
+            rememberIn: "lastUserView"
+        )
         app.InitOnShow(@)# Sets-up the OnShow() function
         return
 

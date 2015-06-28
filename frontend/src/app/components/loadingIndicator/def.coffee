@@ -3,7 +3,7 @@ define [
     "text!./template.html"
 ], (ko, templateMarkup) ->
     VM = (params) ->
-        @isLoaded = ko.observable(true)
+        @readyToShow = ko.observable(true)
         app.InitOnShow(@)# Sets-up the OnShow() function
         return
 

@@ -6,72 +6,104 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Ohlife 2</title>
+<title>LifeVault</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 <!-- build:css -->
 <link href="css/login.css" rel="stylesheet"/>
+<link href="css/login.temp.css" rel="stylesheet"/>
 <link href="css/styles.css" rel="stylesheet"/>
 <link href="css/temp.css" rel="stylesheet"/>
-<!-- build:js -->
-<script src="libs/bower/jquery/dist/jquery.min.js"></script>
-<script src="config.js"></script>
-<script src="app/require.config.js"></script>
-<script data-main="app/startup" src="libs/bower/requirejs/require.js"></script>
-
-<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="public/upload/css/jquery.fileupload.css">
+<link rel="stylesheet" href="public/css/card.css">
 <!-- endbuild -->
-</head>
-<body data-bind="attr:{ id:app.pageComponentToShow }">
+<link rel="apple-touch-icon" href="public/favicon/apple-icon-120x120.png">
+<link rel="icon" type="image/png" href="public/favicon/favicon-96x96.png">
+<link rel="manifest" href="public/favicon/manifest.json">
+<meta name="msapplication-TileImage" content="public/favicon/ms-icon-144x144.png">
+</head><body id="page-preloading" data-bind="attr:{ id:app.pageComponentToShow }, css:app._template" onload="require(['app/init']);">
 
-<!-- LOGGED OUT (full screen) -->
-<!-- ko if: app.currentRoute().isLoggedInPage === false -->
-    <!-- ko component: { name: app.pageComponentToShow } --><!-- /ko -->
+<!-- ko if: typeof hasLocalStorageSupport === 'undefined' -->
+	<div id="loadingRings">
+		<div id="ringsContent">
+            <img src="images/lifevault.png" alt="LifeVault">
+            <p>Loading Your Life...</p>
+        </div>
+	</div>
 <!-- /ko -->
 
+<!-- ko ifnot: hasLocalStorageSupport -->
+	<!-- ko html:'<div style="width:600px;margin:120px auto 0 auto;color:#fff;line-height:150%;"><h3>Sorry, LifeVault needs a modern browser</h3><p>We detected that your browser doesn\'t support localStorage. Please try a modern browser like <a href="http://www.google.com/chrome/" style="color:#fff;text-decoration:underline;">Google Chrome</a>.</p></div>' --><!-- /ko -->
+<!-- /ko -->
+<!-- ko if: hasLocalStorageSupport -->
 
-<!-- LOGGED IN (has nav) -->
-<!-- ko if: app.currentRoute().isLoggedInPage -->
-
-  <!-- INITIAL LOADING -->
-  <!-- ko ifnot: app.essentialDataIsLoaded() -->
-    <!-- ko component: { name: 'page-loading' } --><!-- /ko -->
-  <!-- /ko -->
-
-
-
-  <!-- MAIN APP -->
-  <!-- ko if: app.essentialDataIsLoaded() -->
-  <div class="deck-wrap">
-
-      <!-- LEFT HAND SIDE NAVIGATION -->
-      <!-- ko component: { name: 'nav-main' } --><!-- /ko -->
-
-      <section class="main--holder" data-bind="css: app.mainHolderClass">
-        <!-- ko if: app.pageLoadingErrorXHR() != null -->
-          <!-- ko component: { name: 'page-errorLoadingMsg' } --><!-- /ko -->
-        <!-- /ko -->
-        <!-- ko if: app.pageLoadingErrorXHR() == null && app.pageComponentToShow() !== '' -->
-         	<!-- ko component: { name: app.pageComponentToShow() } --><!-- /ko -->
+	<!-- LOGGED OUT (full screen) -->
+	<!-- ko if: app.currentRoute().isLoggedInPage === false -->
+	  <!-- ko component: { name: app.pageComponentToShow } --><!-- /ko -->
+	<!-- /ko -->
 
 
-		    <!-- ko if: app.currentRoute().viewingUsers().length && app.currentRoute().pageMain != "ticket" -->
-		        <!-- ko component: { name: 'widget-othersViewing' } --><!-- /ko -->
-		    <!-- /ko -->
-        <!-- /ko -->
-      </section>
+	<!-- LOGGED IN (has nav) -->
+	<!-- ko if: app.currentRoute().isLoggedInPage -->
 
-  </div>
-  <!-- /ko -->
+	<!-- INITIAL LOADING -->
+	<!-- ko ifnot: app.essentialDataIsLoaded() -->
+	  <!-- ko component: { name: 'page-loading' } --><!-- /ko -->
+	<!-- /ko -->
+
+
+
+	<!-- MAIN APP -->
+	<!-- ko if: app.essentialDataIsLoaded() -->
+	<div class="deck-wrap" >
+
+	    <!-- LEFT HAND SIDE NAVIGATION -->
+	    <!-- ko component: { name: 'nav-main' } --><!-- /ko -->
+
+	    <section class="main--holder" data-bind="css: app.mainHolderClass">
+	      <!-- ko if: app.pageLoadingErrorXHR() != null -->
+	        <!-- ko component: { name: 'page-errorLoadingMsg' } --><!-- /ko -->
+	      <!-- /ko -->
+	      <!-- ko if: app.pageLoadingErrorXHR() == null && app.pageComponentToShow() !== '' -->
+	       	<!-- ko component: { name: app.pageComponentToShow() } --><!-- /ko -->
+
+
+			    <!-- ko if: app.currentRoute().viewingUsers().length && app.currentRoute().pageMain != "ticket" -->
+			        <!-- ko component: { name: 'widget-othersViewing' } --><!-- /ko -->
+			    <!-- /ko -->
+	      <!-- /ko -->
+	    </section>
+
+	</div>
+	<!-- /ko -->
+
+	<!-- /ko -->
+
+	<!-- UI MESSAGE -->
+	<!-- ko component: { name: "widget-uiMessage", params:{ watch:app.uiMessage } } --><!-- /ko -->
+
+	<!-- Load Modals on demand -->
+	<!-- ko foreach: app.modals -->
+	<!-- ko component: { name: "modal-" + name, params:params } --><!-- /ko -->
+	<!-- /ko -->
 
 <!-- /ko -->
 
-<!-- UI MESSAGE -->
-<!-- ko component: { name: "widget-uiMessage", params:{ watch:app.uiMessage } } --><!-- /ko -->
+<!-- build:note --><!--
+Note that requirejs must be defined before jquery.
+And for libraries that don't support AMD, jquery must be included like this.
 
-<!-- Load Modals on demand -->
-<!-- ko foreach: app.modals -->
-  <!-- ko component: { name: "modal-" + name, params:params } --><!-- /ko -->
-<!-- /ko -->
-
-</body>
-</html>
+The app must run at "/desk/", not "/desk" for correct paths
+--><!-- endbuild -->
+<script>if((typeof window.twDeskConfig == 'undefined' || !twDeskConfig.isDeveloperMode) && window.location.pathname == "/desk"){window.location.pathname = "/desk/";}</script>
+<script src="libs/socket.io/socket.io.min.js"></script>
+<script src="libs/bower/zeroclipboard/dist/ZeroClipboard.js"></script>
+<!-- build:debug -->
+<script src="libs/mockUsers.js"></script><!-- only for dev -->
+<!-- endbuild -->
+<!-- build:requireConfig -->
+<script src="public/config.js"></script>
+<script src="app/require.config.js"></script>
+<script src="libs/bower/jquery/dist/jquery.js"></script>
+<script src="libs/bower/requirejs/require.js"></script>
+<!-- endbuild -->
+</body></html>

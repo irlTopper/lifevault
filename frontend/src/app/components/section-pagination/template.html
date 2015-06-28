@@ -1,0 +1,18 @@
+<!-- ko if: count() > pageSize -->
+<footer class="helpdocs--pagination">
+    <span class="pull-right">
+        <span data-bind="text:count()"></span> <span data-bind="text:plural"></span>  |  Viewing 1-<span data-bind="text:items().length"></span>
+    </span>
+    <!-- ko if: count() == items().length -->
+        All <span data-bind="text:plural"></span> displayed
+    <!-- /ko -->
+    <!-- ko ifnot: count() == items().length -->
+        <!-- ko ifnot: isLoading() -->
+            <a href="javascript:void(0)" data-bind="click:onClickNextPage">Show next <span data-bind="text:pageSize"></a>
+        <!-- /ko -->
+        <!-- ko if: isLoading() -->
+            <span class="updating">updating</span>
+        <!-- /ko -->
+    <!-- /ko -->
+</footer>
+<!-- /ko -->

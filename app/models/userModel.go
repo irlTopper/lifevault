@@ -5,7 +5,7 @@ import (
 
 	"github.com/coopernurse/gorp"
 	"github.com/guregu/null/zero"
-	"github.com/irlTopper/ohlife2/app/modules"
+	"github.com/irlTopper/lifevault/app/modules"
 	"github.com/revel/revel"
 )
 
@@ -20,21 +20,20 @@ type User struct {
 	// Identity fields
 	Id int64 `json:"id"`
 	// Standard fields A-Z
+	AutoLoginCode string `json:"-"`
+	CreatedAt     time.Time
+	Email         string   `json:"email"`
 	FirstName     string   `json:"firstName"`
 	LastName      string   `json:"lastName"`
-	AutoLoginCode string   `json:"-"`
-	Email         string   `json:"email"`
-	TimeZoneId    int64    `json:"timezoneId"`
-	VisitCount    int64    `json:"-"`
-	Password      string   `json:"-" db:"userPassword"`
-	Salt          zero.Int `json:"-" db:"userPasswordSalt"`
-	TimezoneId    int64    `json:"timezoneId" db:"timezoneId"`
-	CreatedAt     time.Time
+	Password      string   `json:"-" db:"password"`
+	Salt          zero.Int `json:"-" db:"passwordSalt"`
+	TimeZoneId    int64    `json:"timezoneId" db:"timezoneId"`
 	UpdatedAt     time.Time
+	VisitCount    int64 `json:"-"`
 	// State fields
 	ZuluCreatedAt string `json:"createdAt"`
 	ZuluUpdatedAt string `json:"updatedAt"`
-	State         string `json:"status"`
+	State         string `json:"-"`
 }
 
 func (i *User) PreInsert(s gorp.SqlExecutor) error {

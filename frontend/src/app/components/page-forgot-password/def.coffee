@@ -36,13 +36,13 @@ define ['knockout', 'knockout-mapping', 'text!./template.html', 'userModel'], (k
                 email: @email()
             }
             success: (response,d,xhr) =>
-                app.FlashSuccess('A password reset was issued to your email address. Check your email!', { timer: 5000 })
+                app.flash.Success('A password reset was issued to your email address. Check your email!', { timer: 5000 })
 
                 app.GoTo 'login'
             ,
             error: (xhr) =>
                 @isSubmitting false
-                app.HandleAjaxError(xhr)
+                app.error.Ajax(xhr)
         })
 
     # This runs when the component is torn down. Put here any logic necessary to clean up,

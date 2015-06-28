@@ -3,7 +3,7 @@ package controllers
 import (
 	"fmt"
 
-	"github.com/irlTopper/ohlife2/app/interceptors"
+	"github.com/irlTopper/lifevault/app/interceptors"
 	"github.com/revel/revel"
 )
 

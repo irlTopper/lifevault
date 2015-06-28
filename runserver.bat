@@ -1,1 +1,1 @@
-cmd.exe /k "revel run github.com/irlrunseTopper/ohlife2"
+cmd.exe /k "revel run github.com/irlTopper/lifevault"

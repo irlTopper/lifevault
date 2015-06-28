@@ -1,15 +1,16 @@
 package app
 
 import (
+	"fmt"
 	"reflect"
 	"runtime"
 	"strings"
 
-	"github.com/irlTopper/ohlife2/app/cron"
-	"github.com/irlTopper/ohlife2/app/filters"
-	"github.com/irlTopper/ohlife2/app/interceptors"
-	"github.com/irlTopper/ohlife2/app/models"
-	"github.com/irlTopper/ohlife2/app/modules"
+	"github.com/irlTopper/lifevault/app/cron"
+	"github.com/irlTopper/lifevault/app/filters"
+	"github.com/irlTopper/lifevault/app/interceptors"
+	"github.com/irlTopper/lifevault/app/models"
+	"github.com/irlTopper/lifevault/app/modules"
 	"github.com/revel/revel"
 )
 
@@ -42,14 +43,12 @@ func init() {
 	revel.InterceptMethod((*interceptors.Authentication).LogExit, revel.AFTER)
 	revel.InterceptMethod((*interceptors.Authentication).DecodeUserSession, revel.BEFORE)
 	revel.OnAppStart(ReportVersion)
-	revel.OnAppStart(modules.InitSMTP)
 	revel.OnAppStart(modules.InitDB)
 	revel.OnAppStart(SetupDBTables)
 	revel.OnAppStart(SetupStats)
-	revel.OnAppStart(modules.InitAWS)
-	revel.OnAppStart(modules.SetupTemplates)
 	revel.OnAppStart(cron.InitCronJobs)
-	revel.OnAppStart(modules.SetupTempFolder)
+
+	fmt.Println("Here 7")
 
 	modules.Requests = make(map[*revel.Controller]*modules.RequestLog)
 

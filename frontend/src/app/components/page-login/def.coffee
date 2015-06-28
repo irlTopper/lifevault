@@ -1,6 +1,7 @@
 define ['knockout', 'knockout-mapping', 'text!./template.html', 'userModel'], (ko, mapping, templateMarkup, userModel) ->
 
     VM = (params) ->
+        @hasPMInstalled = ko.observable false
         @siteName = ko.observable ""
         @hasLoginError = ko.observable false
         @isLoggingIn = ko.observable false
@@ -9,11 +10,7 @@ define ['knockout', 'knockout-mapping', 'text!./template.html', 'userModel'], (k
         @email = ko.observable ""
 
         # If already logged in, then log the user out
-        app.lscache.set "loggedInUser", null
         app.essentialDataIsLoaded(false)# This is important - so the essential data will be reloaded with the next login
-        if app.loggedInUser?
-            $.getJSON( 'v1/logout.json' )
-            app.ClearLoggedInUser()
 
         if $("#userLogin").val() == ''
             lastGoodUsername = app.lscache.get "lastGoodUsername"
@@ -29,22 +26,14 @@ define ['knockout', 'knockout-mapping', 'text!./template.html', 'userModel'], (k
 
 
 
-
-
-
-
     VM::onSubmitLogin = ->
 
         username = $("#userLogin").val()
         password = $("#password").val()
 
-        if username == ''
-            $("#userLogin").focus()
-            app.FlashError("We need your login.", {timer:800} )
-            return false
         if password == ''
             $("#password").focus()
-            app.FlashError("We need your password.", {timer:800} )
+            app.flash.Error("We need your password.", {timer:800} )
             return false
 
         @isLoggingIn true
@@ -61,8 +50,7 @@ define ['knockout', 'knockout-mapping', 'text!./template.html', 'userModel'], (k
                 rememberMe: @rememberLogin()
             }
             success: (response,d,xhr) =>
-                app.loggedInUser = app.mapping.fromJS(response).user
-                app.loggedInUser.isAdmin = ko.observable(app.loggedInUser.role() is "Admin")
+                app.handleUserResponse response
                 app.SaveLoggedInUser() #saves in lscache
                 app.lscache.set "lastGoodUsername", username
 
@@ -71,7 +59,9 @@ define ['knockout', 'knockout-mapping', 'text!./template.html', 'userModel'], (k
                     app.requestedRouteBeforeLoginRedirect = undefined
                 else
                     app.GoTo "dashboard"
-                    app.InitSocket()
+
+                # This must always be done
+                app.socket.Start()
             ,
             error: (xhr) =>
                 @isLoggingIn false
@@ -79,11 +69,11 @@ define ['knockout', 'knockout-mapping', 'text!./template.html', 'userModel'], (k
                 $("#password").focus()
                 if xhr.status == 401
                     if xhr.responseJSON? && xhr.responseJSON.errors?
-                        app.FlashError("<strong>" + xhr.responseJSON.errors[0] + "</strong> &mdash; Please try again", {timer:3000} )
+                        app.flash.Error("<strong>" + xhr.responseJSON.errors[0] + "</strong> &mdash; Please try again", {timer:3000} )
                     else
-                        app.FlashError("<strong>Error logging in</strong> &mdash; Please try again", {timer:3000} )
+                        app.flash.Error("<strong>Error logging in</strong> &mdash; Please try again", {timer:3000} )
                 else
-                    app.HandleAjaxError(xhr)
+                    app.error.Ajax(xhr)
         })
 
         return

@@ -1,0 +1,35 @@
+<div data-bind="attr:{'id':modalDivId},css:{fade:allowFade}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+
+        <form data-bind="submit:Finished,attr:{'id':modalDivId + '-form'}">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-bind="click:Close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" data-bind="text:title"></h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="column-main">
+                        <h4 class="title-label" data-bind="html:question"></h4>
+                    </div>
+
+                    <div class="row-inputs">
+                        <input type="text" name="name" class="form-control valid" required="true" data-bind="value: answer, valueUpdate: 'input'" aria-required="true" aria-invalid="false">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <div class="text-right">
+                        <a href="javascript:void(0)" class="btn btn-link" data-bind="click:Cancel">Cancel</a>
+                        <a href="javascript:void(0)" class="btn btn-success" data-bind="click:Finished" data-bind="text:@buttonText">Save</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+<!-- IMPORTANT - Mark this template loaded -->
+<!-- ko if: $data.readyToShow != null && readyToShow -->
+    <div data-bind="template:{afterRender:function(){templateLoaded(true)}}" class="hidden"></div>
+<!-- /ko -->

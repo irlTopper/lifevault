@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/irlTopper/ohlife2/app/modules"
+	"github.com/irlTopper/lifevault/app/modules"
 	"github.com/kr/pretty"
 	"github.com/revel/revel"
 )

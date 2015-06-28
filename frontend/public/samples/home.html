@@ -1,0 +1,56 @@
+<div class="search--row">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1 col-lg-offset-1">
+                <form action="/search" method="GET" class="search-form">
+                    <!-- <h3>Need help? Heres some common questions and answers</h3> -->
+                    <input type="text" placeholder="Search" class="search_input" name="query">
+                    <input type="button" value="Search" class="search_submit">
+                </form>
+            </div>
+        </div>
+    </div><!-- container -->
+</div><!-- search row -->
+
+<div class="docs--sections"></div>
+
+<div class="container">
+    {{if eq .site.ShowOnHomePage "Categories"}}
+        {{range .homeCategories}}
+        <section class="articles--group">
+
+            <header class="section-header">
+                <h3>{{.Name}}</h3>
+            </header>
+
+            <section class="section-content">
+                <ul class="list-links">
+                    {{range index $.categoryArticles .Id}}
+                        <li><a href="{{url "Article.Show" .CategorySlug .Slug}}">{{.Title}}</a></li>
+                    {{end}}
+                </ul>
+                {{if index $.doesCategoryHaveMore .Id}}
+                <div class="buttons-hold">
+                    <a href="{{url "Category.Get" .Slug}}" class="btn btn-default">View All</a>
+                </div>
+                {{end}}
+            </section>
+
+        </section><!-- articles group -->
+        {{end}}
+    {{else}}
+        <section class="articles--group">
+            <header class="section-header">
+                <h3>Most Popular Articles</h3>
+            </header>
+
+            <section class="section-content">
+                <ul class="list-links">
+                    {{range .articles}}
+                        <li><a href="{{url "Article.Show" .CategorySlug .Slug}}">{{.Title}}</a></li>
+                    {{end}}
+                </ul>
+            </section>
+        </section><!-- articles group -->
+    {{end}}
+</div>

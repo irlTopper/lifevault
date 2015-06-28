@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html style="width:100%;">
+
+<!-- Mirrored from imperavi.com/redactor/examples/linebreaks/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 04 Mar 2015 15:48:05 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+	<title>Redactor Issues #5</title>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<link rel="stylesheet" href="../../../css/combined.min.css" />
+	<link rel="stylesheet" href="../../../js/redactor/redactor.css" />
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
+
+	<script src="../../../js/combined.min.js"></script>
+	<script src="../../../js/redactor/redactor.js"></script>
+
+	<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-25923300-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body style="width:100%;margin:0;padding:0;">
+	<div id="main">
+
+
+		<h2>Issue #5 &nbsp; <a href="../../../../index.html">Back to Index</a></h2>
+		<h1 id="head">In Firefox, cursor and placeholder misaligned</h1>
+
+Steps to recreate (Windows, Firefox):
+<script>if(!(navigator.userAgent.toLowerCase().indexOf('firefox') > -1)){
+	document.write("<span style=\"color:red;\">PLEASE OPEN THIS EXAMPLE IN FIREFOX</span>")
+} else {
+	document.write("<span style=\"color:green;\">Firefox detected, perfect.</span>")
+}
+</script>
+
+ (<a href="http://screencast.com/t/WzxQhPZEx" target="_blank" style="font-weight:bold;">VIEW SCREEN-RECORDING DEMO</a>):
+
+
+<pre class="prettyprint linenums lang-wiki">
+Open the current page in Firefox.
+</pre>
+
+<textarea id="redactor" name="content" placeholder="A great placeholder"></textarea>
+
+
+<script type="text/javascript">
+if (!RedactorPlugins) var RedactorPlugins = {};
+$(function()
+{
+	$('#redactor').redactor({
+		focus: true,
+		linebreaks: true,
+		plugins: ['advanced']
+	});
+});
+</script>
+
+<pre class="prettyprint linenums">
+&lt;script type=&quot;text/javascript&quot;&gt;
+$(function()
+{
+    $('#redactor').redactor({
+        focus: true,
+        linebreaks: true,
+        plugins: ['advanced']
+    });
+});
+&lt;/script&gt;
+</pre>
+
+When we tried to work with linebreaks mode "true" we patch that behaviour in our css with:
+<pre class="prettyprint linenums">
+@-moz-document url-prefix() {
+    .redactor-placeholder.redactor-editor {
+        border: none !important;
+        padding: 20px 10px !important;
+    }
+}
+</pre>
+
+
+
+	</div>
+
+
+</body>
+</html>

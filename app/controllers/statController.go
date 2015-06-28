@@ -107,7 +107,7 @@ func (c *StatController) statsSingle(view string) revel.Result {
 func (c *StatController) StatsJson() revel.Result {
 	return c.RenderJson(map[string]interface{}{
 		"MemoryInUse": runtime.MemStats{}.Alloc / 1024 / 1024,
-		"Version":     modules.APIVersion,
+		"Version":     1,
 		"aaData":      c.stats(),
 	})
 }

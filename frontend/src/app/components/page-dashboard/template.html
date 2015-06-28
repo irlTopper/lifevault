@@ -1,34 +1,17 @@
-<!-- ko if: app.inboxes().length == 0 -->
-    <!-- ko ifnot: true -->
-        <!-- ko component: { name: 'section-blankslate', params:{ title:'No Inboxes', text:'You have have any inboxes yet.', icon:'savedRepliesEmpty.png' } } --><!-- /ko -->
-    <!-- /ko -->
-    <!-- ko if: true -->
-        <!-- ko component: { name: 'section-blankslate', params:{ title:'No Inboxes', text:'You have have any inboxes yet.', icon:'savedRepliesEmpty.png', clickText:'Setup inboxes', onClick:function(){ app.GoTo("settings/inboxes") } } } --><!-- /ko -->
-    <!-- /ko -->
-<!-- /ko -->
-
-<!-- ko if: app.inboxes().length > 0 -->
 <section class="column-left wrap-dashboard-inner">
 
-    <!-- ko component: { name: 'titlebar', params:{ title:'Dashboard', subnav:subnav } } --><!-- /ko -->
+    <!-- ko component: { name: 'titlebar', params:{ title:'Dashboard' } } --><!-- /ko -->
 
-    <!-- ko if: app.currentRoute().dashboardPageTab === "inboxes" -->
-        <!-- ko component: { name: "pageMain-dashboard-inboxes" } --><!-- /ko -->
-    <!-- /ko -->
+    DASH
 
-    <!-- ko if: app.currentRoute().dashboardPageTab === "metrics" -->
-        <!-- ko component: { name: "pageMain-dashboard-metrics" } --><!-- /ko -->
-    <!-- /ko -->
-
-</section><!-- dashboard main aka left column -->
+</section>
 
 <aside class="column-right dashboard-right custom_scroll">
 
-    xxx
+    RHS
 
-</aside><!-- dashboard column -->
-<!-- /ko -->
+</aside>
 <!-- IMPORTANT - Mark this template loaded -->
-<!-- ko if: $data.isLoaded != null && isLoaded -->
-    <div data-bind="text:templateLoaded(true)" style="display:none"></div>
+<!-- ko if: $data.readyToShow != null && readyToShow -->
+    <div data-bind="template:{afterRender:function(){templateLoaded(true)}}" class="hidden"></div>
 <!-- /ko -->

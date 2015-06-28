@@ -80,31 +80,19 @@ define ["knockout", "crossroads", "hasher", "lscache"], (ko, crossroads, hasher,
     routes = [
             # main nav
             { url: 'dashboard/:dashboardPageTab:', params: { page: 'dashboard' } }
-            { url: 'tickets/{id}', params: { page: 'tickets', pageMain: 'ticket' } }
-            { url: 'unified/tickets/{id}', params: { page: 'tickets', pageMain: 'ticket', inUnified: true } }
-            { url: 'tickets/:inboxURLCode:/newticket', params: { page: 'tickets', pageMain: 'ticket-new' } }
-            { url: 'tickets/:inboxURLCode:/:inboxView:', params: { page: 'tickets', pageMain: 'inbox' } }
-
-            { url: 'customers/{id}', params: { page: 'customer' } }
-            { url: 'reports/:pageTab:', params: { page: 'reports' } }
-            { url: 'helpdocs/articles/:helpdocId:', params: { page: 'helpdocs', pageMain: 'helpdocs-article' } }
-            { url: 'helpdocs/:helpsiteURLCode:', params: { page: 'helpdocs', pageMain: 'helpdocs-list' } }
-            { url: 'helpdocs/:helpsiteURLCode:/category/:categoryId:', params: { page: 'helpdocs', pageMain: 'helpdocs-list' } }
-            { url: 'helpdocs/:helpsiteURLCode:/category/:categoryId:/new', params: { page: 'helpdocs', pageMain: 'helpdocs-article' } }
-            { url: 'helpdocs/:helpsiteURLCode:/new', params: { page: 'helpdocs', pageMain: 'helpdocs-article' } }
+            { url: 'journal', params: { page: 'journal', pageMain: 'journal' } }
+            { url: 'journal/{id}', params: { page: 'journal', pageMain: 'journal' } }
 
             # extra pages
             { url: 'search/:term1:/:term2:/:term3:/:term4:', params: { page: 'search' } }
-            { url: 'settings/:pageTab:/:view:/:view2:/:view3:/:view4:', params: { page: 'settings' } }
             { url: 'errorLoadingMsg', params: { page: 'errorLoadingMsg' } }
             # My pages
             { url: 'myprofile/:view:', params: { page: 'myprofile' } }
-            { url: 'plan', params: { page: 'plan' } }
             # Logged out pages
             { url: 'login', params: { page: 'login', isLoggedInPage:false } }
             { url: 'resetpassword/:userId:/:name:/:token:', params: { page: 'reset-password', isLoggedInPage:false } }
             { url: 'forgotpassword/:username:', params: { page: 'forgot-password', isLoggedInPage:false } }
-            { url: 'happiness-rating/:ticketId:/vote/:token:/:rating:', params: { page: 'happiness-rating', isLoggedInPage:false } }
+
             # default page
             { url: '/:startPage:', params: { page: '-startPageRedirect-' } }
 

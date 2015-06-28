@@ -1,5 +1,5 @@
 {
-  "name": "teamworkdesk",
+  "name": "lifevault",
   "version": "0.0.0",
   "private": true,
   "dependencies": {
@@ -9,7 +9,7 @@
     "jquery-autosize": "~1.18.9",
     "jquery-mockjax": "~1.5.3",
     "jquery-ui": "~1.11.1",
-    "knockout": "~3.2.0-alpha",
+    "knockout": "~3.3.0",
     "knockout-mapping": "~2.4.1",
     "knockout-projections": "~1.1.0-pre",
     "knockout-repeat": "~2.0.0",
@@ -19,7 +19,7 @@
     "requirejs": "~2.1.11",
     "requirejs-text": "~2.0.10",
     "Ladda": "~0.9.4",
-    "bootstrap-select": "~1.6.2",
+    "bootstrap-select": "~1.6.3",
     "moment": "~2.8.3",
     "jquery-validation": "~1.13.0",
     "jquery-minicolors": "~2.1.7",
@@ -32,10 +32,15 @@
     "tag-it": "*",
     "lodash": "~2.4.1",
     "selectize": "~0.11.2",
-    "chosen": "~1.2.0",
+    "chosen": "~1.4.0",
     "blueimp-file-upload": "~9.8.1",
+    "knockout.punches": "https://github.com/mbest/knockout.punches.git#~0.5.0",
+    "typeahead.js": "~0.10.5",
+    "raven-js": "~1.1.16",
+    "card": "latest",
+    "ko-calendar": "https://github.com/MakerStudios/ko-calendar.git"
   },
   "resolutions": {
-    "knockout": "~3.2.0"
+    "knockout": "~3.3.0"
   }
 }

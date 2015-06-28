@@ -1,0 +1,3 @@
+window.twDeskConfig = {
+    "isDeveloperMode": false
+}

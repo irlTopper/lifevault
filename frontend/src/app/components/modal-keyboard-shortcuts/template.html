@@ -1,0 +1,141 @@
+<div data-bind="attr:{'id':modalDivId},css:{fade:allowFade}" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-md" style="width:900px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-bind="click:Close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" data-bind="text:title"></h4>
+            </div>
+            <div class="modal-body">
+
+                <style>
+                #shortcutsList{
+
+                }
+                #shortcutsList h3{
+                    font-size: 16px;
+                    border-bottom:1px solid #EEE;
+                }
+                #shortcutsList td{
+                    vertical-align:top;
+                    padding:10px;
+                }
+                .keys{
+                    text-align:right;
+                    width:60px;
+                }
+                .keyModifier{
+                    color:#448;
+                }
+                .key{
+                    color:#F84;
+                    padding-right:10px;
+                }
+                .keysText{
+                    color:#333;
+                }
+                </style>
+
+
+                <table id="shortcutsList" width="100%" cellpadding="0">
+                <tbody>
+                <tr>
+                    <td width="50%">
+
+                        <h3>Viewing a Ticket</h3>
+                        <table cellpadding="0">
+                        <tbody>
+                        <tr>
+                            <td class="keys"><span class="keyModifier">A</span> :</td>
+                            <td class="keysText">Choose person to Assign</td>
+                        </tr>
+                        <tr>
+                            <td class="keys"><span class="keyModifier">S</span> :</td>
+                            <td class="keysText">Open Status menu, then:<br>
+                                <table cellpadding="0">
+                                <tbody>
+                                <tr>
+                                    <td class="keys"><span class="keyModifier">A</span> :</td>
+                                    <td class="keysText">Set status to 'Active'</td>
+                                </tr>
+                                <tr>
+                                    <td class="keys"><span class="keyModifier">W</span> :</td>
+                                    <td class="keysText">Set status to 'Waiting on customer'</td>
+                                </tr>
+                                <tr>
+                                    <td class="keys"><span class="keyModifier">P</span> :</td>
+                                    <td class="keysText">Set status to 'On-Hold'</td>
+                                </tr>
+                                <tr>
+                                    <td class="keys"><span class="keyModifier">V</span> :</td>
+                                    <td class="keysText">Set status to 'Solved'</td>
+                                </tr>
+                                <tr>
+                                    <td class="keys"><span class="keyModifier">C</span> :</td>
+                                    <td class="keysText">Set status to 'Closed'</td>
+                                </tr>
+                                <tr>
+                                    <td class="keys"><span class="keyModifier">S</span> :</td>
+                                    <td class="keysText">Set status to 'Spam'</td>
+                                </tr>
+                                </tbody>
+                                </table>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="keys"><span class="keyModifier">J</span> :</td>
+                            <td class="keysText">Advance to next ticket</td>
+                        </tr>
+                        <tr>
+                            <td class="keys"><span class="keyModifier">K</span> :</td>
+                            <td class="keysText">Advance to previous ticket</td>
+                        </tr>
+                        <tr>
+                            <td class="keys"><span class="keyModifier">O</span> :</td>
+                            <td class="keysText">Open the options menu</td>
+                        </tr>
+                        <tr>
+                            <td class="keys"><span class="keyModifier">T</span> :</td>
+                            <td class="keysText">Add a task</td>
+                        </tr>
+                        </tbody>
+                        </table>
+
+                    </td>
+                    <td width="50%">
+
+                        <h3>Tickets Listing</h3>
+                        <table cellpadding="0">
+                        <tbody>
+                        <tr>
+                            <td class="keys"><span class="keyModifier">J</span> :</td>
+                            <td class="keysText">Move cursor to next ticket</td>
+                        </tr>
+                        <tr>
+                            <td class="keys"><span class="keyModifier">K</span> :</td>
+                            <td class="keysText">Move cursor to previous ticket</td>
+                        </tr>
+                        </tbody>
+                        </table>
+
+                    </td>
+                </tr>
+                </tbody>
+                </table>
+
+
+
+
+            </div>
+            <div class="modal-footer">
+                <div class="text-right">
+                    <a href="javascript:void(0)" class="btn btn-link" data-bind="click:Close">Close</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- IMPORTANT - Mark this template loaded -->
+<!-- ko if: $data.readyToShow != null && readyToShow -->
+    <div data-bind="template:{afterRender:function(){templateLoaded(true)}}" class="hidden"></div>
+<!-- /ko -->

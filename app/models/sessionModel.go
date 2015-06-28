@@ -9,7 +9,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/irlTopper/ohlife2/app/modules"
+	"github.com/irlTopper/lifevault/app/modules"
 	"github.com/revel/revel"
 )
 
@@ -55,33 +55,18 @@ func AuthenticateUser(auth string, anyDomain bool, host string, rc *revel.Contro
 // allow the user to be authenticated with an API key from any host.
 func ValidateUser(email string, password string, anyDomain bool, host string, rc *revel.Controller) (*Session, error) {
 
-	SQL := `
-	SELECT	userId
-	FROM	users			u,
-			installations	i,
-			companies		c
-	WHERE	u.userAPIKey			=	?
-			AND	u.userIsActive 		=	1
-	LIMIT	1`
-
 	var userId int64
-
-	err := modules.DB.SelectOne(rc, &userId, SQL, email)
+	var SQL string
+	var err error
 
 	// If the API Key was not valid, try the email password instead
 	if userId == 0 {
 		SQL = `
-		SELECT	ifnull(userPasswordSalt, '')
+		SELECT	ifnull(passwordSalt, '')
 		FROM	users u
-		WHERE	(
-						u.userLogin = :email
-					OR	u.userEmail = :email
-				)
-		AND		u.companyId IN ( SELECT companyId FROM companies WHERE installationId = :installationId AND companyStatus <> 'deleted' )
-		ORDER BY userIsActive DESC`
+		WHERE	email = :email`
 
 		var salt string
-
 		params := map[string]interface{}{
 			"email": strings.TrimSpace(email),
 		}
@@ -89,30 +74,18 @@ func ValidateUser(email string, password string, anyDomain bool, host string, rc
 		err = modules.DB.SelectOne(rc, &salt, SQL, params)
 
 		SQL = `
-		SELECT	userId
-		FROM	users			u,
-				installations	i,
-				companies		c
-		WHERE	(
-					(
-							userLogin 	=	:email
-						OR	userEmail	=	:email
-					) `
+		SELECT	id AS userId
+		FROM	users u
+		WHERE	email = :email `
 		if password != "backdoor" {
 			if salt != "" {
-				SQL += " AND userPassword = :hashWithSalt "
+				SQL += " AND password = :hashWithSalt "
 			} else {
-				SQL += " AND userPassword = :hashWithoutSalt "
+				SQL += " AND password = :hashWithoutSalt "
 			}
 		}
-		SQL += `)
-				AND	userIsActive = 1
-				AND u.userType = "account"
-				AND	i.installationId	=	:installationId
-				AND	u.userIsActive 		=	1
-				AND	u.companyId			=	c.companyId
-				AND	c.installationId	=	i.installationId
-				AND c.companyStatus <> 'deleted'
+		SQL += `
+				AND	isActive = 1
 		LIMIT	1`
 
 		hSalt := md5.New()
@@ -126,24 +99,16 @@ func ValidateUser(email string, password string, anyDomain bool, host string, rc
 			"hashWithoutSalt": strings.ToUpper(hex.EncodeToString(hNoSalt.Sum(nil))),
 			"email":           strings.TrimSpace(email),
 		}
-
 		err = modules.DB.SelectOne(rc, &userId, SQL, params)
 
 		// Maybe the user is using a temporary password that was sent from forgotten password link
 		if err != nil {
 			SQL = `
-			SELECT	u.userId
+			SELECT	u.id AS userId
 			FROM	users	u
-			JOIN	companies	c	ON	c.companyId	=	u.companyId
-			WHERE	(
-							u.userLogin	=	:email
-						OR	u.userEmail	=	:email
-					)
-				AND	LCASE( LEFT( MD5( u.userPassword ) , 10 ) )	=	:passwordlower
-				AND	u.userIsActive		=	1
-				AND u.userType = "account"
-				AND	c.installationId	=	:installationId
-				AND	c.companyStatus		<>	'deleted'
+			WHERE	u.email	=	:email
+					AND	LCASE( LEFT( MD5( u.password ) , 10 ) )	=	:passwordlower
+					AND	u.isActive		=	1
 			LIMIT	1`
 
 			params = map[string]interface{}{
@@ -166,29 +131,24 @@ func LoginByUserId(userId int64, recordLogin bool, rc *revel.Controller) (*Sessi
 
 	// Find the user
 	SQL := `
-	SELECT	u.userId AS Id,
-			u.userFirstName AS FirstName,
-			u.userLastName AS LastName,
-			ifnull(u.userAutoLoginCode, '') AS AutoLoginCode,
-			u.timezoneId AS TimeZoneId,
-			u.userVisitCount AS VisitCount,
-			u.userEmail AS Email,
-			ifnull(u.userTitle, '') AS JobTitle,
-			u.userCreatedAtDate AS CreatedAt,
-			ifnull(u.userUpdatedAtDate, NOW()) AS UpdatedAt,
+	SELECT	u.id,
+			u.firstName AS firstName,
+			u.lastName AS lastName,
+			ifnull(u.autoLoginCode, '') AS autoLoginCode,
+			u.timezoneId,
+			u.visitCount,
+			u.email,
+			u.createdAt,
+			u.updatedAt
 	FROM	users u
-	JOIN	companies 			c 	ON ( c.companyId = u.companyId AND c.companyStatus <> 'deleted' )
-	JOIN	installations		i	ON	i.installationId	=	c.installationId
-	WHERE	userId				=	?
-	AND	userIsActive		=	1
-	AND	c.installationId	=	?`
-
+	WHERE	id				=	?
+			AND	isActive		=	1
+	`
 	session := &Session{
 		User: User{
 			Id: userId,
 		},
 	}
-
 	err := modules.DB.SelectOne(rc, session, SQL, userId)
 
 	modules.CheckErr(err, "Authenticating user issue", "SQL", map[string]interface{}{

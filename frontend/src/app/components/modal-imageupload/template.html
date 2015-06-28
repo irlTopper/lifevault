@@ -1,0 +1,37 @@
+<div data-bind="attr:{'id':modalDivId},css:{fade:allowFade}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md" style="width:500px;">
+        <form target="_targetIFrame" id="uploadImageForm" method="post" enctype="multipart/form-data" data-bind="attr:{ 'action':imageUploadURL }">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-bind="click:Close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" data-bind="text:title"></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="column-main">
+                        <h4 class="title-label" data-bind="html:text"></h4>
+                        <input type="hidden" data-bind="value: id" name="id" />
+
+                        <div class="col-inputs">
+                            <!-- ko component: { name: 'widget-filepicker', params:{ id:"userImagePicker", fieldName:"file", onSelectCallback:function(){ OnSelectImage() } } } --><!-- /ko -->
+                        </div>
+
+                        <!-- ko if: subText != "" -->
+                            <p class="sub-paragraph" data-bind="text:subText"></p>
+                        <!-- /ko -->
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="javascript:void(0)" class="btn btn-link" data-bind="click:Cancel">Cancel</a>
+                    <button class="ladda-button btn btn-success" data-style="expand-right" data-bind="ladda: isUploading, click:Save"><span class="ladda-label">Upload Image</span></button>
+                </div>
+            </form>
+            <iframe name="_targetIFrame" style="display: none;" id="uploadFrame"></iframe>
+
+        </div>
+    </div>
+</div>
+<!-- IMPORTANT - Mark this template loaded -->
+<!-- ko if: $data.readyToShow != null && readyToShow -->
+    <div data-bind="template:{afterRender:function(){templateLoaded(true)}}" class="hidden"></div>
+<!-- /ko -->

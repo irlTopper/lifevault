@@ -1,79 +1,93 @@
 <section class="column-main wrap-settings-inner">
     <div class="padding-wrap">
 
-        <!-- ko if: isLoaded() -->
+        <!-- ko ifnot: readyToShow() -->
+            <!-- ko component: { name: 'loadingIndicator' } --><!-- /ko -->
+        <!-- /ko -->
 
-            <form id="userProfileForm" class="page-container" data-bind="submit:OnSaveUserProfile">
+        <!-- ko if: readyToShow() -->
+
+            <form id="userProfileForm" class="page-container" data-bind="submit:OnClickSaveUserProfile">
 
                 <!-- ko if: true && editUser.id() !== app.loggedInUser.id() -->
                 <div class="form-group">
                     <div class="col-labels">
                         <span class="in_label">Role:</span>
-                    </div><!-- label column -->
+                    </div>
                     <div class="col-inputs">
                         <select id="roleField" name="role" class="form-control valid" style="width: 55%" data-bind="value:editUser.role, options:['Agent','Admin']" aria-invalid="false"></select>
-                    </div><!-- inputs column -->
+                    </div>
                 </div>
                 <!-- /ko -->
-
-                <div class="form-group">
+                <div class="form-group required">
                     <div class="col-labels">
-                        <span class="in_label">First Name:</span>
-                    </div><!-- label column -->
+                        <label class="in_label">First Name:</label>
+                    </div>
                     <div class="col-inputs">
-                        <input type="text" class="form-control" data-bind="attr:{ value:editUser.firstName }" name="firstName" required=true placeholder="Required.">
-                    </div><!-- inputs column -->
-                </div><!-- field row -->
+                        <input type="text" class="form-control" data-bind="attr:{ value:editUser.firstName }" name="firstName" required=true>
+                    </div>
+                </div>
 
-                <div class="form-group">
+                <div class="form-group required">
                     <div class="col-labels">
-                        <span class="in_label">Last Name:</span>
-                    </div><!-- label column -->
+                        <label class="in_label">Last Name:</label>
+                    </div>
                     <div class="col-inputs">
-                        <input type="text" class="form-control" data-bind="attr:{ value:editUser.lastName }" name="lastName" required=true placeholder="Required.">
-                    </div><!-- inputs column -->
-                </div><!-- field row -->
+                        <input type="text" class="form-control" data-bind="attr:{ value:editUser.lastName }" name="lastName" required=true>
+                    </div>
+                </div>
 
-                <div class="form-group">
+                <div class="form-group required">
                     <div class="col-labels">
-                        <span class="in_label">Email:</span>
-                    </div><!-- label column -->
+                        <label class="in_label">Email:</label>
+                    </div>
                     <div class="col-inputs">
-                        <input type="text" class="form-control" data-bind="attr:{ value:editUser.email }" name="email" required=true placeholder="Required.">
+                        <input type="text" class="form-control" data-bind="attr:{ value:editUser.email }" name="email" required=true>
                         <!-- ko ifnot: showAlternateEmails -->
                         <div class="in-row">
-                            <a href="javascript:void(0)" data-bind="click:ShowAlternateEmails">Add more...</a>
+                            <a href="javascript:void(0)" data-bind="click:ShowAlternateEmails">Add alternate emails...</a>
                         </div>
                         <!-- /ko -->
-                    </div><!-- inputs column -->
-                </div><!-- field row -->
+                    </div>
+                </div>
 
-                <!-- ko if: showAlternateEmails -->
-                <div class="form-group">
+                <div class="form-group" data-bind="visible:showAlternateEmails">
                     <div class="col-labels">
                         <span class="in_label">Alternate Emails:</span>
-                    </div><!-- label column -->
-                    <div class="col-inputs">
-                        <!-- ko foreach: editUser.altEmails -->
-                        <input type="text" class="form-control" data-bind="attr:{ id:'altEmail'+($index()+1), name:'altEmail'+($index()+1), value:$data, valueUpdate:'keyup' }" placeholder="Optional.">
-                        <!-- /ko -->
-                    </div><!-- inputs column -->
-                </div><!-- field row -->
-                <!-- /ko -->
+                    </div>
+                        <!-- ko foreach: editUser.altEmails --><!-- ko if: $index() === 0 -->
+                        <div class="col-inputs">
+                            <input type="text" class="form-control alternate-emails" data-bind="attr:{ id:'altEmail'+($index()+1), name:'altEmail'+($index()+1), value:$data, valueUpdate:'keyup' }" placeholder="Optional.">
+                            <div class="col-outside">
+                                <span class="checkbox-label"><a href="javascript:void(0)" class="help pops" data-toggle="popover" data-placement="top" data-content="Alternative emails allow us to associate forwarded email addresses with this user.">help</a></span>
+                            </div>
+                        </div>
+                        <!-- /ko --><!-- /ko -->
+                </div>
+                <!-- ko foreach: editUser.altEmails --><!-- ko if: $index() > 0 -->
+                <div class="form-group" data-bind="fadeVisible:$parent.showAlternateEmails" style="margin-top:-10px;">
+                    <div class="col-labels">
+                        <span class="in_label">&nbsp;</span>
+                    </div>
+                        <div class="col-inputs">
+                            <input type="text" class="form-control alternate-emails" data-bind="attr:{ id:'altEmail'+($index()+1), name:'altEmail'+($index()+1), value:$data, valueUpdate:'keyup' }" placeholder="Optional.">
+                        </div>
+                </div>
+                <!-- /ko --><!-- /ko -->
 
                 <div class="form-group">
                     <div class="col-labels">
                         <span class="in_label">Job Title:</span>
-                    </div><!-- label column -->
+                    </div>
                     <div class="col-inputs">
-                        <input type="text" class="form-control" data-bind="attr:{ value:editUser.jobTitle }" name="jobTitle" placeholder="Optional.">
-                    </div><!-- inputs column -->
-                </div><!-- field row -->
+                        <input type="text" class="form-control" data-bind="attr:{ value:editUser.jobTitle }" name="jobTitle">
+                    </div>
+                </div>
 
                 <div class="form-group">
                     <div class="col-labels">
                         <span class="in_label">Photo:</span>
-                    </div><!-- label column -->
+                    </div>
                     <div class="col-inputs">
                         <div class="profile-photo-upload">
                                 <!-- ko if: editUser.avatarURL() === "" -->
@@ -88,43 +102,72 @@
                                     </div>
                                 <!-- /ko -->
                             <div class="buttons-hold">
-                                <input type="button" data-bind="click: ChangePhoto" value="Change Photo" class="btn btn-change"><br>
+                                <input type="button" data-bind="click:ChangePhoto" value="Change Photo" class="btn btn-change"><br>
                                 <!-- ko if: HasAnAvatar() -->
                                     <input type="button" value="Delete Photo" class="btn btn-link" data-bind="click:DeleteUserImage">
                                 <!-- /ko -->
-                            </div><!-- buttons -->
+                            </div>
                         </div><!-- photo upload -->
-                    </div><!-- inputs column -->
-                </div><!-- field row -->
-
+                    </div>
+                </div>
                 <div class="form-group">
                     <div class="col-labels">
-                        <span class="in_label">Phone:</span>
-                    </div><!-- label column -->
+                        <span class="in_label">Office Phone:</span>
+                    </div>
+                    <div class="col-inputs multiple-input">
+                        <input type="text" class="form-control" data-bind="attr:{ value:editUser.officePhone }" placeholder="Office Phone" name="officePhone" style="width:79%;">
+                        <input type="text" class="form-control" data-bind="attr:{ value:editUser.officePhoneExt }" placeholder="Ext." name="officePhoneExt" style="width:19%;">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-labels">
+                        <span class="in_label">Cell Phone:</span>
+                    </div>
+                    <div class="col-inputs multiple-input">
+                        <select class="form-control" data-bind="options: indicators,
+                           optionsText: function(item) {
+                               return item.label
+                           },
+                           optionsValue: 'countryCode',
+                           value: editUser.cellPhoneCountry" name="cellPhoneCountry" style="width:40%;">
+                        </select>
+                        <input type="text" class="form-control" data-bind="attr:{ value:editUser.cellPhonePrefix }" placeholder="Prefix" name="cellPhonePrefix" style="width:19%;">
+                        <input type="text" class="form-control" data-bind="attr:{ value:editUser.cellPhone }" placeholder="Cell Phone" name="cellPhone" style="width:38%;">
+                        <div class="col-outside">
+                            <span class="checkbox-label"><a href="javascript:void(0)" class="help pops-link" data-toggle="popover" data-placement="top" data-content="The cell number should start with your country code &amp;amp; prefix&lt;br&gt;e.g. +1 12 1234567&lt;br&gt;&lt;a href=&quot;http://docs.teamwork.com/calendar-94/can-i-receive-sms-or-email-reminders-for-calendar-events&quot; target=&quot;_blank&quot;&gt;more information&lt;/a&gt;">help</a></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-labels">
+                        <span class="in_label">Home Phone:</span>
+                    </div>
                     <div class="col-inputs">
-                        <input type="text" class="form-control" data-bind="attr:{ value:editUser.phone }" name="phone" placeholder="Optional.">
-                    </div><!-- inputs column -->
-                </div><!-- field row -->
+                        <input type="text" class="form-control" data-bind="attr:{ value:editUser.phone }" name="phone">
+                    </div>
+                </div>
 
                 <div class="form-group">
                     <div class="col-labels">
                         <span class="in_label">Time Zone:</span>
-                    </div><!-- label column -->
+                    </div>
                     <div class="col-inputs">
-                        <select class="form-control" data-bind="options: timezones,
-                           optionsText: function(item) {
-                               return '(GMT '  + item.offsetDisplay() +  ') ' + item.name()
-                           },
-                           optionsValue: 'id',
-                           value: editUser.timezoneId" name="timezoneId">
+                        <select name="timezoneId" class="form-control">
+                            <!-- ko foreach: timeGroups -->
+                                <optgroup data-bind="attr: { label: offsetDisplay().length > 0 ? '(GMT '  + offsetDisplay() +  ')' : '(GMT)'}">
+                                    <!-- ko foreach: zones -->
+                                    <option data-bind="attr: { value: id, selected: ($parents[1].editUser.timezoneId() == id()) }, text: name() + (offsetDisplay().length > 0 ? ' (GMT '  + offsetDisplay() +  ')' : ' (GMT)')"></option>
+                                    <!-- /ko -->
+                                </optgroup>
+                            <!-- /ko -->
                         </select>
-                    </div><!-- inputs column -->
-                </div><!-- field row -->
+                    </div>
+                </div>
 
                 <div class="form-group">
                     <div class="col-labels">
                         <span class="in_label">Time Format:</span>
-                    </div><!-- label column -->
+                    </div>
                     <div class="col-inputs">
                         <select class="form-control" data-bind="options: timeformats,
                            optionsText: function(item) {
@@ -133,19 +176,19 @@
                            optionsValue: 'id',
                            value: editUser.timeFormatId" name="timeFormatId">
                         </select>
-                    </div><!-- inputs column -->
-                </div><!-- field row -->
+                    </div>
+                </div>
 
                 <!-- Change password option is only for own profile -->
                 <!-- ko id: editUser.id() == app.loggedInUser.id() -->
-                    <div class="form-group">
+
+                    <div class="form-group ">
                         <div class="col-labels">
-                            <span class="in_label">Password</span>
-                        </div><!-- label column -->
-                        <div class="col-inputs">
-                            <!-- ko ifnot: editUser.changePassword() -->
-                                <button class="btn" data-bind="click: function(){ editUser.changePassword(true); $('#editPass1').focus() }">Change my password...</button>
+                            <!-- ko if: editUser.changePassword() -->
+                                <label class="in_label">Password</label>
                             <!-- /ko -->
+                        </div>
+                        <div class="col-inputs">
                             <!-- ko if: editUser.changePassword() -->
                                 <div class="in-row">
                                     <input id="editPass1" name="password" type="password" class="form-control" data-bind="value:editUser.password" placeholder="Required.">
@@ -156,24 +199,36 @@
                                 </div>
 
                             <!-- /ko -->
-                        </div><!-- inputs column -->
-                    </div><!-- field row -->
+                        </div>
+                    </div>
 
+
+
+                    <div class="form-group">
+                        <div class="col-labels"></div>
+                        <div class="btn-hold">
+                            <button class="ladda-button btn btn-success" data-style="expand-right" data-bind="ladda: isSubmitting, click:OnClickSaveUserProfile"><span class="ladda-label" data-bind="text:(isSubmitting()?'Saving':'Save Profile')"></span></button>
+
+                            <!-- ko if: true && editUser.id() !== app.loggedInUser.id() -->
+                                <br />
+                                <hr />
+                                <input type="button" value="Reset password" class="btn-link reset" data-bind="click:ResetPassword">
+                                <input type="button" value="Delete user" class="btn-link delete" data-bind="click:DeleteUser">
+                                <!-- ko if: editUser.status() === "invited" -->
+                                    <input type="button" data-bind="click: userModel().ResendInvite" value="Resend Invite Email" class="btn-link" />
+                                <!-- /ko -->
+                            <!-- /ko -->
+
+                            <!-- ko if: editUser.id() == app.loggedInUser.id() && !editUser.changePassword() -->
+                                <a class="btn" data-bind="click: function(){ editUser.changePassword(true); $('#editPass1').focus() }">Change my password...</a>
+                            <!-- /ko -->
+
+                        </div>
+                    </div>
 
                 <!-- /ko -->
 
-                <div class="form-group">
-                    <div class="col-labels"></div><!-- label column -->
-                    <div class="btn-hold">
-                        <button class="ladda-button btn btn-success" data-style="expand-right" data-bind="ladda: isSubmitting, click:OnSaveUserProfile"><span class="ladda-label" data-bind="text:(isSubmitting()?'Saving':'Save Profile')"></span></button>
-                        <!-- ko if: true && editUser.id() !== app.loggedInUser.id() -->
-                            <input type="button" value="Reset password" class="btn-link reset" data-bind="click:ResetPassword">
-                            <input type="button" value="Delete user" class="btn-link delete" data-bind="click:DeleteUser">
-                        <!-- /ko -->
-                    </div><!-- inputs column -->
-                </div><!-- field row -->
-
-            </form><!-- in cointainer -->
+            </form>
 
 
         <!-- /ko -->
@@ -182,6 +237,6 @@
     </div><!-- padding wrap -->
 </section><!-- column main -->
 <!-- IMPORTANT - Mark this template loaded -->
-<!-- ko if: isLoaded() -->
-    <div data-bind="text:templateLoaded(true)" style="display:none"></div>
+<!-- ko if: readyToShow() -->
+    <div data-bind="template:{afterRender:function(){templateLoaded(true)}}" class="hidden"></div>
 <!-- /ko -->

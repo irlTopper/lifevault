@@ -1,4 +1,4 @@
-Teamwork Desk
+LifeVault Frontend Setup, Code Style & Tips
 ===
 
 ## Development environment setup guide
@@ -8,6 +8,9 @@ Teamwork Desk
 - [EditorConfig](http://editorconfig.org) plugin for your IDE / text-editor
 - `npm i -g gulp` to install [Gulp](http://gulpjs.com/) globally
 - `npm i -g bower` to install [Bower](http://bower.io/) globally
+- `npm install --save-dev gulp-replace` used in build
+- `npm install --save-dev gulp-html-replace` used in build
+- `npm i git+https://github.com/Teamwork/gulp-requirejs-bundler` our modified version of github.com/SteveSanderson/gulp-requirejs-bundler
 
 ### Dependencies
 - `npm i` to install local node dependencies
@@ -16,18 +19,18 @@ Teamwork Desk
 ### Commands
 - `gulp` compiles the code.
 - `gulp open` will compile the code & open it in your browser (and sync clicks, scrolls, etc). No need for a webserver of your own.
-- `gulp watch` will do the same as `gulp open` but montiors your files for changes and injects the compiled output into the browser.
+- `gulp coffeewatch` will do the same as `gulp open` but montiors your files for changes and injects the compiled output into the browser.
 - `gulp docs` will generate [Biscotto](https://github.com/atom/biscotto) docs and open them in your browser.
 
 
 ## Config
 Copy this to config.js in src/
-
-- window.twDeskConfig = {
--     "isDeveloperMode": true,
--     "APIURL": "http://localhost:9000/"
-- }
-
+```
+ window.twDeskConfig = {
+     "isDeveloperMode": true,
+     "APIURL": "http://localhost:9000/"
+ }
+```
 
 ## Internal class names for ViewModels and Models
 
@@ -54,39 +57,92 @@ There will always be at least one "Help Site" but it doesn't have to be publishe
 
 ## API Calls
 
-All the API calls are listed in [routes](https://github.com/irlTopper/ohlife2/blob/master/conf/routes)
+All the API calls are listed in [routes](https://github.com/Teamwork/TeamworkDesk/blob/master/conf/routes)
 
 
 ## Updating a ticket
 
 Can make changes and use just SaveChanges if you know the field that has changed (you do)
+```
         @ticket.status( newStatus )
         @ticket.SaveChanges(["status"])
-
+```
 
 or track the changes to several fields automatically and have one ajax update with:
+```
         @ticket.TrackChanges () =>
             @ticket.status( newStatus )
             @ticket.subject( "Topper is awesome" )
         .SaveChanges()
+```
 
+## Organising components
+For a consistent way to organise componens, use this format:
+```
+Setup
+	VM()
+	Init()
+	OnShow()
 
-## Tips
+Event Handlers
+	OnClickSort()
+	OnKeyUp()
+	OnClickViewCustomer()
+	OnSelectTicketStatus()
+	VerbXYZ() eg AddTagTicket()
+
+Display - helper fns used by ui
+	GetDisplayName()
+
+Workers - never called directly by ui
+	sortTickets()
+	UpdateTicket()
+	ViewCustomer()
+	setTicketsStatus()
+	swap()
+	GetBackToInboxLink()
+
+Destroy
+	dispose()
+	freeXYZMem()
+```
+
+If function starts with Capital, it expects to called externally
+
+## Code best pratices
+
+### Don't mess with the DOM
+
+If you are setting a value using `$('#id').val('something')` there is a big chance that you are doing something wrong! You really have to relies on Observable and if you are using component relies on param/subsribe to pass the parent Observable to the component. Using jQuery to set a val will breack the two way binding...
+
+### Dispose your subscription
+
+If you are using `subscribe` somewhere, you have to unsubscribe on `dispose` to avoid memory leaks.
+- An example there: [widget-autocomplete-input-single](https://github.com/Teamwork/TeamworkDesk/blob/master/frontend/src/app/components/widget-autocomplete-input-single/def.coffee)
+- The Knockout doc about that: [http://knockoutjs.com/documentation/component-binding.html](http://knockoutjs.com/documentation/component-binding.html)
 
 ### Beware of bootstrap event binding
 
 If you want to perform an action after a boostrap animation like
-hiding a modal with a subscription to 'hidden.bs.modal', it is essential
+hiding a modal with a subscription to `'hidden.bs.modal'`, it is essential
 that you clear the bind afterwards... or you'll get
 all sorts of madness. You can clear the bind in the handler with:
-$( ELEMENT ).unbind( 'hidden.bs.modal' )
+`$( ELEMENT ).unbind( 'hidden.bs.modal' )`
+
+## Tips
+
+### Careful to restart "gulp coffeewatch" after adding new components
+
+This has caught me so many times, I'm adding this note.
+When you add a new component, you have to restart "gulp coffeewatch" so that
+from here on it will also pick up changes to this new components.
+There, I've saved you some grey hairs. - Topper
 
 ### Installing shite from bower
 From the "frontend" folder root - run
 bower install SOMETHING --save
 
 The --save bit is important - it updates the bower.json file.
-
 
 ## Coffeewatch
 Rob cam up with the command
@@ -95,15 +151,15 @@ It just watches for changes to the coffeescript and compiles the javascript
 in light speed. It's the business.
 
 # Modal confirm
-Works just like a javascript confirm() but prettier
+Works just like a javascript `confirm()` but prettier
 Type this in console:
-app.ShowModal("prompt",{ title: "Merge", question: "What should be called the tag?", callback: function(a){alert(a)}   },window)
+`app.ShowModal("prompt",{ title: "Merge", question: "What should be called the tag?", callback: function(a){alert(a)}   },window)`
 
 
 # Modal loading system
 OK, we have a nice on-demand modal loading and stacking system in TeamworkDesk.
 We can just call say
-app.ShowModal "add-user", {}, this
+`app.ShowModal "add-user", {}, this`
 and the app will:
 
 1. Load the viewModel and template for the modal. A new hidden component is added to the page.
@@ -136,5 +192,4 @@ detecting if there is a stack when adding a new modal.. and if there is, it:
 4. Later when the new modal is closed, it checks to see if there is an existing stack and if so, shows the previous modal again and sets up the onclose event on it again.
 
 It's complex yes, but it works very well now.
-
 

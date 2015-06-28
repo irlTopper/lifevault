@@ -15,20 +15,89 @@
 	height: 30px;
 }
 
-.reply-typing .reply-textarea{
-	height:50px !important
-}
 .reply-options{
 	margin-top:10px;
-}
-
-#replyBody {
-	border: 1px solid #D1D1D2;
 }
 
 .wrap-screen-inner .sections--header {
 	z-index: 1090;
 }
+
+
+/* Docs integration */
+.reply-docks {
+  background: #f2fff3;
+}
+
+.reply-docks .reply-content .sub {
+  color: #339966;
+}
+
+.reply-docks .reply-content .content-main {
+  font-size: 14px;
+}
+
+.reply-docks .reply-content .content-main h5 {
+  font-family: 'ProximaNova_bold',sans-serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1;
+  margin: 20px 0 12px;
+}
+
+.reply-docks .reply-content .content-main ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: #666666;
+}
+
+.reply-docks .reply-content .content-main ul li {
+  line-height: 1;
+  margin: 0 0 8px;
+  position: relative;
+  padding-left: 180px;
+}
+
+.reply-docks .reply-content .content-main ul .in-label {
+  display: inline-block;
+  width: 180px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.reply-docks:hover {
+  background: #e8ffea;
+}
+
+.reply-docks.reply-collapse .reply-content .content_wrap {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.reply-docks.reply-collapse .reply-content h5,.reply-docks.reply-collapse .reply-content ul,.reply-docks.reply-collapse .reply-content ul li,.reply-docks.reply-collapse .reply-content ul li a,.reply-docks.reply-collapse .reply-content p {
+  display: inline;
+  color: #888;
+  font-weight: normal;
+  margin: 0;
+  font-family: 'ProximaNova_regular',sans-serif;
+}
+
+.reply-docks.reply-collapse .reply-content ul li {
+  padding-left: 0;
+}
+
+.reply-docks.reply-collapse .reply-content ul .in-label {
+  position: static;
+  display: inline;
+}
+
+.reply-docks.reply-collapse .reply-content ul li br {
+  display: none;
+}
+/* end docs */
 
 /* autocomplete emails */
 .tags-control .input-tag {
@@ -75,15 +144,11 @@
 }
 #tabReply .redactor-box{
 	margin-top:0px;
-	border-left: 1px solid #D1D1D2;
-	border-top: 1px solid #D1D1D2;
-	border-right: 1px solid #D1D1D2;
-	border-bottom: 1px solid #FFF !important;
-	margin-bottom: 0px;
+	border: none !important;
+	margin-bottom: 0;
 }
 #tabNote .redactor-box{
 	margin-top:0px;
-	border: 1px solid #D1D1D2;
 	margin-bottom: 0px;
 }
 .redactor-toolbar li.redactor-separator {
@@ -96,31 +161,32 @@
 	border-bottom: 0;
 	box-shadow:none;
 }
-#tabNote .redactor-toolbar{
-	background: #FBFAE6 !important;
-}
-#tabNote .redactor-editor{
-	background: #FBFAE6 !important;
-}
 .redactor-toolbar li a:hover {
   outline: none !important;
   background-color: #F5F5F5 !important;
   color: #000 !important;
 }
+
+
+#tabNote .redactor-toolbar{
+	background-color: #FBFAE6 !important;
+}
+#tabNote .redactor-editor{
+	background-color: #FBFAE6 !important;
+}
 #tabNote .redactor-toolbar li a:hover {
-	background: #fffdcd !important;
+	background-color: #fffdcd !important;
 }
 .redactor-editor {
-	border-left: none;
-	border-right: none;
-	border-top: 1px solid #eee;
-	border-bottom: none !important;
+	border: none !important;
 	padding: 5px 10px !important;
 }
 .redactor-placeholder:after{
 	top:5px !important;
 	left:10px !important;
 }
+
+
 
 /*
 	Not sure what I need this again - Topper
@@ -144,6 +210,17 @@ label.error {
 */
 .alerts-messages{
 	z-index: 9999999 !important;
+}
+.alerts-messages.ticketSave{
+	top: 82px;
+	width: 200px;
+}
+.alerts-messages.ticketSave .alert {
+	border-radius: 5px;
+	border: none;
+	background: white;
+	text-align: center;
+	padding: 5px;
 }
 
 
@@ -219,16 +296,10 @@ label.error {
 
 
 .redactor-toolbar li a.re-insertVar {
-    background-image: url(../images/buttons/insertVar.png);
+    background-image: url('../images/buttons/insertVar.png') !important;
 }
-.redactor-toolbar li a.re-insertVar:hover {
-    background-image: url(../images/buttons/insertVarHi.png);
-}
-.redactor-toolbar li a.re-insertSavedReply {
-    background-image: url(../images/buttons/insertSavedReply.png);
-}
-.redactor-toolbar li a.re-insertSavedReply:hover {
-    background-image: url(../images/buttons/insertSavedReplyHi.png);
+.redactor-toolbar li a.re-insertCannedResponse {
+    background-image: url('../images/buttons/insertCannedResponse.png') !important;
 }
 
 
@@ -238,6 +309,7 @@ label.error {
 .reply--box .content-main{
 	font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
 	font-size:14px;
+	word-wrap: break-word;
 }
 
 
@@ -356,15 +428,20 @@ text-overflow: ellipsis;
 
 /* thread eventInfo lines */
 div.reply-eventInfo{
-	background:#F6F6F6;
-	border: 1px solid #d9d9d9;
-	padding: 0 5px 5px 10px;
+	background:#F7F7F7 url('../public/images/icons/info-16.png') no-repeat 7px 50%;
+	border: 1px solid #D9D9D9;
+	padding: 0 5px 0 30px;
 	position: relative;
 }
 div.reply-eventInfo.reply--box .reply-content{
 	font-size:13px;
 	color:#777;
-	padding-top:10px;
+	padding:0;
+	margin:0;
+}
+div.reply-eventInfo.reply--box .content-head{
+	padding:8px 0 5px 0;
+	margin:0;
 }
 div.reply-eventInfo.reply--box .reply-content .name{
 	font-size:13px;
@@ -373,16 +450,34 @@ div.reply-eventInfo.reply--box .reply-content .name{
 	font-family: ProximaNova_regular, sans-serif;
 }
 div.reply-eventInfo.reply--box .reply-options{
-	top: 11px;
+	top: 8px;
 	right:0;
 }
 
+body {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text
+}
 
-.canSel, h3.name, .alerts-messages, .id-hold, .name-label, .customerExtraData {
+.column-left, .sections--header, .sections--sidebar, .main--bar {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.canSel {
 	-webkit-user-select: text;
-	-moz-user-select: text;
-	-ms-user-select: text;
-	user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+.canSel-name {
+	z-index: 1;
+	position: relative;
 }
 
 
@@ -599,7 +694,7 @@ label.in_title{
 	display:block;
 }
 
-.panel-title a:hover .badge{
+.panel-title a:hover .badge {
 	display:none;
 }
 
@@ -612,7 +707,16 @@ label.in_title{
     -ms-user-select: text;
     user-select: text;
 }
+i.icon-hold, div.tabs-structure, .redactor-box, .reply-wrap, .noSel{
+	-webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 
+#ticketStatusDrop {
+	min-width:180px;
+}
 .dropdown-menu .shortcut{
 	float: right;
 	color: #99A;
@@ -664,10 +768,13 @@ white-space: nowrap;
 	background-position: 0 -655px;
 }
 .panels-menu .icon-on-hold {
-	background-position: 0 -655px;
+	background-position: 0 -680px;
 }
 .panels-menu .icon-waiting {
 	background-position: 0 -655px;
+}
+.panels-menu .icon-closed {
+	background-position: 0 -704px !important;
 }
 
 .reply--container .tabs-structure .reply-typing .reply-options>ul {
@@ -697,4 +804,714 @@ white-space: nowrap;
 
 .files--attached.canEdit li a.close:hover{
 	opacity: 1;
+}
+
+/*Changes to uploaded images*/
+.reply--container .avatar-holder>img, .reply--box .avatar-holder img,
+.profile-present .img-hold>img,
+.main--bar .menu-options .user-options .user-image .image_hold>img,
+.profile-photo-upload .img-hold>img,
+.boxes--preview .img-hold img {
+	width: 100%;
+	height: 100%;
+	max-width: 100%;
+	min-height: 0%;
+	border-radius:50%;
+}
+
+.panel-heading .panel-title>a {
+	padding-right: 35px;
+}
+
+.dropdown-menu>li>a, .dropdown-menu .menu-list li a {
+	max-width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: normal;
+}
+
+td.show-more-inboxes {
+	line-height:1 !important;
+	vertical-align: top !important;
+	padding: 15px 5px !important;
+	margin: auto;
+}
+
+.show-more-inboxes .load-more {
+	display: block;
+	text-align: center;
+	font-size: 13px;
+	height: 40px;
+	line-height: 40px;
+	color: inherit;
+}
+
+.ios-check>label {
+	display: inline-block;
+}
+
+.btn-article-advanced{
+	display: inline-block;
+	position: relative;
+	padding: 5px 8px 5px 22px;
+	font-size: 13px;
+	color: #666;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	text-decoration: underline;
+	background: url('../images/icons/icon-settings.png') no-repeat 5px center;
+	background-size: 14px 14px;
+}
+.btn-article-advanced:hover {
+	background-color: rgba(255, 255, 255, 0.75);
+}
+
+.company-picker {
+	max-height: 200px;
+	overflow: auto;
+}
+
+.popover {
+	min-width: 200px;
+	max-width: 300px;
+}
+
+/* Fixes for cc/bcc overflowing text area */
+.cc-bcc-emails {
+    overflow-wrap: break-word;
+}
+
+.cc-bcc-emails .cc-bcc-emails-tag {
+	max-width: 100%;
+	height: auto;
+}
+
+.cc-bcc-emails-tag span {
+	white-space: normal;
+}
+
+/* Fixes for filtering PM users */
+.filter-pm-users-error {
+	padding: 20px 0;
+}
+
+.reply--box.merged-thread {
+	border-left: 4px solid #d9d9d9;
+}
+
+.reply--box.merged-thread p.thread-merged {
+	font-size: 1rem;
+}
+
+/* Include updated styles from bootstrap select */
+.bootstrap-select {
+  min-width: 150px;
+}
+.bootstrap-select > .btn {
+  width: 100%;
+  padding-right: 25px;
+}
+.error .bootstrap-select .btn {
+  border: 1px solid #b94a48;
+}
+.control-group.error .bootstrap-select .dropdown-toggle {
+  border-color: #b94a48;
+}
+.bootstrap-select.fit-width {
+  width: auto !important;
+}
+
+.bootstrap-select .btn:focus {
+  outline: thin dotted #333333 !important;
+  outline: 5px auto -webkit-focus-ring-color !important;
+  outline-offset: -2px;
+}
+.bootstrap-select.form-control {
+  margin-bottom: 0;
+  padding: 0;
+  border: none;
+}
+.bootstrap-select.form-control:not([class*="col-"]) {
+  width: 100%;
+}
+.bootstrap-select.btn-group:not(.input-group-btn),
+.bootstrap-select.btn-group[class*="col-"] {
+  float: none;
+  display: inline-block;
+  margin-left: 0;
+}
+.bootstrap-select.btn-group.dropdown-menu-right,
+.bootstrap-select.btn-group[class*="col-"].dropdown-menu-right,
+.row-fluid .bootstrap-select.btn-group[class*="col-"].dropdown-menu-right {
+  float: right;
+}
+.form-search .bootstrap-select.btn-group,
+.form-inline .bootstrap-select.btn-group,
+.form-horizontal .bootstrap-select.btn-group,
+.form-group .bootstrap-select.btn-group {
+  margin-bottom: 0;
+}
+.form-group-lg  .bootstrap-select.btn-group.form-control,
+.form-group-sm  .bootstrap-select.btn-group.form-control {
+  padding: 0;
+}
+.form-inline .bootstrap-select.btn-group .form-control {
+  width: 100%;
+}
+.input-append .bootstrap-select.btn-group {
+  margin-left: -1px;
+}
+.input-prepend .bootstrap-select.btn-group {
+  margin-right: -1px;
+}
+.bootstrap-select.btn-group > .disabled {
+  cursor: not-allowed;
+}
+.bootstrap-select.btn-group > .disabled:focus {
+  outline: none !important;
+}
+.bootstrap-select.btn-group .btn .filter-option {
+  display: inline-block;
+  overflow: hidden;
+  width: 100%;
+  text-align: left;
+}
+.bootstrap-select.btn-group .btn .caret {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  margin-top: -2px;
+  vertical-align: middle;
+}
+.bootstrap-select.btn-group[class*="col-"] .btn {
+  width: 100%;
+}
+.bootstrap-select.btn-group .dropdown-menu {
+  min-width: 100%;
+  z-index: 1035;
+  box-sizing: border-box;
+}
+.bootstrap-select.btn-group .dropdown-menu.inner {
+  position: static;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+.bootstrap-select.btn-group .dropdown-menu li {
+  position: relative;
+}
+.bootstrap-select.btn-group .dropdown-menu li:not(.disabled) a:hover small,
+.bootstrap-select.btn-group .dropdown-menu li:not(.disabled) a:focus small,
+.bootstrap-select.btn-group .dropdown-menu li.active:not(.disabled) a small {
+  color: #64b1d8;
+  color: rgba(100,177,216,0.4);
+}
+.bootstrap-select.btn-group .dropdown-menu li.selected a small, .bootstrap-select.btn-group .dropdown-menu li a:hover small {
+	color:#FFF !important;
+	color: rgba(255,255,255,0.6);
+}
+.bootstrap-select.btn-group .dropdown-menu li.disabled a {
+  cursor: not-allowed;
+}
+.bootstrap-select.btn-group .dropdown-menu li a {
+  cursor: pointer;
+}
+.bootstrap-select.btn-group .dropdown-menu li a.opt {
+  position: relative;
+  padding-left: 2.25em;
+}
+.bootstrap-select.btn-group .dropdown-menu li a span.check-mark {
+  display: none;
+}
+.bootstrap-select.btn-group .dropdown-menu li a span.text {
+  display: inline-block;
+}
+.bootstrap-select.btn-group .dropdown-menu li small {
+	display:block;
+}
+.bootstrap-select.btn-group .dropdown-menu .notify {
+  position: absolute;
+  bottom: 5px;
+  width: 96%;
+  margin: 0 2%;
+  min-height: 26px;
+  padding: 3px 5px;
+  background: #f5f5f5;
+  border: 1px solid #e3e3e3;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+  pointer-events: none;
+  opacity: 0.9;
+  box-sizing: border-box;
+}
+.bootstrap-select.btn-group .no-results {
+  padding: 3px;
+  background: #f5f5f5;
+  margin: 0 5px;
+}
+.bootstrap-select.btn-group.fit-width .btn .filter-option {
+  position: static;
+}
+.bootstrap-select.btn-group.fit-width .btn .caret {
+  position: static;
+  top: auto;
+  margin-top: -1px;
+}
+.bootstrap-select.btn-group.show-tick .dropdown-menu li.selected a span.check-mark {
+  position: absolute;
+  display: inline-block;
+  right: 15px;
+  margin-top: 5px;
+}
+.bootstrap-select.btn-group.show-tick .dropdown-menu li a span.text {
+  margin-right: 34px;
+}
+.bootstrap-select.show-menu-arrow.open > .btn {
+  z-index: 1036;
+}
+.bootstrap-select.show-menu-arrow .dropdown-toggle:before {
+  content: '';
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom-width: 7px;
+  border-bottom-style: solid;
+  border-bottom-color: #cccccc;
+  border-bottom-color: rgba(204,204,204,0.2);
+  position: absolute;
+  bottom: -4px;
+  left: 9px;
+  display: none;
+}
+.bootstrap-select.show-menu-arrow .dropdown-toggle:after {
+  content: '';
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid white;
+  position: absolute;
+  bottom: -4px;
+  left: 10px;
+  display: none;
+}
+.bootstrap-select.show-menu-arrow.dropup .dropdown-toggle:before {
+  bottom: auto;
+  top: -3px;
+  border-bottom: 0;
+  border-top-width: 7px;
+  border-top-style: solid;
+  border-top-color: #cccccc;
+  border-top-color: rgba(204,204,204,0.2);
+}
+.bootstrap-select.show-menu-arrow.dropup .dropdown-toggle:after {
+  bottom: auto;
+  top: -3px;
+  border-top: 6px solid white;
+  border-bottom: 0;
+}
+.bootstrap-select.show-menu-arrow.pull-right .dropdown-toggle:before {
+  right: 12px;
+  left: auto;
+}
+.bootstrap-select.show-menu-arrow.pull-right .dropdown-toggle:after {
+  right: 13px;
+  left: auto;
+}
+.bootstrap-select.show-menu-arrow.open > .dropdown-toggle:before,
+.bootstrap-select.show-menu-arrow.open > .dropdown-toggle:after {
+  display: block;
+}
+.bs-searchbox,
+.bs-actionsbox {
+  padding: 4px 8px;
+}
+.bs-actionsbox {
+  float: left;
+  width: 100%;
+  box-sizing: border-box;
+}
+.bs-actionsbox .btn-group button {
+  width: 50%;
+}
+.bs-searchbox + .bs-actionsbox {
+  padding: 0 8px 4px;
+}
+.bs-searchbox input.form-control {
+  margin-bottom: 0;
+  width: 100%;
+}
+.mobile-device {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block !important;
+  width: 100%;
+  height: 100% !important;
+  opacity: 0;
+}
+/* End styles from bootstrap select */
+
+/* Typeahead */
+.tt-hint {
+    width: 396px;
+    height: 30px;
+    padding: 8px 12px;
+    font-size: 24px;
+    line-height: 30px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+}
+
+.tt-input {
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.tt-hint {
+    color: #999
+}
+
+.tt-dropdown-menu {
+    min-width: 170px;
+    margin-top: 12px;
+    padding: 8px 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.tt-suggestion {
+    padding: 3px 20px;
+    font-size: 18px;
+    line-height: 24px;
+}
+.tt-suggestion.tt-cursor {
+    color: #fff;
+    background-color: #0097cf;
+
+}
+.tt-suggestion p {
+    margin: 0;
+}
+label {
+	font-weight: normal;
+}
+
+.reply-note:hover {
+	background: #fbfae6;
+}
+
+.reply-docks:hover {
+	background: #f2fff3;
+}
+
+.reply-typing .reply-textarea {
+	height: auto;
+}
+
+.form-group.required label:after {
+	content: "*";
+	color: red;
+}
+
+@media (max-height: 400px) {
+  .main--bar .bar-top, .main--bar .bar-bottom {
+		position: relative;
+	}
+}
+
+.chart-placeholder {
+	height: 100px;
+}
+
+
+.section-attachments-list{
+	padding: 0 10px 10px 10px;
+}
+
+#tabNode .textarea-container{
+	background-color: #FBFAE6 !important;
+}
+
+#tabNote .textarea-container {
+	background: rgb(251, 250, 230);
+}
+
+.reply--box .reply-options {
+	z-index: 2;
+}
+
+.modal-fix {
+	outline: none;
+	margin: 0;
+	overflow: hidden;
+}
+
+.modal-fix .modal-dialog {
+    margin: 0;
+    height: 100%;
+    float: right;
+}
+
+.modal-fix .modal-content {
+	height: 100%;
+	overflow-x: auto;
+	overflow-y: hidden;
+}
+
+.modal-fix .modal-body {
+	overflow-y: auto;
+	height: 100%;
+	padding-bottom: 50px;
+}
+
+@media (min-width: 1100px) {
+	.modal-fix .modal-body .form-group .col-labels {
+		width: 150px !important;
+	}
+}
+
+.sidebar-backdrop {
+	opacity: 0.4;
+}
+
+@media (min-width: 768px) {
+	.modal-fix .modal-dialog {
+		margin: 0;
+	}
+}
+
+.new-ticket-email {
+	width: 320px;
+}
+
+.reply-trigger {
+	cursor: pointer;
+}
+
+.status-waiting .status{
+	background-color:#4DC2C2;
+}
+.status-on-hold .status{
+	background-color:#77A;
+}
+.status-spam .status{
+	background-color:#F00;
+}
+.status-solved .status{
+	width:14px;
+	height:14px;
+	left:-20px !important;
+	border-radius:0;
+	background:url('../public/images/icons/dropdownoptionchecked.png') no-repeat;
+}
+
+/* For the "X" when in ?_template=iframepreview mode */
+.sections--header .btn{
+	color:#666;
+	font-weight: bold;
+}
+
+.inbox--body {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.instruction {
+	white-space: nowrap;
+  	color: lightslategray;
+}
+
+.helpdoc-new-tab {
+	border: 1px solid #b3b3b3;
+	border-radius: 2px;
+	background-color: #e9eef7;
+	padding: 5px;
+	display: inline-block;
+	position: absolute;
+  	right: 50px;
+  	top: 20px;
+  	bottom: auto;
+  	left: auto;
+}
+.helpdoc-new-tab a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.inbox-admin-access .img-hold img{
+	opacity:0.8;
+}
+.inbox-admin-access td{
+	background: repeating-linear-gradient( 45deg, #FFF, #F7F7F7 10px, #FFF 10px)
+}
+.inbox-admin-access:hover td{
+	background: repeating-linear-gradient( 45deg, #FBFBFB, #F7F7F7 10px, #FBFBFB 10px)
+}
+
+table.box-group .box-header>tr>th {
+	width: 100%;
+}
+
+tr.table-row td.column-customer{
+	width:188px;
+	border-left:2px solid #FFF !important;
+}
+tr.table-row.hasCursor td.column-customer{
+	border-left:2px solid #00CCB6 !important;
+}
+
+/* We want to be able to drag around the modals */
+.modal-header{
+	cursor: move;
+}
+
+.multiple-input .form-control {
+	display: inline-block;
+}
+
+/* Fix the overflow-x creating white space off right side of viewport */
+/* http://stackoverflow.com/questions/17092803/mobile-browsers-overflow-x-creating-white-space-off-right-side-of-viewport */
+.deck-wrap {
+	overflow: hidden;
+	width: auto;
+}
+
+.filter.black {
+	background: #222 !important;
+}
+.pops-link {
+	margin-top: 7px;
+}
+
+#invoice-table.table-hover tbody > tr:hover > td {
+	cursor: auto;
+}
+table#invoice {
+	font-size:13px;
+	border:10px solid #fff;
+	background: #fff;
+	width: 748px;
+}
+#invoice-items td {
+	padding: 5px 0;
+}
+#invoice-items td.desc {
+
+}
+#invoice-items td.amount {
+	text-align:right;
+}
+
+#invoice-items .invoice-total td {
+	font-family: 'ProximaNova_bold',sans-serif;
+}
+
+table#invoice-details {
+	font-size:13px;
+	border:1px solid #999;
+	margin-top:20px;
+}
+table#invoice-details tr td {
+	padding: 5px;
+}
+table#invoice-details tr td.heading {
+	color:#888;
+	background: #EFEFEF;
+}
+
+.reply--container .tabs-structure .reply-typing .dropdown-menu.inner {
+  max-height: 300px !important;
+}
+
+.dropdown-dateselect .dropdown-toggle {
+	padding: 0 5px
+}
+
+.modal-body .dropdown-menu .form-group {
+	padding-left: 5px !important;
+}
+
+.modal-body .inline-form.form-group {
+	padding-left: 5px !important;
+}
+
+.heading_title .clear-search {
+	font-size: 12px;
+	color: #222;
+	cursor: pointer;
+	border: 1px solid #e8e8e8;
+	padding: 3px;
+}
+
+.inbox-period-holder {
+	min-height: 50px;
+	height: auto;
+}
+
+#dashInboxesChannels h6 {
+  	margin: 0 0 0 15px;
+  	font-family: 'ProximaNova_semibold', sans-serif;
+  	font-size: 14px;
+  	text-transform: uppercase;
+  	text-align: left;
+  	color: rgb(85, 85, 85);
+}
+
+.channels-holder {
+  	text-align: center;
+}
+
+.pops {
+	cursor: help;
+}
+
+/* this is needed for the sample stats in pageRHS-dashboard */
+.help {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background: url('../images/icons/icon-help.png') no-repeat center;
+  text-indent: -99999px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.list-check {
+	padding: 0;
+}
+
+.list-check-item {
+	padding:0em 0 0.5em 1.2em;
+  	font-size: 1em;
+  	list-style:none;
+  	background-repeat:no-repeat;
+  	background-image:url('../images/icons/list-check.png');
+  	background-size: 18px;
+}
+
+.canClick{
+	cursor:pointer;
+	cursor:hand;
+}
+
+.dashboard-main .welcome-head{
+	cursor:pointer;
+	cursor:hand;
+}
+
+.article--header .article-title .inp-field {
+	font-family: 'ProximaNova_semibold',sans-serif;
+}
+
+.tags-listing .tag.tag-empty {
+	padding: 0 10px;
 }

@@ -1,0 +1,1610 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"Get",
+				"GetDeskDataConnection	conn redis.Conn ƒ"
+			],
+			[
+				"r",
+				"required=\"true\"	required"
+			],
+			[
+				"Pro",
+				"ProjectsEnabled	bool ν"
+			],
+			[
+				"Team",
+				"TeamworkDesk"
+			],
+			[
+				"insta",
+				"installationId	int64 ν"
+			],
+			[
+				"installation",
+				"installationId"
+			],
+			[
+				"ba",
+				"background-image"
+			],
+			[
+				"dataT",
+				"dataToSend"
+			],
+			[
+				"ini",
+				"initialSlug	string ν"
+			],
+			[
+				"T",
+				"ThreadTypeId	int64 ν"
+			],
+			[
+				"ST",
+				"status"
+			],
+			[
+				"in",
+				"inboxId	int64 ν"
+			],
+			[
+				"N",
+				"NewServer	*socketio.Server, error ƒ"
+			],
+			[
+				"font",
+				"font-weight"
+			],
+			[
+				"A",
+				"AvatarURL	string ν"
+			],
+			[
+				"i",
+				"Id	int64 ν"
+			],
+			[
+				"c",
+				"CustomerJSON	CustomerJSON ν"
+			],
+			[
+				"ti",
+				"TicketId	int64 ν"
+			],
+			[
+				"Set",
+				"SetHtml	 ƒ"
+			],
+			[
+				"rev",
+				"reverseMap	map[string]string ƒ"
+			],
+			[
+				"re",
+				"Replace	string ƒ"
+			],
+			[
+				"Co",
+				"Config	*revel.MergedConfig ν"
+			],
+			[
+				"err",
+				"errors	 package ρ"
+			],
+			[
+				"V",
+				"Valid	bool ν"
+			],
+			[
+				"Re",
+				"Request	*revel.Request ν"
+			],
+			[
+				"cac",
+				"cachedwithin	@cachedwithin"
+			],
+			[
+				"ticket",
+				"ticketsTab"
+			],
+			[
+				"str",
+				"strings	 package ρ"
+			],
+			[
+				"cus",
+				"customerId	int64 ν"
+			],
+			[
+				"E",
+				"Errors	[]*revel.ValidationError ν"
+			],
+			[
+				"Cre",
+				"Categories	[]int64 ν"
+			],
+			[
+				"Us",
+				"UserId	int64 ν"
+			],
+			[
+				"lo",
+				"logged"
+			],
+			[
+				"ticke",
+				"ticket"
+			],
+			[
+				"set",
+				"setHash"
+			],
+			[
+				"lastGo",
+				"lastGodUsername"
+			],
+			[
+				"Print",
+				"Println	n int, err error ƒ"
+			],
+			[
+				"H",
+				"Host	string ν"
+			],
+			[
+				"print",
+				"Println	n int, err error ƒ"
+			],
+			[
+				"pr",
+				"Println	n int, err error ƒ"
+			],
+			[
+				"P",
+				"Println	n int, err error ƒ"
+			],
+			[
+				"dashBoard",
+				"dashboardPageTab"
+			],
+			[
+				"routeP",
+				"routePartObservable"
+			],
+			[
+				"un",
+				"undefined"
+			],
+			[
+				"se",
+				"searchTerm"
+			],
+			[
+				"selec",
+				"selectedTickets"
+			],
+			[
+				"mail",
+				"mailboxName"
+			],
+			[
+				"num",
+				"numReplies"
+			],
+			[
+				"bo",
+				"bower_modules"
+			],
+			[
+				"View",
+				"viewModel"
+			],
+			[
+				"RE",
+				"REQUEST"
+			],
+			[
+				"can",
+				"cancel"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"cfth",
+				"cfthrow	Tag (cmfl)"
+			],
+			[
+				"data",
+				"datasource"
+			],
+			[
+				"u",
+				"HTTP_USER_AGENT"
+			],
+			[
+				"Projects",
+				"ProjectsViewModel"
+			],
+			[
+				"structKey",
+				"structKeyExists	fn. (cfscript)"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "Searching 1453 files for \"mockjax\" (case sensitive)\n\nC:\\GoPlayground\\src\\github.com\\irlTopper\\lifevault\\frontend\\src\\libs\\bower\\jquery-mockjax\\.bower.json:\n    1  {\n    2:   \"name\": \"jquery-mockjax\",\n    3    \"version\": \"1.5.4\",\n    4    \"main\": [\n    5:     \"jquery.mockjax.js\"\n    6    ],\n    7    \"ignore\": [\n    .\n   14      \"test\"\n   15    ],\n   16:   \"homepage\": \"https://github.com/jakerella/jquery-mockjax\",\n   17    \"_release\": \"1.5.4\",\n   18    \"_resolution\": {\n   ..\n   21      \"commit\": \"a60bab9abe9e533f7dd9fc0ace888f41b381f86f\"\n   22    },\n   23:   \"_source\": \"git://github.com/jakerella/jquery-mockjax.git\",\n   24    \"_target\": \"~1.5.3\",\n   25:   \"_originalSource\": \"jquery-mockjax\"\n   26  }\n\nC:\\GoPlayground\\src\\github.com\\irlTopper\\lifevault\\frontend\\src\\libs\\bower\\jquery-mockjax\\bower.json:\n    1  {\n    2:   \"name\": \"jquery-mockjax\",\n    3    \"version\": \"1.5.4\",\n    4:   \"main\": [\"jquery.mockjax.js\"],\n    5    \"ignore\": [\n    6      \".editorconfig\",\n\nC:\\GoPlayground\\src\\github.com\\irlTopper\\lifevault\\frontend\\src\\libs\\bower\\jquery-validation\\changelog.md:\n  104  \n  105    * Revert to also converting parameters of range method to numbers. Closes gh-702\n  106:   * Replace most usage of PHP with mockjax handlers. Do some demo cleanup as well, update to newer masked-input plugin. Keep captcha demo in PHP. Fixes #662\n  107    * Remove inline code highlighting from milk demo. View source works fine.\n  108    * Fix dynamic-totals demo by trimming whitespace from template content before passing to jQuery constructor\n\n8 matches across 3 files\n\n\nSearching 1453 files for \"$.mockjax\" (case sensitive)\n\n0 matches across 0 files\n",
+			"settings":
+			{
+				"buffer_size": 1650,
+				"line_ending": "Windows",
+				"name": "Find Results",
+				"scratch": true
+			}
+		},
+		{
+			"file": "frontend/src/app/models/lifevault.coffee",
+			"settings":
+			{
+				"buffer_size": 27003,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "frontend/src/app/require.config.js",
+			"settings":
+			{
+				"buffer_size": 5401,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 35.0,
+		"selected_items":
+		[
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Remove Package"
+			],
+			[
+				"sdb",
+				"SublimeGDB: Open Callstack View"
+			],
+			[
+				"con",
+				"Convert Case: Upper Case"
+			],
+			[
+				"conv",
+				"Convert Case: Title Case"
+			],
+			[
+				"Conv",
+				"Convert Case: Lower Case"
+			],
+			[
+				"sort",
+				"Sort Lines"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 424.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/conf/routes",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/models/lifevault.coffee",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/page-settings-tab-inboxes-id-edit/def.coffee",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/page-settings-tab-inboxes-id-emailsettings/def.coffee",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/page-settings-tab-inboxes-id-permissions/def.coffee",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/pageLHS-nav-inboxes/def.coffee",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/pageMain-dashboard-metrics/def.coffee",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/pageMain-ticket-new/def.coffee",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/section-inbox-forwardingNotActive/def.coffee",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/section-settings-company-hours/def.coffee",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/section-ticket-view/def.coffee",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/widget-inbox-opts/def.coffee",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/models/inboxModel.coffee",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/modal-new-inbox/def.coffee",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/page-settings-tab-inboxes/def.coffee",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/section-user-autobcc/def.coffee",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/section-user-permissions/def.coffee",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/postman.txt",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/models/ticketListItemModel.coffee",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/models/ticketModel.coffee",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/socket.coffee",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/app/controllers/userController.go",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/nav-main/template.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/page-dashboard/template.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/page-settings-tab-apps/def.coffee",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/page-settings-tab-billing/def.coffee",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/page-settings-tab-company/def.coffee",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/page-settings-tab-helpdocs/def.coffee",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/page-settings-tab-inboxes-id/def.coffee",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/page-settings-tab-tags/def.coffee",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/page-settings-tab-users/def.coffee",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/page-settings/def.coffee",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/pageLHS-helpdocs/template.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/pageMain-dashboard-inboxes/def.coffee",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/pageMain-dashboard-inboxes/template.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/section-thread-happiness/template.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/section-ticket-view/template.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/section-user-profile/template.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/widget-lhsnavpanel-inbox/template.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/helpers/editor.coffee",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/index.html",
+		"/c/goplayground/src/github.com/irlTopper/lifevault/app/models/sessionModel.go",
+		"/c/goplayground/src/github.com/irlTopper/lifevault/app/models/userModel.go",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/page-login/template.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/conf/app.conf",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/app/modules/database.go",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/css/login.temp.css",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/app/models/userModel.go",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/css/styles.css",
+		"/C/GoPlayground/src/github.com/teamwork/TeamworkDesk/frontend/src/index.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/page-login/def.coffee",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/page-forgot-password/template.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/css/login.css",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/page-reset-password/template.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/section-settings-company-edit/template.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/modal-view-invoice/template.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/page-happiness-rating/template.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/app/init.go",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/bower.json",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/package.json",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/settings-helpdocs-categories.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/settings-helpdocs.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/settings-inboxes-autoreply.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/settings-inboxes-connections.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/settings-inboxes-edit.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/settings-inboxes-permissions.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/settings-inboxes-savedreplies.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/settings-inboxes-triggers-edit.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/settings-inboxes-triggers-step1.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/settings-inboxes-triggers-step2.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/settings-inboxes-triggers-step3.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/settings-inboxes-triggers.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/settings-inboxes.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/settings-spam.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/settings-stylesandshits.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/settings-tags.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/settings-users-api.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/settings-users-bbc.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/settings-users-notifications.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/settings-users-nousersfound.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/settings-users-permisions.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/settings-users-profile.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/settings-users.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/ticket-new-phone.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/ticket-new.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/ticket-screen-addtask.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/ticket-screen-noprojectselected.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/ticket-screen-reply.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/ticket-screen.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/ticket-screen_iframepreview.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/temp/redactor/index.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/README.md",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/modal-article-advanced/template.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/modal-edithelpcategory/template.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/modal-new-inbox/template.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/modal-spf-help/template.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/page-settings-tab-apps/template.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/section-settings-billing-overview/template.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/helpers/mail.coffee",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/helpers/mail.js",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/login.js",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/page-settings-tab-inboxes-id-emailsettings/def.js",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/components/page-settings-tab-inboxes-id-emailsettings/template.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/helpers/helpdoc.coffee",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/helpers/helpdoc.js",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/models/teamworkDesk.js",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/socket.js",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/build/index.coffee",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/init.coffee",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/init.js",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/src/app/require.config.js",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/customer-profile.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/dashboard-agent.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/dashboard-bottom-bar-2.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/dashboard.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/helpdocs-blank.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/helpdocs-edit.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/helpdocs.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/inbox-new.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/inbox.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/less/styles.less",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/preload.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/profile-api.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/profile-bcc.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/profile-edit.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/profile-notifications.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/reports-happiness.html",
+		"/C/GoPlayground/src/github.com/irlTopper/lifevault/frontend/public/mockups/reports-help.html"
+	],
+	"find":
+	{
+		"height": 47.0
+	},
+	"find_in_files":
+	{
+		"height": 102.0,
+		"where_history":
+		[
+			"C:\\GoPlayground\\src\\github.com\\irlTopper\\lifevault\\frontend\\src,-*.js",
+			"C:\\GoPlayground\\src\\github.com\\irlTopper\\lifevault\\app\\",
+			"C:\\GoPlayground\\src\\github.com\\irlTopper\\lifevault\\frontend\\src,-*.js",
+			"C:\\GoPlayground\\src\\github.com\\irlTopper\\lifevault\\app\\",
+			"C:\\GoPlayground\\src\\github.com\\irlTopper\\lifevault\\frontend\\src,-*.js",
+			"C:\\GoPlayground\\src\\github.com\\irlTopper\\lifevault\\app\\",
+			"C:\\GoPlayground\\src\\github.com\\irlTopper\\lifevault\\frontend\\src,-*.js",
+			"C:\\GoPlayground\\src\\github.com\\irlTopper\\lifevault\\app\\",
+			"C:\\GoPlayground\\src\\github.com\\irlTopper\\lifevault\\frontend\\src,-*.js",
+			"C:\\GoPlayground\\src\\github.com\\irlTopper\\lifevault\\frontend\\,-*.js",
+			"C:\\GoPlayground\\src\\github.com\\irlTopper\\lifevault\\frontend",
+			"C:\\GoPlayground\\src\\github.com\\irlTopper\\lifevault\\app",
+			"C:\\GoPlayground\\src\\github.com\\irlTopper\\lifevault",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\app",
+			"C:\\inetpub\\wwwroot\\projects\\teamworkProjectManagerUIOverhaul1\\cfcs",
+			"C:\\in\\temp\\memcached1\\memcached\\com\\flexablecoder",
+			"C:\\inetpub\\wwwroot\\projects\\teamworkProjectManagerUIOverhaul1\\cfcs",
+			"C:\\inetpub\\wwwroot\\projects\\teamworkProjectManagerUIOverhaul1\\css",
+			"C:\\inetpub\\wwwroot\\projects\\teamworkProjectManagerUIOverhaul1\\js",
+			"C:\\inetpub\\wwwroot\\projects\\teamworkProjectManagerUIOverhaul1\\pages\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\app",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\app",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\app",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\app",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\app",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\apps",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\app\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\app\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\app\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\app\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\app\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\app\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src\\js",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\app",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\app\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\app\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\app\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src\\",
+			"C:\\inetpub\\wwwroot\\projects\\teamworkProjectManagerUIOverhaul1\\pages",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\app",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\app",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\api",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src\\css",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src\\app",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\build",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src\\build",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src\\app",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src\\app",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src\\libs",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src\\app",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\app\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\app\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src,-*.js",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\app\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src,-*.js",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\app\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src,-*.js",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\app\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src\\,-*.js",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\app",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src\\,-*.js",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\app",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\app",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\app",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src\\,-*.js",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src\\",
+			"C:\\inetpub\\wwwroot\\projects\\teamworkProjectManagerUIOverhaul1\\js",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\app\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\app\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\app\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src\\css",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\css",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src,-*.js",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\app\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src,-*.js",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\app",
+			"C:\\inetpub\\wwwroot\\projects\\teamworkProjectManagerUIOverhaul1\\cfcs",
+			"C:\\inetpub\\wwwroot\\projects\\teamworkProjectManagerUIOverhaul1\\pages",
+			"C:\\inetpub\\wwwroot\\projects\\teamworkProjectManagerUIOverhaul1\\css",
+			"C:\\inetpub\\wwwroot\\projects\\teamworkProjectManagerUIOverhaul1\\pages",
+			"C:\\inetpub\\wwwroot\\projects\\teamworkProjectManagerUIOverhaul1\\css",
+			"C:\\inetpub\\wwwroot\\projects\\teamworkProjectManagerUIOverhaul1\\pages",
+			"C:\\inetpub\\wwwroot\\projects\\teamworkProjectManagerUIOverhaul1\\autoUpdate",
+			"C:\\inetpub\\wwwroot\\projects\\teamworkProjectManagerUIOverhaul1\\cfcs",
+			"C:\\inetpub\\wwwroot\\projects\\teamworkProjectManagerUIOverhaul1\\autoupdate",
+			"C:\\inetpub\\wwwroot\\projects\\teamworkProjectManagerUIOverhaul1\\scheduled",
+			"C:\\inetpub\\wwwroot\\projects\\teamworkProjectManagerUIOverhaul1\\cfcs\\",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\frontend\\src",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\app",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkAPIInGO\\app",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkAPIInGO\\",
+			"C:\\inetpub\\wwwroot\\projects\\teamworkProjectManagerUIOverhaul1\\cfcs\\twcore",
+			"C:\\inetpub\\wwwroot\\projects\\teamworkProjectManagerUIOverhaul1\\css,<open files>",
+			"C:\\inetpub\\wwwroot\\projects\\teamworkProjectManagerUIOverhaul1\\css",
+			"C:\\inetpub\\wwwroot\\projects\\teamworkProjectManagerUIOverhaul1\\pages",
+			"C:\\inetpub\\wwwroot\\projects\\teamworkProjectManagerUIOverhaul1\\js",
+			"C:\\inetpub\\wwwroot\\projects\\teamworkProjectManagerUIOverhaul1\\pages",
+			"C:\\inetpub\\wwwroot\\projects\\teamworkProjectManagerUIOverhaul1\\js",
+			"C:\\inetpub\\wwwroot\\projects\\teamworkProjectManagerUIOverhaul1\\pages"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"TeamworkDesk",
+			"$.mockjax",
+			"mockjax",
+			"C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\app",
+			"inboxesResponse",
+			"inboxes.json",
+			"UpdateInboxes",
+			"ticketsources.j",
+			"app.loggedInUser.isAdmin()",
+			"loggedInUser.isAdmin",
+			"TW-Developer",
+			"app.loggedInUser.isAdmin",
+			"GET_v1_logout",
+			"me.json",
+			".TimezoneId",
+			"userVisitCount",
+			"userAutoLoginCode",
+			"userLastName",
+			"userFirstName",
+			"or email",
+			"or Email",
+			"Username or",
+			"userPassword",
+			"userType",
+			"userIsActive",
+			"userEmail",
+			"page-preloading",
+			"Teamwork Desk",
+			"db.pass",
+			"db.database",
+			".database",
+			"userPasswordSalt",
+			"Username or Email",
+			"Username or",
+			"Teamwork.com",
+			"isValidDomain",
+			"branding",
+			"Teamwork Desk",
+			"teamwork Desk",
+			"teamworkDesk",
+			"teamworkdesk",
+			"InitSMTP",
+			"InitAWS",
+			"init",
+			"ohlife2",
+			"DLM := cache.GetLatestDLM([]cache.Key{cache.Key{ItemType: \"installationSettings\", ItemId: i.Id, InstallationId: c.User.Installation.Id}})",
+			"cache.Key{",
+			"LM := cache.GetLatestDLM([]cache.Key{cache.Key{ItemType: \"installationSettings\", Item",
+			"Format",
+			"var eTagToUse = dateLastModified + alsoBaseOn",
+			"agForItems(items, sessionShardNo, false, memCacheKey, userId)",
+			"ImplementCachedRequest",
+			"CheckETag(",
+			"ImplementCachedRequest(",
+			"GetLatestDateLateModified(",
+			".Do(\"",
+			"GetDLMConnection",
+			"mget",
+			"cache.Delete(",
+			"cache.Get(",
+			"cache.Set(",
+			"cache.Get(",
+			"cache.Delete(",
+			"revelCache",
+			"github.com/revel/revel/cache",
+			"revcache",
+			"evcache.Set(\"fullcontact.\"+strconv.FormatInt(c.",
+			"revcache revelCache \"github.com/revel/revel/cache\"",
+			"cache.Set",
+			"cache.",
+			"revelCache revelCache \"github.com/revel/revel/cache\"",
+			"\"github.com/revel/revel/cache\"",
+			"\"github.com/teamwork/TeamworkDesk/app/modules/cache\"",
+			"dlm.",
+			"if dlm.CanReturnNotModified(items, c.Controller) {",
+			"revelCache.Key",
+			"cache.",
+			"dlm.",
+			"cache.Delete(",
+			"cache.",
+			"cache.Get(",
+			"cache.Set(",
+			"cache.",
+			".GetDeskDataConnection()",
+			"if err := cache.Get(cacheKey, &offsetMinutes); err != nil {",
+			"cache",
+			"revel/cache",
+			"if err := cache.Get(cacheKey, &offsetMinutes); err != nil {",
+			"dlm.DeleteDLMs",
+			"DeleteDLMs",
+			"dlm \"github.com/teamwork/TeamworkDesk/app/modules/cache\"",
+			"dlm.Item",
+			"559",
+			"cache.Ket",
+			"cache.Item",
+			"modules.GetEmailDateFormat",
+			"{Type:",
+			"utility.GetLatestDateLateModified",
+			"GetLatestDateLateModified",
+			"modules.Item",
+			"modules.GetLatestDateLateModified",
+			"modules.FormatAsZulu",
+			".eTag(",
+			"APIVersion",
+			"dlm.",
+			"NowAsInt(",
+			"NowAsInt",
+			"cache.Key",
+			"memcachedKeys",
+			"cache",
+			"cache.Key",
+			"cache",
+			"cache.Key",
+			"cache.",
+			"cache",
+			"]dlm.Key",
+			"github.com/teamwork/TeamworkDesk/app/modules/dlm",
+			"cache",
+			"getKey",
+			"desk/v1",
+			"~os~",
+			", \"utf-8\"",
+			"private",
+			"    <cffunction name=\"serialize\" access=\"private\" output=\"false\" returntype=\"any\"\n",
+			"master\"",
+			"serialize",
+			"serialize(",
+			"serialize\""
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"LifeVault",
+			"datesResponse",
+			"dates.json",
+			"UpdateDates",
+			"true",
+			".TimeZoneId",
+			"visitCount",
+			"autoLoginCode",
+			"lastName",
+			"firstName",
+			"password",
+			"isActive",
+			"email",
+			"LifeVault",
+			"passwordSalt",
+			"Email",
+			"LifeVault",
+			"lifevault",
+			"revelCache.Delete(",
+			"revelCache.Get(",
+			"revelCache.Set(",
+			"revelCache.Get(",
+			"revelCache.Delete(",
+			"revelCache \"github.com/revel/revel/cache\"",
+			"cache.",
+			"cache.DeleteDLMs",
+			"\"github.com/teamwork/TeamworkDesk/app/modules/cache\"",
+			"cache.Key",
+			"cache.Ket",
+			"utility.GetEmailDateFormat",
+			"cache.GetLatestDateLateModified",
+			"cache.Key",
+			"utility.GetLatestDateLateModified",
+			"utility.FormatAsZulu",
+			"]cache.Key",
+			"github.com/teamwork/TeamworkDesk/app/modules/cache",
+			"\"\"",
+			"onUpdateTicket",
+			"lastLoad",
+			"lastLoadAssignedToId",
+			"lastLoadSource",
+			"lastLoadPriority",
+			"lastLoadType",
+			"lastLoadStatus",
+			"lastLoadInboxId",
+			"lastLoodInboxId",
+			"linebreaks: true",
+			"ifnull(u.userImageUploadedToServer,'') as userAvatarServer",
+			"requireLibsPathCache",
+			"var ",
+			"}",
+			"return",
+			"panic ",
+			" == 0 {",
+			"}",
+			"if ",
+			" bool,",
+			" bool",
+			" string",
+			"*/",
+			"/*",
+			"OnClickAddProjectsTask",
+			"ifnull(u.userImageUploadedToServer,'') as userAvatarServer",
+			"",
+			"modal-title\"",
+			"OnClickSaveCompanySettings",
+			"OnClickGotoTicket",
+			"GetAvailableUsersWithUnassigned",
+			"GetAvailableUsers",
+			"availableUsersWithUndefined",
+			"canned response",
+			"Canned Response",
+			"Canned Responses",
+			"cleanOnPaste: true",
+			"notifyEventCb",
+			"window.origURLParams.cancelCb",
+			"window.origURLParams.successCb",
+			"onUpdateTaskCb",
+			"pm-add-users",
+			"pm-add-task",
+			"projects",
+			"Projects",
+			"libs/",
+			"'public/libs/bower/",
+			"",
+			"displayOnDocHomepage()",
+			"ticketReplyRedirect",
+			"displayOnDocHomepage()",
+			"HelpDocsController",
+			"true",
+			"ohlife",
+			"ohlife2",
+			"Ohlife2",
+			"ohlife2",
+			"ohLife2Config",
+			"ohLife2",
+			"OhLife2",
+			"true",
+			"User",
+			"UserDb",
+			"modules.DB.",
+			"modules.DB.Select(",
+			"modules.DB",
+			"modules.DB.SelectIn",
+			"modules.DB.SelectOne(",
+			"modules.DB.DbMap",
+			"modules.DB.SelectOne(",
+			"ValidateUser",
+			"irlTopper/ohlife2",
+			"modules.DB.DbMap",
+			"SendEmailTemplate",
+			"modules.DB.DbMap.",
+			".DbMap.",
+			"db.DbMap.",
+			"github.com/irlTopper/ohlife2/",
+			"CreatedByUserId",
+			"UpdatedByUserId",
+			"isDraft",
+			", http.StatusNotFound,",
+			", c, session)",
+			".agent.",
+			"session.Id",
+			", session.Id",
+			"session",
+			"session.Installation",
+			"rc, session)",
+			"session.Installation.Id",
+			"session *Session,"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"settings":
+					{
+						"buffer_size": 1650,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										190,
+										197
+									],
+									[
+										267,
+										274
+									],
+									[
+										406,
+										413
+									],
+									[
+										609,
+										616
+									],
+									[
+										689,
+										696
+									],
+									[
+										844,
+										851
+									],
+									[
+										909,
+										916
+									],
+									[
+										1220,
+										1227
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								1570,
+								1570
+							]
+						],
+						"settings":
+						{
+							"detect_indentation": false,
+							"output_tag": 2,
+							"result_base_dir": "",
+							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 902.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "frontend/src/app/models/lifevault.coffee",
+					"settings":
+					{
+						"buffer_size": 27003,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								493,
+								493
+							]
+						],
+						"settings":
+						{
+							"editorconfig": true,
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"trim_trailing_white_space_on_save": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 435.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "frontend/src/app/require.config.js",
+					"settings":
+					{
+						"buffer_size": 5401,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1206,
+								1192
+							]
+						],
+						"settings":
+						{
+							"editorconfig": true,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"trim_trailing_white_space_on_save": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 38.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": false,
+	"output.9o://C:\\GoPlayground\\src\\github.com\\irlTopper\\ohlife2\\app\\models":
+	{
+		"height": 124.0
+	},
+	"output.9o://C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\app":
+	{
+		"height": 130.0
+	},
+	"output.9o://C:\\GoPlayground\\src\\github.com\\teamwork\\TeamworkDesk\\app\\controllers":
+	{
+		"height": 130.0
+	},
+	"output.9o://c:\\goplayground\\src\\github.com\\teamwork\\TeamworkDesk\\app\\models":
+	{
+		"height": 130.0
+	},
+	"output.9o://c:\\goplayground\\src\\github.com\\teamwork\\teamworkdesk\\app\\controllers":
+	{
+		"height": 172.0
+	},
+	"output.GoSublime-main-output":
+	{
+		"height": 130.0
+	},
+	"output.GsDoc-output-output":
+	{
+		"height": 178.0
+	},
+	"replace":
+	{
+		"height": 117.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"require",
+				"frontend/src/app/require.config.js"
+			],
+			[
+				"lifevaul",
+				"frontend/src/app/models/lifevault.coffee"
+			],
+			[
+				"routes",
+				"conf/routes"
+			],
+			[
+				"index.html",
+				"frontend/src/index.html"
+			],
+			[
+				"styles.css",
+				"frontend/src/css/styles.css"
+			],
+			[
+				"app.conf",
+				"conf/app.conf"
+			],
+			[
+				"route",
+				"conf/routes"
+			],
+			[
+				"app.",
+				"conf/app.conf"
+			],
+			[
+				"twcc",
+				"cfcs/twutil/twCache.cfc"
+			],
+			[
+				"setup",
+				"cfcs/setupRedis.cfm"
+			],
+			[
+				"dlm",
+				"app/modules/cache/dlm.go"
+			],
+			[
+				"usercontroller",
+				"app/controllers/userController.go"
+			],
+			[
+				"mailgunc",
+				"app/controllers/mailgunController.go"
+			],
+			[
+				"mailguncontroller",
+				"app/controllers/mailgunController.go"
+			],
+			[
+				"helpcategoriescontroller",
+				"app/controllers/helpcategoriesController.go"
+			],
+			[
+				"customermodel",
+				"app/models/customerModel.go"
+			],
+			[
+				"custom",
+				"app/models/customerModel.go"
+			],
+			[
+				"customercontroller",
+				"app/controllers/customerController.go"
+			],
+			[
+				"authentication",
+				"app/interceptors/authentication.go"
+			],
+			[
+				"usermodel.go",
+				"app/models/userModel.go"
+			],
+			[
+				"userm",
+				"app/models/userModel.go"
+			],
+			[
+				"auth",
+				"app/interceptors/authentication.go"
+			],
+			[
+				"usermo",
+				"app/models/userModel.go"
+			],
+			[
+				"usera",
+				"app/models/userApiKeyModel.go"
+			],
+			[
+				"ticket",
+				"app/models/ticketModel.go"
+			],
+			[
+				"thre",
+				"app/models/threadModel.go"
+			],
+			[
+				"sess",
+				"app/models/sessionModel.go"
+			],
+			[
+				"installationmodel",
+				"app/models/installationModel.go"
+			],
+			[
+				"etags",
+				"app/modules/cache/etags.go"
+			],
+			[
+				"etags.go",
+				"app/modules/etags.go"
+			],
+			[
+				"articlemodel.go",
+				"app/models/articleModel.go"
+			],
+			[
+				"ticketprocessor.go",
+				"app/models/ticketProcessor.go"
+			],
+			[
+				"setupredis.cfm",
+				"cfcs/setupRedis.cfm"
+			],
+			[
+				"test.",
+				"test.cfm"
+			],
+			[
+				"twdata/pro",
+				"cfcs/twdata/projects.cfc"
+			],
+			[
+				"projects.cfc",
+				"cfcs/twcore/projects.cfc"
+			],
+			[
+				"redis",
+				"cfcs/utility/redis.cfc"
+			],
+			[
+				"test",
+				"test.cfm"
+			],
+			[
+				"twch",
+				"cfcs/twutil/twCache.cfc"
+			],
+			[
+				"inc_dev",
+				"inc_developerModeOnOff.cfm"
+			],
+			[
+				"roures",
+				"app/routes/routes.go"
+			],
+			[
+				"page-settings",
+				"frontend/src/app/components/page-settings-tab-apps/def.coffee"
+			],
+			[
+				"threadmode",
+				"app/models/threadModel.go"
+			],
+			[
+				"ticketmodel",
+				"app/models/ticketModel.go"
+			],
+			[
+				"ticketpro",
+				"app/models/ticketProcessor.go"
+			],
+			[
+				"ticketmodel.",
+				"app/models/ticketModel.go"
+			],
+			[
+				"socket.",
+				"frontend/src/app/socket.coffee"
+			],
+			[
+				"init",
+				"app/init.go"
+			],
+			[
+				"static",
+				"app/modules/static/app/controllers/static.go"
+			],
+			[
+				"init.go",
+				"app/init.go"
+			],
+			[
+				"database",
+				"app/modules/database.go"
+			],
+			[
+				"section-ticket",
+				"frontend/src/app/components/section-tickets-list/template.html"
+			],
+			[
+				"mailgunmodel",
+				"app/models/mailgunModel.go"
+			],
+			[
+				"section-blankslate",
+				"frontend/src/app/components/section-blankslate/template.html"
+			],
+			[
+				"desk.c",
+				"frontend/src/app/models/teamworkDesk.coffee"
+			],
+			[
+				"sock",
+				"frontend/src/app/socket.coffee"
+			],
+			[
+				"section-tick",
+				"frontend/src/app/components/section-ticket-view/template.html"
+			],
+			[
+				"section-ticket-view/",
+				"frontend/src/app/components/section-ticket-view/def.coffee"
+			],
+			[
+				"pagemain-ticket",
+				"frontend/src/app/components/pageMain-ticket/def.coffee"
+			],
+			[
+				"build/",
+				"frontend/build/index.coffee"
+			],
+			[
+				"build/in",
+				"frontend/build/index.coffee"
+			],
+			[
+				"autoupdate/inc_update454.cfm",
+				"autoUpdate/inc_update454.cfm"
+			],
+			[
+				"page-dashbo",
+				"frontend/src/app/components/page-dashboard/def.coffee"
+			],
+			[
+				"index.",
+				"frontend/build/index.coffee"
+			],
+			[
+				"config",
+				"frontend/public/config.js"
+			],
+			[
+				"login.",
+				"frontend/src/app/login.coffee"
+			],
+			[
+				"teamwork",
+				"frontend/src/app/models/teamworkDesk.coffee"
+			],
+			[
+				"build/ind",
+				"frontend/build/index.coffee"
+			],
+			[
+				"widget-f",
+				"frontend/src/app/components/widget-file-manager/def.coffee"
+			],
+			[
+				"build/i",
+				"frontend/build/index.coffee"
+			],
+			[
+				"dist/in",
+				"frontend/dist/index.html"
+			],
+			[
+				"build/index",
+				"frontend/build/index.coffee"
+			],
+			[
+				"libs/bower/crossroads/dist/crossroads",
+				"frontend/src/libs/bower/crossroads/dist/crossroads.js"
+			],
+			[
+				"libs/bower/components-bootstrap/js/bootstrap",
+				"frontend/src/libs/bower/components-bootstrap/js/bootstrap.js"
+			],
+			[
+				"teamworkdesk",
+				"frontend/src/app/models/teamworkDesk.coffee"
+			],
+			[
+				"components",
+				"frontend/src/app/config/components.coffee"
+			],
+			[
+				"startup-1426533679000",
+				"frontend/dist/startup-1426533679000.js"
+			],
+			[
+				"require.config.js",
+				"frontend/dist/require.config.js"
+			],
+			[
+				"site-categ",
+				"frontend/src/app/components/section-settings-helpdocs-site-categories/def.coffee"
+			],
+			[
+				"require.",
+				"frontend/src/app/require.config.js"
+			],
+			[
+				"require.config",
+				"frontend/src/app/require.config.js"
+			],
+			[
+				"app/tmp/main.go",
+				"app/tmp/main.go"
+			],
+			[
+				"app/startup",
+				"frontend/src/app/startup.coffee"
+			],
+			[
+				"chart-dashinboxes-ticketsbychannel",
+				"frontend/src/app/components/chart-dashInboxes-ticketsByChannel/def.coffee"
+			],
+			[
+				"twcac",
+				"app/twutil/twCache.go"
+			],
+			[
+				"utilit",
+				"app/modules/utility.go"
+			],
+			[
+				"edit-sitea",
+				"frontend/src/app/components/modal-edit-siteaddress/def.coffee"
+			],
+			[
+				"ticketlist",
+				"frontend/src/app/models/ticketListItemModel.coffee"
+			],
+			[
+				"utili",
+				"frontend/src/app/helpers/utility.coffee"
+			],
+			[
+				"keybin",
+				"frontend/src/app/helpers/keybindings.coffee"
+			],
+			[
+				"binding",
+				"frontend/src/app/config/bindings.coffee"
+			],
+			[
+				"temp.css",
+				"frontend/src/css/temp.css"
+			],
+			[
+				"section-ticket-list",
+				"frontend/src/app/components/section-tickets-list/template.html"
+			],
+			[
+				"user",
+				"app/models/userModel.go"
+			],
+			[
+				"data",
+				"app/modules/database.go"
+			],
+			[
+				"jobs.go",
+				"frontend/node_modules/gulp-imagemin/node_modules/imagemin/node_modules/imagemin-jpegtran/node_modules/jpegtran-bin/node_modules/bin-wrapper/node_modules/download/node_modules/through2/.npmignore"
+			],
+			[
+				"popup-desk",
+				"js/components/popup-deskTickets/def.coffee"
+			],
+			[
+				"apic",
+				"api/apiCallViaMap.cfm"
+			],
+			[
+				"cfcs/api/tasksbase.cfc",
+				"cfcs/api/tasksbase.cfc"
+			],
+			[
+				"flash",
+				"frontend/src/app/helpers/flash.coffee"
+			],
+			[
+				"cfcs/twcore/tasks.cfc",
+				"cfcs/twcore/tasks.cfc"
+			],
+			[
+				"twdesk",
+				"cfcs/twutil/twDesk.cfc"
+			],
+			[
+				"mf_ligh",
+				"js/mf_lightbox.js"
+			],
+			[
+				"event",
+				"js/twEventSystem.js"
+			],
+			[
+				"act_addtask",
+				"pages/actions/act_addTask.cfm"
+			],
+			[
+				"pages/templates/inc_footer.cfm",
+				"pages/templates/inc_footer.cfm"
+			],
+			[
+				"marktaskn",
+				"pages/actions/act_markTaskNotDone.cfm"
+			],
+			[
+				"act_markt",
+				"pages/actions/act_markTaskDone.cfm"
+			],
+			[
+				"tasklist",
+				"js/_m/koTaskListsView.js"
+			],
+			[
+				"widget-twdeskticketsontaskpopup",
+				"js/components/widget-twDeskTicketsOnTaskPopup/def.coffee"
+			],
+			[
+				"kotaskm",
+				"js/ko/models/koTaskModel.js"
+			],
+			[
+				"build-helpers/paths",
+				"toolkit/build-helpers/paths.js"
+			],
+			[
+				"taskmod",
+				"js/_m/koTaskModel.js"
+			],
+			[
+				"kotask.js",
+				"js/_m/koTaskModel.js"
+			],
+			[
+				"tasks.css",
+				"css/app/tasks.css"
+			],
+			[
+				"deve",
+				"inc_developerModeOnOff.cfm"
+			],
+			[
+				"redis.cfc",
+				"cfcs/utility/redis.cfc"
+			],
+			[
+				"task.js",
+				"js/Tasks.js"
+			],
+			[
+				"page_tasks_id",
+				"pages/cfc/page_tasks_id.cfc"
+			],
+			[
+				"conf",
+				"frontend/public/config.js"
+			],
+			[
+				"users.cfc",
+				"cfcs/twcore/Users.cfc"
+			],
+			[
+				"minimal_",
+				"pages/templates/inc_minimal_header.cfm"
+			],
+			[
+				"minimal",
+				"pages/templates/inc_minimal_footer.cfm"
+			],
+			[
+				"temp.c",
+				"frontend/src/css/temp.css"
+			],
+			[
+				"keyb",
+				"frontend/src/app/helpers/keybindings.coffee"
+			],
+			[
+				"pagemain-t",
+				"frontend/src/app/components/pageMain-ticket/def.coffee"
+			],
+			[
+				"key",
+				"frontend/src/app/helpers/keybindings.coffee"
+			],
+			[
+				"bind",
+				"frontend/src/app/config/bindings.coffee"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 245.0,
+	"status_bar_visible": true
+}

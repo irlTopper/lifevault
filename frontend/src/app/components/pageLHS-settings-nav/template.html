@@ -8,6 +8,6 @@
 </ul>
 
 <!-- IMPORTANT - Mark this template loaded -->
-<!-- ko if: $data.isLoaded != null && isLoaded -->
-    <div data-bind="text:templateLoaded(true)" style="display:none"></div>
+<!-- ko if: $data.readyToShow != null && readyToShow -->
+    <div data-bind="template:{afterRender:function(){templateLoaded(true)}}" class="hidden"></div>
 <!-- /ko -->

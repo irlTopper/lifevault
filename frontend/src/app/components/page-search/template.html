@@ -1,0 +1,94 @@
+<section class="column-main wrap-search-inner">
+
+	<header class="sections--header">
+		<h4 class="title-label" class="">
+			<!-- ko if: searchTerm() == '' -->
+				Search
+			<!-- /ko -->
+			<!-- ko ifnot: searchTerm() == '' -->
+				<span class="thin">Search Results for</span> <span data-bind="text:searchTerm"></span>
+			<!-- /ko -->
+		</h4>
+
+		<!-- ko if: hasSelectedItems -->
+            <!-- ko component: { name: 'widget-inbox-opts', params:{ owner:$data, inbox:false, inboxView:false, tickets:ticketsTab.results } } --><!-- /ko -->
+        <!-- /ko -->
+
+		<form class="search-form" data-bind="submit:onSubmitSearch">
+			<input id="searchPageSearchInput" type="text" class="inp-field" placeholder="Search" data-bind="value:newSearchTerm">
+		</form>
+	</header>
+
+	<!-- ko if: searchState() == "start" -->
+		<div style="padding:50px;text-align:center;color:#999">Type your search above</div>
+	<!-- /ko -->
+
+	<header class="search--header">
+		<ul class="search--navtabs" role="tablist" data-bind="foreach: resultTabs">
+			<li class="active" data-bind="css:{ 'active':($parent.selectedTab() == $data) }">
+				<a href="#search" role="tab" data-toggle="tab" data-bind="click:function(tab){$parent.switchTab(tab)}">
+					<span class="label-hold" data-bind="text:name"></span>
+					<!-- ko if: response().count -->
+					<span class="badge" data-bind="text:response().count()"></span>
+					<!-- /ko -->
+					<!-- ko ifnot: response().count -->
+					<span class="badge">0</span>
+					<!-- /ko -->
+				</a>
+			</li>
+		</ul><!-- search nav -->
+	</header><!-- search header -->
+
+	<!-- ko if: searchState() == "results" -->
+		<!-- NOTE: I split this up because some of the elements need to be slightly different to look perfect -->
+		<!-- ko switch: selectedTab() -->
+			<!-- ko case: ticketsTab -->
+				<section class="search-body">
+					<div class="tab-content">
+						<div class="tab-pane active">
+						<!-- ko if: ticketsTab.isLoadingPage -->
+							<!-- ko component: { name: 'loadingIndicator' } --><!-- /ko -->
+						<!-- /ko -->
+
+						<!-- ko ifnot: ticketsTab.isLoadingPage -->
+							<!-- ko component: { name: 'section-tickets-list', params:{ parentView:ticketsTab, tickets:ticketsTab.results, isSearchPage:true, title: 'No tickets found', text: 'We couldn\'t find any tickets for your search'  } } --><!-- /ko -->
+						<!-- /ko -->
+						</div>
+					</div>
+				</section>
+			<!-- /ko -->
+			<!-- ko case: customersTab -->
+				<section class="search-body">
+					<div class="tab-content">
+						<div class="tab-pane active">
+						<!-- ko component: { name: 'section-searchresults-customers', params:{ parentView:customersTab, customers:customersTab.results, isSearchPage:true, title: 'No customers found', text: 'We couldn\'t find any customers for your search'  } } --><!-- /ko -->
+						</div>
+					</div>
+				</section>
+			<!-- /ko -->
+			<!-- ko case: helpdocsTab -->
+					<!-- ko component: { name: 'section-searchresults-helpdocs', params:{ parentView:helpdocsTab, helpdocs:helpdocsTab.results, } } --><!-- /ko -->
+			<!-- /ko -->
+		<!-- /ko -->
+	<!-- /ko -->
+
+</section><!-- column main -->
+
+
+<aside class="column-right search--sidebar custom_scroll">
+<!-- ko switch: selectedTab() -->
+	<!-- ko case: ticketsTab -->
+		<!-- ko component: { name: 'pageRHS-searchoptions-tickets', params:{ parentView: $data } } --><!-- /ko -->
+	<!-- /ko -->
+	<!-- ko case: customersTab -->
+		<!-- ko component: { name: 'pageRHS-searchoptions-customers', params:{ parentView: $data } } --><!-- /ko -->
+	<!-- /ko -->
+	<!-- ko case: helpdocsTab -->
+		<!-- ko component: { name: 'pageRHS-searchoptions-helpdocs', params:{ parentView: $data } } --><!-- /ko -->
+	<!-- /ko -->
+<!-- /ko -->
+</aside><!-- left column -->
+<!-- IMPORTANT - Mark this template loaded -->
+<!-- ko if: $data.readyToShow != null && readyToShow -->
+    <div data-bind="template:{afterRender:function(){templateLoaded(true)}}" class="hidden"></div>
+<!-- /ko -->

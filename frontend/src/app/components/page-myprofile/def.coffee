@@ -6,11 +6,10 @@ define [
         app.mainHolderClass 'wrap-profile'
 
         # Vars
-        @isLoaded = app.ko.observable false
         @userId = app.loggedInUser.id()
 
         # Find the user that matches the one on the URL, or redirect to dashboard if not found
-        @user = app.FindUserById( @userId )
+        @user = app.loggedInUser
         if not @user?
             # No match found - users are essential data - let MissingEssentialData() handle it
             app.MissingEssentialData()
@@ -23,29 +22,24 @@ define [
                 routePart: "profile"
                 icon: "icon-mine"
             }
-            {
-                name: "Permissions"
-                routePart: "permissions"
-                icon: "icon-lock"
-            }
-            {
-                name: "Notifications"
-                routePart: "notifications"
-                icon: "icon-link"
-            }
-            {
-                name: "Quality Control"
-                routePart: "autobcc"
-                icon: "icon-bbc"
-            }
-            {
-                name: "API Keys"
-                routePart: "apikeys"
-                icon: "icon-keys"
-            }
         ]
+
+
+        @sideNav.push({
+            name: "Reminders"
+            routePart: "reminders"
+            icon: "icon-link"
+        })
+
         @sideNav.baseURL = "#myprofile/" #should be #users/333
         @sideNav.routePartName = "view" #This should match the name the router uses for this part
+        ###
+        {
+            name: "Quality Control"
+            routePart: "autobcc"
+            icon: "icon-bbc"
+        }
+        ###
 
         # Ensure valid route
         validOpts = []
@@ -57,9 +51,8 @@ define [
         @selectedPanel = app.ko.computed =>
             return 'section-user-' + app.currentRoute().view
 
-
-        @isLoaded true
         app.InitOnShow(@)# Sets-up the OnShow() function
+        return
 
 
     # This runs when the component is torn down. Put here any logic necessary to clean up,

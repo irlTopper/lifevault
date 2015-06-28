@@ -6,8 +6,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/irlTopper/ohlife2/app/models"
-	"github.com/irlTopper/ohlife2/app/modules"
+	"github.com/irlTopper/lifevault/app/models"
+	"github.com/irlTopper/lifevault/app/modules"
 	"github.com/revel/revel"
 	"github.com/revel/revel/cache"
 )

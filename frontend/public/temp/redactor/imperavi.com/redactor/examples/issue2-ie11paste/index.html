@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from imperavi.com/redactor/examples/linebreaks/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 04 Mar 2015 15:48:05 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+	<title>Redactor Issues #2</title>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<link rel="stylesheet" href="../../../css/combined.min.css" />
+	<link rel="stylesheet" href="../../../js/redactor/redactor.css" />
+
+	<script src="../../../js/combined.min.js"></script>
+	<script src="../../../js/redactor/redactor.js"></script>
+
+	<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-25923300-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+	<div id="main">
+
+		<h2>Issue #2 &nbsp; <a href="../../../../index.html">Back to Index</a></h2>
+		<h1 id="head">In IE11, Pasted text disappears</h1>
+
+Steps to recreate (Windows, Internet Explorer 11) (<a href="https://docs.google.com/file/d/0B0Mn6CuYV6E8Vk5DTEh5RENaRUk/edit?usp=drivesdk" target="_blank">DEMO HERE</a>):
+<script>if(!(!(window.ActiveXObject) && "ActiveXObject" in window)){
+	document.write("<div style=\"color:red;\">PLEASE OPEN THIS EXAMPLE IN INTERNET EXPLORER 11</div>")
+} else {
+	document.write("<div style=\"color:green;\">INTERNET EXPLORER 11 detected, perfect.</div>")
+}
+</script>
+<pre class="prettyprint linenums">
+Copy XXXXXXXXXXXXXXXXXXXXX and paste it into the editor.
+Press Enter (Text has disappeared).
+</pre>
+
+<textarea id="redactor" name="content">
+
+
+
+</textarea>
+
+
+<script type="text/javascript">
+$(function()
+{
+	$('#redactor').redactor({
+		focus: true,
+		linebreaks: true
+	});
+});
+</script>
+
+<pre class="prettyprint linenums">
+&lt;script type=&quot;text/javascript&quot;&gt;
+$(function()
+{
+    $('#redactor').redactor({
+        focus: true,
+        linebreaks: true
+    });
+});
+&lt;/script&gt;
+</pre>
+
+
+
+	</div>
+
+
+</body>
+</html>

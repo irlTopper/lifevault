@@ -1,1 +1,0 @@
-cmd.exe /k "gulp coffeewatch"

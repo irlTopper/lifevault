@@ -8,17 +8,17 @@
 
                     <!-- ko ifnot: logo() === "" -->
                     <div class="teamwork-box-logo">
-                        <img src="images/tw-transparent-logo.png" alt="Teamwork.com">
+                        <img src="images/tw-transparent-logo.png" alt="LifeVault">
                     </div>
                     <!-- /ko -->
 
                     <div class="custom-login-logo">
                         <div class="image-wrap">
                             <!-- ko if: logo() === "" -->
-                                <img src="images/logo-login.png" alt="Teamwork.com">
+                                <img src="images/tw-logo-default.png" alt="LifeVault">
                             <!-- /ko -->
                             <!-- ko if: logo() !== "" -->
-                                <img data-bind="attr: { src: logo }" alt="">
+                                <img data-bind="attr: { src: logo, alt:siteName }" onerror="this.src='images/tw-logo-default.png';">
                             <!-- /ko -->
                         </div><!-- image wrap -->
                     </div><!-- custom logo -->
@@ -33,23 +33,24 @@
                     </div>
                     <!-- /ko -->
 
-                    <div xdata-bind="visible:!isSubmitting()">
+                    <div data-bind="visible:!isSubmitting()">
                         <div class="fields-holder">
                             <div class="field-row">
-                                <label class="input-label">Your Email</label>
-                                <input type="text" id="password" tabindex="2" name="password" value="" class="input-field" placeholder="Username or Email" data-bind="value: email">
+                                <label class="input-label">Email</label>
+                                <input type="text" id="password" tabindex="2" name="password" value="" class="input-field" placeholder="Email" data-bind="value: email">
                                 <i class="icon icon-user"></i>
-                            </div><!-- row -->
+                            </div>
                         </div><!-- fields holder -->
 
                         <div class="button-holder">
                             <button class="ladda-button button-login" data-style="zoom-out" data-bind="ladda: isSubmitting"><span class="ladda-label" data-bind="text:(isSubmitting()?'Resetting Password...':'Reset Password')"></span></button>
                         </div><!-- button holder -->
                     </div>
-
-            </div><!-- padding -->
+            </div>
             </form>
-
+            <div class="down-links">
+                <a href="javascript:void(0)" data-bind="click: function() { app.GoTo('login'); }">Return to Login</a>
+            </div>
         </div><!-- login box -->
 
     </div><!-- container -->
@@ -57,6 +58,6 @@
 </div><!-- login wrap -->
 <!-- Login box - end -->
 <!-- IMPORTANT - Mark this template loaded -->
-<!-- ko if: $data.isLoaded != null && isLoaded -->
-    <div data-bind="text:templateLoaded(true)" style="display:none"></div>
+<!-- ko if: $data.readyToShow != null && readyToShow -->
+    <div data-bind="template:{afterRender:function(){templateLoaded(true)}}" class="hidden"></div>
 <!-- /ko -->
