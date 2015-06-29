@@ -1,7 +1,6 @@
 package app
 
 import (
-	"fmt"
 	"reflect"
 	"runtime"
 	"strings"
@@ -47,8 +46,6 @@ func init() {
 	revel.OnAppStart(SetupDBTables)
 	revel.OnAppStart(SetupStats)
 	revel.OnAppStart(cron.InitCronJobs)
-
-	fmt.Println("Here 7")
 
 	modules.Requests = make(map[*revel.Controller]*modules.RequestLog)
 

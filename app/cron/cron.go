@@ -1,12 +1,16 @@
 package cron
 
 import (
+	"fmt"
+
 	"github.com/revel/modules/jobs/app/jobs"
 	"github.com/revel/revel"
 )
 
 func InitCronJobs() {
 	revel.INFO.Println("[CRON]: Initializing CRON jobs...")
+
+	fmt.Println("[CRON]: Initializing CRON jobs...2")
 
 	jobs.Schedule("@every 5m", SendDailyEmail{})
 }

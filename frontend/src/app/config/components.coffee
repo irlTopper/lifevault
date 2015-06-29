@@ -9,7 +9,6 @@ components = [
     'page-reset-password'
     'page-forgot-password'
     'loadingIndicator'
-    'page-plan'
     'page-search'
     'page-myprofile'
     'page-journal'
