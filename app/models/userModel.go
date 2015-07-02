@@ -20,16 +20,17 @@ type User struct {
 	// Identity fields
 	Id int64 `json:"id"`
 	// Standard fields A-Z
-	AutoLoginCode string `json:"-"`
-	CreatedAt     time.Time
-	Email         string   `json:"email"`
-	FirstName     string   `json:"firstName"`
-	LastName      string   `json:"lastName"`
-	Password      string   `json:"-" db:"password"`
-	Salt          zero.Int `json:"-" db:"passwordSalt"`
-	TimeZoneId    int64    `json:"timezoneId" db:"timezoneId"`
-	UpdatedAt     time.Time
-	VisitCount    int64 `json:"-"`
+	AutoLoginCode          string `json:"-"`
+	CreatedAt              time.Time
+	Email                  string   `json:"email"`
+	FirstName              string   `json:"firstName"`
+	LastName               string   `json:"lastName"`
+	Password               string   `json:"-" db:"password"`
+	Salt                   zero.Int `json:"-" db:"passwordSalt"`
+	TimeZoneId             int64    `json:"timezoneId" db:"timezoneId"`
+	UpdatedAt              time.Time
+	VisitCount             int64 `json:"-"`
+	DailyEmailReminderTime int64 `json:"dailyEmailReminderTime"`
 	// State fields
 	ZuluCreatedAt string `json:"createdAt"`
 	ZuluUpdatedAt string `json:"updatedAt"`

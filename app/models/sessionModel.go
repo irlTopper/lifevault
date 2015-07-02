@@ -85,7 +85,7 @@ func ValidateUser(email string, password string, anyDomain bool, host string, rc
 			}
 		}
 		SQL += `
-				AND	isActive = 1
+				AND	status = 1
 		LIMIT	1`
 
 		hSalt := md5.New()
@@ -108,7 +108,7 @@ func ValidateUser(email string, password string, anyDomain bool, host string, rc
 			FROM	users	u
 			WHERE	u.email	=	:email
 					AND	LCASE( LEFT( MD5( u.password ) , 10 ) )	=	:passwordlower
-					AND	u.isActive		=	1
+					AND	u.status		=	1
 			LIMIT	1`
 
 			params = map[string]interface{}{
@@ -137,12 +137,13 @@ func LoginByUserId(userId int64, recordLogin bool, rc *revel.Controller) (*Sessi
 			ifnull(u.autoLoginCode, '') AS autoLoginCode,
 			u.timezoneId,
 			u.visitCount,
+			u.dailyEmailReminderTime,
 			u.email,
 			u.createdAt,
 			u.updatedAt
 	FROM	users u
 	WHERE	id				=	?
-			AND	isActive		=	1
+			AND	status		=	1
 	`
 	session := &Session{
 		User: User{
