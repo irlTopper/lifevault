@@ -107,7 +107,7 @@ func (c *UserController) POST_v1_users_forgotpassword(
 
 	c.User = &models.Session{
 		User: models.User{
-			Id: models.RobotUser,
+			Id: models.RobotUserId,
 		},
 	}
 

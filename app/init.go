@@ -10,6 +10,7 @@ import (
 	"github.com/irlTopper/lifevault/app/interceptors"
 	"github.com/irlTopper/lifevault/app/models"
 	"github.com/irlTopper/lifevault/app/modules"
+	"github.com/irlTopper/lifevault/app/modules/logger/app"
 	"github.com/revel/revel"
 )
 
@@ -41,8 +42,18 @@ func init() {
 	revel.InterceptMethod((*interceptors.Authentication).LogInit, revel.BEFORE)
 	revel.InterceptMethod((*interceptors.Authentication).LogExit, revel.AFTER)
 	revel.InterceptMethod((*interceptors.Authentication).DecodeUserSession, revel.BEFORE)
+
+	// Replacing the logger needs to be the first thing done
+	revel.OnAppStart(func() {
+		if revel.DevMode {
+			logger.Log = logger.NewRevelLogger()
+		} else {
+			logger.Log = logger.NewLogglyLogger()
+		}
+	})
 	revel.OnAppStart(ReportVersion)
 	revel.OnAppStart(modules.InitDB)
+	revel.OnAppStart(modules.InitSMTP)
 	revel.OnAppStart(SetupDBTables)
 	revel.OnAppStart(SetupStats)
 	revel.OnAppStart(cron.InitCronJobs)
@@ -63,7 +74,9 @@ func ReportVersion() {
 }
 
 func SetupDBTables() {
-	modules.DB.DbMap.AddTableWithName(models.User{}, "users").SetKeys(false, "Id")
+	modules.DB.DbMap.AddTableWithName(models.User{}, "users").SetKeys(true, "Id")
+	modules.DB.DbMap.AddTableWithName(models.MandrillMsg{}, "mandrillnotifications").SetKeys(true, "Id")
+	modules.DB.DbMap.AddTableWithName(models.JournalEntry{}, "journalentries").SetKeys(true, "Id")
 }
 
 func SetupStats() {

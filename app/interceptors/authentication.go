@@ -61,14 +61,14 @@ func (c *Authentication) DecodeUserSession() revel.Result {
 		// HANDLE NO AUTH REQUESTS
 		// Check if this is a request you don't have to be logged in for
 		switch c.CanonRoute().Path {
-		case "/v1/helpscout/created", "/v1/users/:userId/activate/:token", "/v1/tickets/:ticketId/solved/:token":
+		case "/v1/users/:userId/activate/:token":
 
 			c.User = &models.Session{
 				User: models.User{},
 			}
 
 			return nil
-		case "/v1/threads/:threadId/read.png", "/v1/customers/:customerId/fullcontact.json", "/v1/users/forgotpassword.json", "/v1/users/:userId/resetpassword.json", "/v1/login.json", "/v1/mailgun/notifymail", "/v1/mailgun/retryfailed", "/v1/mailgun/reprocessall", "/v1/settings/branding.json":
+		case "/v1/threads/:threadId/read.png", "/v1/customers/:customerId/fullcontact.json", "/v1/users/forgotpassword.json", "/v1/users/:userId/resetpassword.json", "/v1/login.json", "/v1/mandrill/notifymail", "/v1/mandrill/retryfailed", "/v1/mandrill/reprocessall", "/v1/settings/branding.json":
 			return nil
 		}
 

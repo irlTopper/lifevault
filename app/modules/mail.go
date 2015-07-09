@@ -2,62 +2,128 @@ package modules
 
 import (
 	"fmt"
-	"regexp"
-	"strings"
 
-	"github.com/irlTopper/lifevault/app/utility"
+	"github.com/irlTopper/lifevault/app/modules/logger/app"
+	"github.com/irlTopper/lifevault/app/modules/mailer"
 )
 
-type EmailFields struct {
-	Subject            string
-	From               string
-	Name               string
-	PlaintextBody      string
-	HTMLBody           string
-	To                 map[string]string
-	MessageId          string
-	InReplyToMessageId string
-	ReplyTo            string
-	CC                 map[string]string
-	BCC                map[string]string
-	TemplateFile       string
-	Data               map[string]interface{}
-	Attachments        []string
-}
-
-type SMTPSettings struct {
-	Server      string
-	Username    string
-	Password    string
-	Port        int
-	Security    string
-	EmailFields *EmailFields
-}
+var (
+	mandrillMailer mailer.Mailer
+)
 
 // Initialize the SMTP client
 func InitSMTP() {
-	fmt.Println("Config here")
+	mailer.InitMandrill()
+	mandrillMailer = &mailer.MandrillMailer{}
 }
 
-var SendEmailTemplate = func(fields *EmailFields) error {
-
-	fmt.Println("SendEmailTemplate", fields)
-
-	return nil
+type EmailSendError struct {
+	Options     *mailer.EmailFields
+	Message     string
+	MessageType string
 }
 
-func GetPlainTextVersionFromHTML(HTMLBody string, addReplyAboveLine bool) string {
-	// Convert any newline type
-	plaintextBody := regexp.MustCompile("(\\<\\/?((br)|(p))\\>)+").ReplaceAllString(HTMLBody, "\r\n\r\n")
-	// Remove all tags but leave nice
-	plaintextBody = utility.StripTags(plaintextBody)
-	// Trim any extra space
-	plaintextBody = strings.TrimSpace(plaintextBody)
+type EmailSendErrFunc func(EmailSendError)
 
-	// Add on the please reply line to the plain text
-	if addReplyAboveLine {
-		plaintextBody = "-- Please reply above this line --\r\n" + plaintextBody
+var NoopEmailErr = func(errInfo EmailSendError) {
+	// Note that with the revel logger we are not actually
+	// going to panic here, despite the name.
+	logger.Log.Panicf("[MAIL] Error sending email %s", errInfo.Message)
+	return
+}
+
+var EmailErrorLogger = func(errInfo EmailSendError) {
+
+}
+
+type SendEmailData struct {
+	Email       *mailer.EmailWithConfig
+	Sender      mailer.Mailer
+	ErrFunc     EmailSendErrFunc
+	MessageType string
+}
+
+func (self *SendEmailData) ApplyDefaults() {
+	if self.ErrFunc == nil {
+		self.ErrFunc = NoopEmailErr
 	}
 
-	return plaintextBody
+	if self.MessageType == "" {
+		self.MessageType = "normalEmail"
+	}
+
+	// For all outbound e-mail on local machines we are going to send
+	// email through mailtrap (by default) and only send to the dev team rather than real customers.
+	/*
+		if revel.DevMode {
+			self.Sender = mailer.NewDevMailer()
+		} else {
+			self.Sender.Init(self.Email.Config)
+		}
+	*/
+	self.Sender = mandrillMailer
+	self.Sender.Init(self.Email.Config)
+}
+
+func (self *SendEmailData) logEmailAsSent() {
+	/*
+		ticketData, err := json.Marshal(map[string]interface{}{
+			"to":        self.Email.Fields.To,
+			"from":      self.Email.Fields.From,
+			"cc":        self.Email.Fields.CC,
+			"bcc":       self.Email.Fields.BCC,
+			"subject":   self.Email.Fields.Subject,
+			"messageId": self.Email.Fields.MessageId,
+		})
+		if err != nil {
+			logger.Log.Panicf("[MAIL] Failed to marshal json for email data")
+		} else {
+			logger.Log.Printf("[MAIL] Delivered Success: %s", string(ticketData))
+		}
+	*/
+	return
+}
+
+func SendEmail(message SendEmailData) error {
+	message.ApplyDefaults()
+
+	err := message.Sender.Send(message.Email.Fields)
+
+	if err != nil {
+		fmt.Println("X2. Error sending email", err, message.Email.Fields)
+	}
+	/*
+		if err != nil {
+			emailData, err2 := json.Marshal(message.Email.Fields)
+			if err2 == nil {
+				logger.Log.Panicf("[MAIL] Error sending email: %s : Email Data %s", err.Error(), string(emailData))
+			}
+
+			// get the rendered email, save re-doing the template during a resend
+			html, text := message.Sender.GetRenderedEmail()
+
+			if message.Email.Fields.Data != nil {
+				message.Email.Fields.Data["RenderedHTML"] = html
+				message.Email.Fields.Data["RenderedText"] = text
+			}
+
+			message.ErrFunc(EmailSendError{
+				Options:     &message.Email.Fields,
+				Message:     err.Error(),
+				MessageType: message.MessageType,
+			})
+			return err
+		}
+	*/
+
+	message.logEmailAsSent()
+
+	// Remove any attachments
+	/*
+		for _, attachment := range message.Email.Fields.Attachments {
+			os.Remove(utility.TempFolder + strconv.FormatInt(attachment.Id, 10) + "_" + attachment.FileName)
+		}
+	*/
+
+	return nil
 }

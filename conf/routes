@@ -24,6 +24,10 @@ GET 	/panics																AppController.GET_panics
 POST 	/panics 															AppController.POST_panics
 GET 	/panics/:panicId													AppController.GET_panicId
 
+# Mandrill notifications (first one is temp until I update mandrill route)
+POST 	/v1/mandrill/notifymail 				                            MandrillController.POST_v1_mandrill_notifymail
+GET 	/v1/mandrill/notifymail 				                            MandrillController.GET_v1_mandrill_notifymail
+
 # Stats
 GET		/stats																StatController.Stats
 GET		/stats/delete														StatController.DeleteStats

@@ -13,6 +13,7 @@ import (
 	"io/ioutil"
 	"path/filepath"
 	"reflect"
+	"regexp"
 	"strings"
 	"sync"
 	"text/template"
@@ -222,6 +223,19 @@ func StripTags(html string) string {
 		b.Write(s[i:])
 	}
 	return b.String()
+}
+
+// StripTagsWithNewLines converts strips tags while converting
+// br and p tags to new lines and stripping leading whitespace
+func StripTagsWithNewLines(HTML string) string {
+	// Convert any newline type
+	plaintext := regexp.MustCompile("(\\<\\/?((br\\s?\\/?)|(p))\\>)").ReplaceAllString(HTML, "\r\n")
+	// Remove all tags but leave nice
+	plaintext = StripTags(plaintext)
+	// Remove leading whitespace from lines
+	plaintext = regexp.MustCompile("(?m)^[ \\t]*").ReplaceAllString(plaintext, "")
+
+	return plaintext
 }
 
 // htmlNameFilter accepts valid parts of an HTML attribute or tag name or

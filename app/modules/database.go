@@ -33,7 +33,6 @@ func InitDB() {
 	}
 
 	DB.DbMap = &gorp.DbMap{Db: dbc, Dialect: gorp.MySQLDialect{"InnoDB", "UTF8"}}
-	revel.INFO.Println("Successfully connected to journal database")
 }
 
 // All queries throughout the app are wrapped up in a nice little package so we can take

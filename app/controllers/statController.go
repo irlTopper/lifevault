@@ -5,8 +5,8 @@ import (
 
 	"github.com/revel/revel"
 
-	"github.com/teamwork/TeamworkDesk/app/interceptors"
-	"github.com/teamwork/TeamworkDesk/app/modules"
+	"github.com/irlTopper/lifevault/app/interceptors"
+	"github.com/irlTopper/lifevault/app/modules"
 
 	"runtime"
 )

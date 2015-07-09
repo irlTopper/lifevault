@@ -12,8 +12,8 @@ import (
 const (
 	// The robot user is responsible for processing
 	// new tickets and creating threads.  Used in
-	// mailgun controller.
-	RobotUser = 999999999
+	// mandrill controller.
+	RobotUserId = 999999999
 )
 
 type User struct {

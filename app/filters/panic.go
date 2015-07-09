@@ -2,14 +2,13 @@ package filters
 
 import (
 	"bytes"
-	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"runtime"
 	"strconv"
-	"time"
 
 	"github.com/irlTopper/lifevault/app/modules"
+	"github.com/irlTopper/lifevault/app/modules/logger/app"
 	"github.com/kr/pretty"
 	"github.com/revel/revel"
 )
@@ -21,15 +20,40 @@ var (
 	slash     = []byte("/")
 )
 
+func init() {
+	revel.OnAppStart(func() {
+	})
+}
+
 // PanicFilter wraps the action invocation in a protective defer blanket that
 // converts panics into 500 error pages.
 func PanicFilter(rc *revel.Controller, fc []revel.Filter) {
 	defer func() {
 		if err := recover(); err != nil {
+			revel.ERROR.Printf("[PANIC]: A panic occurred: %#v %v", err, string(stack(0)))
 			handleInvocationPanic(rc, err)
 		}
 	}()
 	fc[0](rc, fc[1:])
+}
+
+func handleThreadedPanic(err interface{}) {
+	handleErrorData(err, nil)
+}
+
+func CatchThreadedPanics() {
+	if err := recover(); err != nil {
+		revel.ERROR.Printf("[PANIC]: A panic occurred: %#v", err)
+		handleThreadedPanic(err)
+	}
+}
+
+func CatchPanicCallback(callback func()) {
+	if err := recover(); err != nil {
+		revel.ERROR.Printf("[PANIC]: A socket panic occurred: %#v", err)
+		callback()
+		handleThreadedPanic(err)
+	}
 }
 
 // This function handles a panic in an action invocation.
@@ -45,23 +69,52 @@ func handleInvocationPanic(rc *revel.Controller, err interface{}) {
 		return
 	}
 
-	runtimeOffset := 7
-	stackOffset := 8
+	rc.RenderArgs = handleErrorData(err, rc)
+	rc.Response.Status = 500
+
+	if revel.DevMode {
+		rc.Result = rc.RenderTemplate("errors/panic.html")
+	} else {
+		rc.Result = rc.RenderJson(map[string]interface{}{
+			"status": "Internal Error",
+			"error":  "An internal error occurred, sorry about that - the team have been notified of the issue!",
+		})
+	}
+
+	return
+}
+
+func handleErrorData(err interface{}, rc *revel.Controller) (renderErrors map[string]interface{}) {
+	runtimeOffset := 8
+	stackOffset := 9
 
 	errorSource := ""
 	errorLine := ""
 
-	renderErrors := map[string]interface{}{
-		"request": pretty.Sprintf("%# v", rc.Request.Request),
+	renderErrors = map[string]interface{}{}
+
+	if rc != nil {
+		renderErrors["request"] = pretty.Sprintf("%# v", rc.Request.Request)
 	}
+
+	var errorSQL string
 
 	if data, ok := err.(map[string]interface{}); ok {
 		err = data["error"]
-		runtimeOffset = 7
-		stackOffset = 8
+		runtimeOffset = 8
+		stackOffset = 9
 
 		if SQL, ok := data["OffendingSQL"]; ok {
 			renderErrors["SQL"] = SQL
+			errorSQL, _ = SQL.(string)
+		}
+
+		if dataObj, ok := data["DataObject"]; ok {
+			renderErrors["dataObject"] = pretty.Sprintf("%# v", dataObj)
+		}
+
+		if params, ok := data["Params"]; ok {
+			renderErrors["params"] = pretty.Sprintf("%# v", params)
 		}
 	}
 
@@ -76,40 +129,26 @@ func handleInvocationPanic(rc *revel.Controller, err interface{}) {
 	renderErrors["errorSource"] = errorSource
 	renderErrors["errorLine"] = errorLine
 	renderErrors["title"] = err
+	renderErrors["languageCode"] = "en"
 
-	rc.RenderArgs = renderErrors
-	rc.Response.Status = 500
+	title, parseError := err.(string)
 
-	if revel.DevMode {
-		rc.Result = rc.RenderTemplate("errors/panic.html")
-	} else {
-		title, _ := renderErrors["title"].(string)
+	if !parseError {
+		e, ok := err.(error)
 
-		devEmails := map[string]string{
-			"Robert O'Leary":  "teamworkrobert@gmail.com",
-			"Peter Coppinger": "peter@teamwork.com",
-			"Brandon Hansen":  "contact+tmpanic@aisforarray.com",
+		if ok {
+			title = e.Error()
 		}
-
-		// TODO SEND EMAIL
-		modules.SendEmailTemplate(&modules.EmailFields{
-			Subject:      "PANIC:" + title,
-			From:         "panic@teamworkdesk.com",
-			Name:         "Teamwork Desk Panic",
-			To:           devEmails,
-			TemplateFile: "errors/panic.html",
-			Data:         renderErrors,
-		})
-
-		rc.Result = rc.RenderJson(map[string]interface{}{
-			"status": "Internal Error",
-			"error":  "An internal error occurred, sorry about that - the team have been notified of the issue!",
-		})
-
-		data, _ := json.Marshal(renderErrors)
-
-		modules.DB.Exec(rc, "INSERT INTO paniclogs (data, createdAt) VALUES (?, ?)", data, time.Now().UTC())
 	}
+
+	// Only send emails in production
+	if revel.DevMode {
+		// Since we're in DevMode and we don't have a request, let's write out an error\
+		logger.Log.Panicf("[PANIC]:", title, "\n\nStack:\n", string(stack(0)))
+		return
+	}
+
+	fmt.Println(errorSQL)
 
 	return
 }
