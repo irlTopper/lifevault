@@ -3,7 +3,8 @@
 # ~~~~
 module:testrunner
 
-GET     /																	Static.Serve("frontend/src/index.html")
+GET     /																	Static.Serve("frontend/public/index.html")
+GET     /app/																Static.Serve("frontend/src/index.html")
 
 # Users
 GET 	/v1/me.json 														UserController.GET_v1_me
@@ -41,9 +42,9 @@ OPTIONS	/*																	AppController.HandleCORS
 # Static file serving
 GET		/dist/*filepath														Static.Serve("frontend/dist/")
 GET		/public/*filepath													Static.Serve("frontend/public")
-GET		/images/*filepath													Static.Serve("frontend/public/images")
-GET		/fonts/*filepath													Static.Serve("frontend/public/fonts")
-GET		/css/*filepath														Static.Serve("frontend/src/css")
+GET		/app/images/*filepath												Static.Serve("frontend/public/images")
+GET		/app/fonts/*filepath												Static.Serve("frontend/public/fonts")
+GET		/app/css/*filepath													Static.Serve("frontend/src/css")
 GET		/libs/*filepath														Static.Serve("frontend/src/libs")
 GET		/app/*filepath														Static.Serve("frontend/src/app")
-GET		/*filepath															Static.Serve("frontend/src")
+GET		/*filepath															Static.Serve("frontend/public")
