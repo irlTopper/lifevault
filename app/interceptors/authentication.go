@@ -90,9 +90,6 @@ func (c *Authentication) DecodeUserSession() revel.Result {
 // Initialize a blank request object for the controller pointer at the
 // start of every request
 func (l *Authentication) LogInit() revel.Result {
-
-	fmt.Println("Request Start", l.Request.Method, l.Request.URL)
-
 	l.RequestLog = &modules.RequestLog{Queries: []modules.QueryLog{}}
 	l.startTimeUnixNano = time.Now().UnixNano()
 	modules.Requests[l.Controller] = l.RequestLog
