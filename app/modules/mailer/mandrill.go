@@ -77,7 +77,7 @@ func (self *MandrillMailer) Send(fields EmailFields) error {
 	message.AutoText = true
 	message.HTML = fields.HTMLBody
 	message.Subject = fields.Subject
-	message.FromName = fields.Name
+	message.FromName = fields.FromEmailName
 	message.FromEmail = fields.From
 
 	for name, email := range fields.To {
