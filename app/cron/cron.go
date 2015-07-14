@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/dustin/go-humanize"
 	"github.com/irlTopper/lifevault/app/models"
 	"github.com/irlTopper/lifevault/app/modules"
 	"github.com/irlTopper/lifevault/app/modules/mailer"
@@ -111,7 +112,7 @@ func (sde SendDailyEmail) Run() {
 		subject := "It's " + todayInCurrentTimezone + " - How did your day go?"
 
 		for _, user := range users {
-			sde.SendMailForUser(&user, subject)
+			sde.SendMailForUser(&user, &subject)
 			sentEmailCount = sentEmailCount + 1
 		}
 	}
@@ -122,44 +123,53 @@ func (sde SendDailyEmail) Run() {
 
 }
 
-func (sde SendDailyEmail) SendMailForUser(user *User, subject string) {
+func (sde SendDailyEmail) SendMailForUser(user *User, subject *string) {
 
 	var err error
 
-	from := user.EmailToken + "@lifevaultapp.com"
-
-	fmt.Println("---------------------------------------------")
-	fmt.Println("Sending email")
-	fmt.Println("To:", user.Email)
-	fmt.Println("From ", from)
-	fmt.Println(subject)
+	from := user.EmailToken
+	fromEmailName := "LifeVault"
 
 	HTMLBody := "Just reply to this email with your entry."
 	textBody := "Just reply to this email with your entry."
 
 	// Pick a previous random entry
+	journalEntry := models.JournalEntry{}
 	SQL := `SELECT 	date, body
 			FROM 	journalentries
 			WHERE 	users_id = ?
 					AND state = 'published'
 			ORDER BY rand()
 			limit 1`
-	journalEntry := models.JournalEntry{}
 	err = modules.DB.SelectOne(&revel.Controller{}, &journalEntry, SQL, user.Id)
 	if err == nil {
-		HTMLBody += "<br/><br/>Remember this? A while back you wrote:<br/><br/>" + journalEntry.Body
+		HTMLBody += "<br/><br/>Remember this? " + humanize.Time(journalEntry.Date) + " you wrote:" + "<br/><br/>" + journalEntry.Body
 	}
 
-	err = modules.SendEmail(modules.SendEmailData{
-		Email: &mailer.EmailWithConfig{Fields: mailer.EmailFields{
-			Subject:       subject,
-			From:          from,
-			HTMLBody:      HTMLBody,
-			PlaintextBody: textBody,
-			To:            map[string]string{user.FirstName + " " + user.LastName: user.Email},
-		}},
-	})
-	if err != nil {
-		fmt.Println("Error sending email", err)
+	if revel.DevMode {
+		fmt.Println("---- Dev Mail ----")
+		fmt.Println("To:     ", user.Email)
+		fmt.Println("From :  ", from)
+		fmt.Println("Subject:", *subject)
+		fmt.Println(" - - - - - -")
+		fmt.Println(HTMLBody)
+		fmt.Println(" - - end - -")
 	}
+
+	if !revel.DevMode || 1 == 1 {
+		err = modules.SendEmail(modules.SendEmailData{
+			Email: &mailer.EmailWithConfig{Fields: mailer.EmailFields{
+				Subject:       *subject,
+				From:          from,
+				FromEmailName: fromEmailName,
+				HTMLBody:      HTMLBody,
+				PlaintextBody: textBody,
+				To:            map[string]string{user.FirstName + " " + user.LastName: user.Email},
+			}},
+		})
+		if err != nil {
+			fmt.Println("Error sending email", err)
+		}
+	}
+
 }

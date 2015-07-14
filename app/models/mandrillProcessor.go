@@ -6,6 +6,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/PuerkitoBio/goquery"
 	"github.com/irlTopper/lifevault/app/modules"
 	"github.com/irlTopper/lifevault/app/modules/logger/app"
 	"github.com/revel/revel"
@@ -55,7 +56,7 @@ func (p MandrillProcessor) Process(controller *revel.Controller) error {
 	// So let's check if we sent the e-mail.  If we did, just mark it
 	// as processed, add a note, and move on.
 	if p.Msg.Sender == "notifications@lifevaultapp.com" {
-		p.EmailProcessingSuccess(controller, "Preventing redirect loop (sent from desk)")
+		p.EmailProcessingSuccess(controller, "Preventing redirect loop (sent from lifeVault)")
 		return nil
 	}
 
@@ -81,11 +82,13 @@ func (p MandrillProcessor) Process(controller *revel.Controller) error {
 	}
 	fmt.Println("Found user", matchedUser)
 
+	body := p.GetCleanJournalBody()
+
 	// Insert the journal into the database
 	journalEntry := JournalEntry{
 		Users_id: matchedUser.Id,
 		Date:     time.Now(),
-		Body:     p.Msg.Text,
+		Body:     body,
 	}
 	err = modules.DB.Insert(controller, &journalEntry)
 	if err != nil {
@@ -120,4 +123,41 @@ func (p MandrillProcessor) EmailProcessingFailed(controller *revel.Controller, s
 	if err != nil {
 		panic(err.Error())
 	}
+}
+
+func (p MandrillProcessor) GetCleanJournalBody() (body string) {
+
+	BodyPlain := p.Msg.Text
+	BodyHTML := p.Msg.Html
+	// We don't want to use the new processing on agent emails just yet for safety
+
+	// Check if it's a plaintext email
+	if strings.TrimSpace(BodyHTML) == "" {
+
+		body = modules.StripPlainEmailReplies(BodyPlain)
+		_, body = modules.SplitPlainEmailBodyAndSignature(BodyPlain, body)
+
+		if strings.TrimSpace(body) == "" {
+			body = BodyPlain
+		}
+
+		body = modules.FormatPlainEmail(body)
+
+	} else {
+
+		fmt.Println("here001", len(BodyHTML))
+
+		_, body = modules.SplitHTMLEmailBodyAndSignature("", BodyHTML, true)
+
+		doc, _ := goquery.NewDocumentFromReader(strings.NewReader(body))
+
+		if strings.TrimSpace(doc.Text()) == "" {
+			fmt.Println("here002")
+			body = BodyHTML
+		}
+
+		body = modules.CleanupHTMLEmail(body)
+
+	}
+	return
 }

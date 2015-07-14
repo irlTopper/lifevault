@@ -10,3 +10,4 @@ runtests.bat
 tests/emailParsingTests/finalResults/index.html
 *.log
 frontend/src/less/
+win/on
