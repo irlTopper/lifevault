@@ -135,7 +135,7 @@ func (p MandrillProcessor) GetCleanJournalBody() (body string) {
 	if strings.TrimSpace(BodyHTML) == "" {
 
 		body = modules.StripPlainEmailReplies(BodyPlain)
-		_, body = modules.SplitPlainEmailBodyAndSignature(BodyPlain, body)
+		_, body = modules.SplitPlainEmailBodyAndSignature("", BodyPlain)
 
 		if strings.TrimSpace(body) == "" {
 			body = BodyPlain
@@ -151,12 +151,7 @@ func (p MandrillProcessor) GetCleanJournalBody() (body string) {
 
 		doc, _ := goquery.NewDocumentFromReader(strings.NewReader(body))
 
-		if strings.TrimSpace(doc.Text()) == "" {
-			fmt.Println("here002")
-			body = BodyHTML
-		}
-
-		body = modules.CleanupHTMLEmail(body)
+		body = strings.TrimSpace(doc.Text())
 
 	}
 	return
