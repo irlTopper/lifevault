@@ -127,7 +127,7 @@ func (sde SendDailyEmail) SendMailForUser(user *User, subject *string) {
 
 	var err error
 
-	from := user.EmailToken
+	from := user.EmailToken + "@lifevaultapp.com"
 	fromEmailName := "LifeVault"
 
 	HTMLBody := "Just reply to this email with your entry."
