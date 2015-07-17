@@ -139,7 +139,7 @@ getBundlesInfoWithTimestamps = () ->
                 'modal-prompt'
             ]
         ]
-        'dashboard': [
+        'journal': [
             # Essential components
             'components': [
                 'nav-main'
@@ -147,7 +147,7 @@ getBundlesInfoWithTimestamps = () ->
                 'loadingIndicator'
                 'widget-uiMessage'
                 'page-loading'
-                'page-dashboard'
+                'page-journal'
                 'section-blankslate'
                 'modal-confirm'
             ]

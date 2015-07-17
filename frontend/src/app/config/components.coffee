@@ -3,7 +3,8 @@ components = [
     'page-loading'
 
     # Pages
-    'page-dashboard'
+    'page-journal'
+    'page-calendar'
     'page-errorLoadingMsg'
     'page-login'
     'page-reset-password'
@@ -11,7 +12,6 @@ components = [
     'loadingIndicator'
     'page-search'
     'page-myprofile'
-    'page-journal'
     'section-blankslate'
     'section-pagination'
     'section-user-profile'

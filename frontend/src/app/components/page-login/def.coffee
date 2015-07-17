@@ -58,7 +58,7 @@ define ['knockout', 'knockout-mapping', 'text!./template.html', 'userModel'], (k
                     app.GoTo app.requestedRouteBeforeLoginRedirect.request_
                     app.requestedRouteBeforeLoginRedirect = undefined
                 else
-                    app.GoTo "dashboard"
+                    app.GoTo "journal"
 
                 # This must always be done
                 app.socket.Start()

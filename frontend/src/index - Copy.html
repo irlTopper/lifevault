@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LifeVault</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+<!-- build:css -->
+<link href="public/app/css/bootstrap.min.css" rel="stylesheet">
+<link href="public/app/font-awesome/css/font-awesome.css" rel="stylesheet">
+<link href="public/app/css/plugins/toastr/toastr.min.css" rel="stylesheet">
+<link href="public/app/js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
+<link href="public/app/css/animate.css" rel="stylesheet">
+<link href="public/app/css/style.css" rel="stylesheet">
+<!-- endbuild -->
+<link rel="apple-touch-icon" href="public/app/favicon/apple-icon-120x120.png">
+<link rel="icon" type="image/png" href="public/app/favicon/favicon-96x96.png">
+<link rel="manifest" href="public/app/favicon/manifest.json">
+<meta name="msapplication-TileImage" content="app/favicon/ms-icon-144x144.png">
+</head><body id="page-preloading" data-bind="attr:{ id:app.pageComponentToShow }, css:app._template" onload="require(['app/init']);">
+
+<!-- ko if: typeof hasLocalStorageSupport === 'undefined' -->
+	<div id="loadingRings">
+		<div id="ringsContent">
+            <img src="images/lifevault.png" alt="LifeVault">
+            <p>Loading Your Life...</p>
+        </div>
+	</div>
+<!-- /ko -->
+
+<!-- ko ifnot: hasLocalStorageSupport -->
+	<!-- ko html:'<div style="width:600px;margin:120px auto 0 auto;color:#fff;line-height:150%;"><h3>Sorry, LifeVault needs a modern browser</h3><p>We detected that your browser doesn\'t support localStorage. Please try a modern browser like <a href="http://www.google.com/chrome/" style="color:#fff;text-decoration:underline;">Google Chrome</a>.</p></div>' --><!-- /ko -->
+<!-- /ko -->
+<!-- ko if: hasLocalStorageSupport -->
+
+	<!-- LOGGED OUT (full screen) -->
+	<!-- ko if: app.currentRoute().isLoggedInPage === false -->
+	  <!-- ko component: { name: app.pageComponentToShow } --><!-- /ko -->
+	<!-- /ko -->
+
+
+	<!-- LOGGED IN (has nav) -->
+	<!-- ko if: app.currentRoute().isLoggedInPage -->
+
+	<!-- INITIAL LOADING -->
+	<!-- ko ifnot: app.essentialDataIsLoaded() -->
+	  <!-- ko component: { name: 'page-loading' } --><!-- /ko -->
+	<!-- /ko -->
+
+
+
+	<!-- MAIN APP -->
+	<!-- ko if: app.essentialDataIsLoaded() -->
+	<div class="deck-wrap" >
+
+	    <!-- LEFT HAND SIDE NAVIGATION -->
+	    <!-- ko component: { name: 'nav-main' } --><!-- /ko -->
+
+	    <section class="main--holder" data-bind="css: app.mainHolderClass">
+	      <!-- ko if: app.pageLoadingErrorXHR() != null -->
+	        <!-- ko component: { name: 'page-errorLoadingMsg' } --><!-- /ko -->
+	      <!-- /ko -->
+	      <!-- ko if: app.pageLoadingErrorXHR() == null && app.pageComponentToShow() !== '' -->
+	       	<!-- ko component: { name: app.pageComponentToShow() } --><!-- /ko -->
+
+
+			    <!-- ko if: app.currentRoute().viewingUsers().length && app.currentRoute().pageMain != "ticket" -->
+			        <!-- ko component: { name: 'widget-othersViewing' } --><!-- /ko -->
+			    <!-- /ko -->
+	      <!-- /ko -->
+	    </section>
+
+	</div>
+	<!-- /ko -->
+
+	<!-- /ko -->
+
+	<!-- UI MESSAGE -->
+	<!-- ko component: { name: "widget-uiMessage", params:{ watch:app.uiMessage } } --><!-- /ko -->
+
+	<!-- Load Modals on demand -->
+	<!-- ko foreach: app.modals -->
+	<!-- ko component: { name: "modal-" + name, params:params } --><!-- /ko -->
+	<!-- /ko -->
+
+<!-- /ko -->
+
+<!-- build:note --><!--
+Note that requirejs must be defined before jquery.
+And for libraries that don't support AMD, jquery must be included like this.
+
+The app must run at "/desk/", not "/desk" for correct paths
+--><!-- endbuild -->
+<script>if((typeof window.twDeskConfig == 'undefined' || !twDeskConfig.isDeveloperMode) && window.location.pathname == "/desk"){window.location.pathname = "/desk/";}</script>
+<script src="libs/socket.io/socket.io.min.js"></script>
+<script src="libs/bower/zeroclipboard/dist/ZeroClipboard.js"></script>
+<!-- build:debug -->
+<script src="libs/mockUsers.js"></script><!-- only for dev -->
+<!-- endbuild -->
+<!-- build:requireConfig -->
+<script src="public/config.js"></script>
+<script src="app/require.config.js"></script>
+<script src="libs/bower/jquery/dist/jquery.js"></script>
+<script src="libs/bower/requirejs/require.js"></script>
+<!-- endbuild -->
+</body></html>

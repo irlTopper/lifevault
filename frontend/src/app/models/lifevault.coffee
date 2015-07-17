@@ -384,7 +384,7 @@ define [
         # If we've tried the reload already and still no luck, then go to the dash
         if lscache.get("MissingEssentialData-tryingReload") isnt null
             lscache.set "MissingEssentialData-tryingReload", null
-            app.GoTo "dashboard"
+            app.GoTo "journal"
             app.flash.Error("We couldn't load the page you requested &mdash; you might be denied access or it might have been deleted.")
             return
 

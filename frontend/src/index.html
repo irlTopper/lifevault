@@ -5,21 +5,21 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LifeVault</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 <!-- build:css -->
-<link href="css/login.css" rel="stylesheet"/>
-<link href="css/login.temp.css" rel="stylesheet"/>
-<link href="css/styles.css" rel="stylesheet"/>
-<link href="css/temp.css" rel="stylesheet"/>
-<link rel="stylesheet" href="public/upload/css/jquery.fileupload.css">
-<link rel="stylesheet" href="public/css/card.css">
+<link href="public/app/css/bootstrap.min.css" rel="stylesheet">
+<link href="public/app/font-awesome/css/font-awesome.css" rel="stylesheet">
+<link href="public/app/css/plugins/toastr/toastr.min.css" rel="stylesheet">
+<link href="public/app/js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
+<link href="public/app/css/animate.css" rel="stylesheet">
+<link href="public/app/css/style.css" rel="stylesheet">
 <!-- endbuild -->
-<link rel="apple-touch-icon" href="public/favicon/apple-icon-120x120.png">
-<link rel="icon" type="image/png" href="public/favicon/favicon-96x96.png">
-<link rel="manifest" href="public/favicon/manifest.json">
-<meta name="msapplication-TileImage" content="public/favicon/ms-icon-144x144.png">
+<link rel="apple-touch-icon" href="public/app/favicon/apple-icon-120x120.png">
+<link rel="icon" type="image/png" href="public/app/favicon/favicon-96x96.png">
+<link rel="manifest" href="public/app/favicon/manifest.json">
+<meta name="msapplication-TileImage" content="app/favicon/ms-icon-144x144.png">
 </head><body id="page-preloading" data-bind="attr:{ id:app.pageComponentToShow }, css:app._template" onload="require(['app/init']);">
 
 <!-- ko if: typeof hasLocalStorageSupport === 'undefined' -->
@@ -54,26 +54,17 @@
 
 	<!-- MAIN APP -->
 	<!-- ko if: app.essentialDataIsLoaded() -->
-	<div class="deck-wrap" >
+    <div id="wrapper">
 
-	    <!-- LEFT HAND SIDE NAVIGATION -->
-	    <!-- ko component: { name: 'nav-main' } --><!-- /ko -->
+    	<!-- ko component: { name: 'nav-main' } --><!-- /ko -->
 
-	    <section class="main--holder" data-bind="css: app.mainHolderClass">
-	      <!-- ko if: app.pageLoadingErrorXHR() != null -->
-	        <!-- ko component: { name: 'page-errorLoadingMsg' } --><!-- /ko -->
-	      <!-- /ko -->
-	      <!-- ko if: app.pageLoadingErrorXHR() == null && app.pageComponentToShow() !== '' -->
-	       	<!-- ko component: { name: app.pageComponentToShow() } --><!-- /ko -->
-
-
-			    <!-- ko if: app.currentRoute().viewingUsers().length && app.currentRoute().pageMain != "ticket" -->
-			        <!-- ko component: { name: 'widget-othersViewing' } --><!-- /ko -->
-			    <!-- /ko -->
-	      <!-- /ko -->
-	    </section>
-
-	</div>
+		<!-- ko if: app.pageLoadingErrorXHR() != null -->
+			<!-- ko component: { name: 'page-errorLoadingMsg' } --><!-- /ko -->
+		<!-- /ko -->
+		<!-- ko if: app.pageLoadingErrorXHR() == null && app.pageComponentToShow() !== '' -->
+			<!-- ko component: { name: app.pageComponentToShow() } --><!-- /ko -->
+		<!-- /ko -->
+    </div>
 	<!-- /ko -->
 
 	<!-- /ko -->
@@ -101,9 +92,13 @@ The app must run at "/desk/", not "/desk" for correct paths
 <script src="libs/mockUsers.js"></script><!-- only for dev -->
 <!-- endbuild -->
 <!-- build:requireConfig -->
-<script src="public/config.js"></script>
 <script src="app/require.config.js"></script>
 <script src="libs/bower/jquery/dist/jquery.js"></script>
+<script src="public/app/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="public/app/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="public/app/js/inspinia.js"></script>
+<script src="public/app/js/plugins/pace/pace.min.js"></script>
+
 <script src="libs/bower/requirejs/require.js"></script>
 <!-- endbuild -->
 </body></html>

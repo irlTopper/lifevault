@@ -1,3 +1,0 @@
-window.twDeskConfig = {
-    "isDeveloperMode": false
-}

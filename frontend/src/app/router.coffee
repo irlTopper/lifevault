@@ -25,8 +25,7 @@ define ["knockout", "crossroads", "hasher", "lscache"], (ko, crossroads, hasher,
                         route.params.page = 'login'
                         route.params.isLoggedInPage = false
                     else
-                        route.params.page = 'dashboard'
-                        route.params.dashboardPageTab = ( lscache.get( "lastDashboardPageTab" ) || "inboxes" )
+                        route.params.page = 'journal'
                         route.params.isLoggedInPage = true
 
                 currentRoute ko.utils.extend( requestParams, route.params )
@@ -76,12 +75,12 @@ define ["knockout", "crossroads", "hasher", "lscache"], (ko, crossroads, hasher,
         hasher.init()
 
 
-
     routes = [
             # main nav
-            { url: 'dashboard/:dashboardPageTab:', params: { page: 'dashboard' } }
             { url: 'journal', params: { page: 'journal', pageMain: 'journal' } }
             { url: 'journal/{id}', params: { page: 'journal', pageMain: 'journal' } }
+
+            { url: 'calendar', params: { page: 'calendar', pageMain: 'calendar' } }
 
             # extra pages
             { url: 'search/:term1:/:term2:/:term3:/:term4:', params: { page: 'search' } }

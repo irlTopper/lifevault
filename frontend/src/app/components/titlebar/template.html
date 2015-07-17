@@ -1,18 +1,43 @@
-<header class="sections--header">
-    <div class="padding-wrap">
-        <h2 class="title-label" data-bind="text:title"></h2>
-        <!-- ko if: subnav != null && subnav.length -->
-            <nav class="settings-nav">
-                <div class="btn-group">
-                    <!-- ko repeat: { foreach: subnav } -->
-                        <a class="btn btn-default" data-bind="text:$item().name, attr: { 'href': subnav.baseURL + $item().routePart },css:{ 'active': $item().routePart === app.currentRoute()[subnav.routePartName] }"></a>
-                    <!-- /ko -->
+<div class="row border-bottom">
+    <nav class="navbar navbar-static-top  " role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+            <form role="search" class="navbar-form-custom" action="search_results.html">
+                <div class="form-group">
+                    <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
                 </div>
-            </nav><!-- menu -->
-        <!-- /ko -->
-    </div><!-- padding wrapper -->
-</header>
-
+            </form>
+        </div>
+        <ul class="nav navbar-top-links navbar-right">
+            <li>
+                <span class="m-r-sm text-muted welcome-message">&nbsp;</span>
+            </li>
+            <li>
+                <a href="login.html">
+                    <i class="fa fa-sign-out"></i> Log out
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2 data-bind="text:title">This is main title</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">This is</a>
+            </li>
+            <li class="active">
+                <strong>Breadcrumb</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="" class="btn btn-primary">This is action area</a>
+        </div>
+    </div>
+</div>
 <!-- IMPORTANT - Mark this template loaded -->
 <!-- ko if: $data.readyToShow != null && readyToShow -->
     <div data-bind="template:{afterRender:function(){templateLoaded(true)}}" class="hidden"></div>
